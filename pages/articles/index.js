@@ -1,19 +1,11 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import PageHeader from "../../components/PageHeader";
-import { prisma } from "../../lib/prisma";
+import { db } from "../../lib/db";
 
 export async function getStaticProps() {
-  let articles = [];
-  try {
-    articles = await prisma.article.findMany({
-      where: { published: true },
-      orderBy: { publishedAt: "desc" },
-    });
-  } catch {
-    articles = [];
-  }
-  return { props: { articles: JSON.parse(JSON.stringify(articles)) }, revalidate: 300 };
+  const { data } = await db("articles").select("*").eq("published", true).order("publishedAt", { ascending: false });
+  return { props: { articles: data || [] }, revalidate: 300 };
 }
 
 export default function ArticlesPage({ articles }) {

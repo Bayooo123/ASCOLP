@@ -1,21 +1,16 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import PageHeader from "../../components/PageHeader";
-import { prisma } from "../../lib/prisma";
+import { db } from "../../lib/db";
 
 export async function getStaticPaths() {
   return { paths: [], fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
-  let article = null;
-  try {
-    article = await prisma.article.findUnique({ where: { slug: params.slug } });
-  } catch {
-    article = null;
-  }
+  const { data: article } = await db("articles").select("*").eq("slug", params.slug).maybeSingle();
   if (!article || !article.published) return { notFound: true, revalidate: 60 };
-  return { props: { article: JSON.parse(JSON.stringify(article)) }, revalidate: 60 };
+  return { props: { article }, revalidate: 60 };
 }
 
 export default function ArticleDetail({ article }) {

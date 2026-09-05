@@ -1,15 +1,15 @@
 import { useState } from "react";
 import AdminLayout from "../../../components/AdminLayout";
 import { getSessionFromReq } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 
 export async function getServerSideProps({ req }) {
   const session = getSessionFromReq(req);
   if (!session) return { redirect: { destination: "/admin/login", permanent: false } };
   if (session.role !== "ADMIN") return { redirect: { destination: "/admin", permanent: false } };
 
-  const articles = await prisma.article.findMany({ orderBy: { createdAt: "desc" } });
-  return { props: { articles: JSON.parse(JSON.stringify(articles)) } };
+  const { data } = await db("articles").select("*").order("createdAt", { ascending: false });
+  return { props: { articles: data || [] } };
 }
 
 export default function AdminArticlesList({ articles: initial }) {

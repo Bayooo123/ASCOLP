@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AdminLayout from "../../../components/AdminLayout";
 import { getSessionFromReq } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 
 export async function getServerSideProps({ req }) {
   const session = getSessionFromReq(req);
@@ -11,8 +11,8 @@ export async function getServerSideProps({ req }) {
     return { redirect: { destination: "/admin", permanent: false } };
   }
 
-  const members = await prisma.teamMember.findMany({ orderBy: { displayOrder: "asc" } });
-  return { props: { members: JSON.parse(JSON.stringify(members)) } };
+  const { data } = await db("teamMembers").select("*").order("displayOrder");
+  return { props: { members: data || [] } };
 }
 
 export default function AdminTeamList({ members: initial }) {

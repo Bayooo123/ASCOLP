@@ -1,6 +1,6 @@
-import { prisma } from "../../lib/prisma";
+import { db, upsertOne } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
-import { TEAM_MEMBERS, DEAL_HISTORY } from "../../prisma/seedData";
+import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 
 // One-time bootstrap endpoint: run initial team roster + first admin login
 // against the production database without needing a direct DB connection
@@ -17,19 +17,21 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const results = { teamMembers: 0, admin: null };
+  const results = { teamMembers: 0, admin: null, errors: [] };
 
   for (const member of TEAM_MEMBERS) {
-    const record = await prisma.teamMember.upsert({ where: { slug: member.slug }, update: {}, create: member });
+    const { data: record, error } = await upsertOne("teamMembers", "slug", member.slug, member);
+    if (error) {
+      results.errors.push(`${member.slug}: ${error.message}`);
+      continue;
+    }
     results.teamMembers += 1;
 
     const deals = DEAL_HISTORY[member.slug];
     if (deals && deals.length) {
-      const existing = await prisma.dealRecord.count({ where: { teamMemberId: record.id } });
-      if (existing === 0) {
-        await prisma.dealRecord.createMany({
-          data: deals.map((deal, i) => ({ ...deal, teamMemberId: record.id, order: i })),
-        });
+      const { data: existing } = await db("dealRecords").select("id").eq("teamMemberId", record.id);
+      if (!existing || existing.length === 0) {
+        await db("dealRecords").insert(deals.map((deal, i) => ({ ...deal, teamMemberId: record.id, sortOrder: i })));
       }
     }
   }
@@ -38,12 +40,12 @@ export default async function handler(req, res) {
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (adminEmail && adminPassword) {
     const passwordHash = await hashPassword(adminPassword);
-    await prisma.user.upsert({
-      where: { email: adminEmail },
-      update: {},
-      create: { email: adminEmail, passwordHash, role: "ADMIN" },
-    });
-    results.admin = adminEmail;
+    const { error } = await upsertOne("users", "email", adminEmail, { passwordHash, role: "ADMIN" });
+    if (error) {
+      results.errors.push(`admin: ${error.message}`);
+    } else {
+      results.admin = adminEmail;
+    }
   }
 
   return res.status(200).json({ ok: true, ...results });

@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { getSessionFromReq } from "../../../lib/auth";
 import { sanitizeArticleInput } from "../../../lib/articleFields";
 
@@ -9,23 +9,22 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   if (req.method === "GET") {
-    const article = await prisma.article.findUnique({ where: { id } });
+    const { data: article } = await db("articles").select("*").eq("id", id).maybeSingle();
     if (!article) return res.status(404).json({ error: "Not found" });
     return res.status(200).json(article);
   }
 
   if (req.method === "PUT") {
-    try {
-      const article = await prisma.article.update({ where: { id }, data: sanitizeArticleInput(req.body || {}) });
-      return res.status(200).json(article);
-    } catch (err) {
-      if (err.code === "P2002") return res.status(409).json({ error: "That slug is already in use" });
+    const { data: article, error } = await db("articles").update(sanitizeArticleInput(req.body || {})).eq("id", id).select().single();
+    if (error) {
+      if (error.code === "23505") return res.status(409).json({ error: "That slug is already in use" });
       return res.status(500).json({ error: "Failed to update article" });
     }
+    return res.status(200).json(article);
   }
 
   if (req.method === "DELETE") {
-    await prisma.article.delete({ where: { id } });
+    await db("articles").delete().eq("id", id);
     return res.status(204).end();
   }
 

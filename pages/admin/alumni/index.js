@@ -1,15 +1,15 @@
 import { useState } from "react";
 import AdminLayout from "../../../components/AdminLayout";
 import { getSessionFromReq } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 
 export async function getServerSideProps({ req }) {
   const session = getSessionFromReq(req);
   if (!session) return { redirect: { destination: "/admin/login", permanent: false } };
   if (session.role !== "ADMIN") return { redirect: { destination: "/admin", permanent: false } };
 
-  const alumni = await prisma.alumni.findMany({ orderBy: [{ approved: "asc" }, { createdAt: "desc" }] });
-  return { props: { alumni: JSON.parse(JSON.stringify(alumni)) } };
+  const { data } = await db("alumni").select("*").order("approved").order("createdAt", { ascending: false });
+  return { props: { alumni: data || [] } };
 }
 
 export default function AdminAlumniList({ alumni: initial }) {

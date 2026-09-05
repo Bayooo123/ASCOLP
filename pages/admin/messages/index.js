@@ -1,15 +1,15 @@
 import { useState } from "react";
 import AdminLayout from "../../../components/AdminLayout";
 import { getSessionFromReq } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 
 export async function getServerSideProps({ req }) {
   const session = getSessionFromReq(req);
   if (!session) return { redirect: { destination: "/admin/login", permanent: false } };
   if (session.role !== "ADMIN") return { redirect: { destination: "/admin", permanent: false } };
 
-  const messages = await prisma.contactMessage.findMany({ orderBy: { createdAt: "desc" } });
-  return { props: { messages: JSON.parse(JSON.stringify(messages)) } };
+  const { data } = await db("contactMessages").select("*").order("createdAt", { ascending: false });
+  return { props: { messages: data || [] } };
 }
 
 export default function AdminMessages({ messages: initial }) {

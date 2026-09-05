@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { db } from "../../lib/db";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -11,6 +11,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Name, email and message are required" });
   }
 
-  await prisma.contactMessage.create({ data: { name, email, phone, subject, message } });
+  const { error } = await db("contactMessages").insert({ name, email, phone, subject, message });
+  if (error) return res.status(500).json({ error: "Failed to send message" });
   return res.status(201).json({ ok: true });
 }

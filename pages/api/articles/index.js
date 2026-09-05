@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { getSessionFromReq } from "../../../lib/auth";
 import { sanitizeArticleInput } from "../../../lib/articleFields";
 
@@ -6,8 +6,8 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const session = getSessionFromReq(req);
     if (!session || session.role !== "ADMIN") return res.status(403).json({ error: "Forbidden" });
-    const articles = await prisma.article.findMany({ orderBy: { createdAt: "desc" } });
-    return res.status(200).json(articles);
+    const { data } = await db("articles").select("*").order("createdAt", { ascending: false });
+    return res.status(200).json(data || []);
   }
 
   if (req.method === "POST") {
@@ -15,13 +15,12 @@ export default async function handler(req, res) {
     if (!session || session.role !== "ADMIN") return res.status(403).json({ error: "Forbidden" });
     const data = req.body || {};
     if (!data.slug || !data.title) return res.status(400).json({ error: "slug and title are required" });
-    try {
-      const article = await prisma.article.create({ data: sanitizeArticleInput(data) });
-      return res.status(201).json(article);
-    } catch (err) {
-      if (err.code === "P2002") return res.status(409).json({ error: "That slug is already in use" });
+    const { data: article, error } = await db("articles").insert(sanitizeArticleInput(data)).select().single();
+    if (error) {
+      if (error.code === "23505") return res.status(409).json({ error: "That slug is already in use" });
       return res.status(500).json({ error: "Failed to create article" });
     }
+    return res.status(201).json(article);
   }
 
   res.setHeader("Allow", "GET, POST");

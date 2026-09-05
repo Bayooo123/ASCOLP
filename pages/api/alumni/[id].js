@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { getSessionFromReq } from "../../../lib/auth";
 import { sanitizeAlumniAdminInput } from "../../../lib/alumniFields";
 
@@ -9,18 +9,19 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   if (req.method === "GET") {
-    const alumnus = await prisma.alumni.findUnique({ where: { id } });
+    const { data: alumnus } = await db("alumni").select("*").eq("id", id).maybeSingle();
     if (!alumnus) return res.status(404).json({ error: "Not found" });
     return res.status(200).json(alumnus);
   }
 
   if (req.method === "PUT") {
-    const alumnus = await prisma.alumni.update({ where: { id }, data: sanitizeAlumniAdminInput(req.body || {}) });
+    const { data: alumnus, error } = await db("alumni").update(sanitizeAlumniAdminInput(req.body || {})).eq("id", id).select().single();
+    if (error) return res.status(500).json({ error: "Failed to update" });
     return res.status(200).json(alumnus);
   }
 
   if (req.method === "DELETE") {
-    await prisma.alumni.delete({ where: { id } });
+    await db("alumni").delete().eq("id", id);
     return res.status(204).end();
   }
 

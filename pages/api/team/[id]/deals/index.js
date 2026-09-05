@@ -1,4 +1,4 @@
-import { prisma } from "../../../../../lib/prisma";
+import { db } from "../../../../../lib/db";
 import { getSessionFromReq } from "../../../../../lib/auth";
 
 export default async function handler(req, res) {
@@ -14,10 +14,12 @@ export default async function handler(req, res) {
     const { title, description, practiceArea, year } = req.body || {};
     if (!title) return res.status(400).json({ error: "title is required" });
 
-    const count = await prisma.dealRecord.count({ where: { teamMemberId: id } });
-    const deal = await prisma.dealRecord.create({
-      data: { teamMemberId: id, title, description, practiceArea, year, order: count },
-    });
+    const { data: existing } = await db("dealRecords").select("id").eq("teamMemberId", id);
+    const { data: deal, error } = await db("dealRecords")
+      .insert({ teamMemberId: id, title, description, practiceArea, year, sortOrder: (existing || []).length })
+      .select()
+      .single();
+    if (error) return res.status(500).json({ error: "Failed to add entry" });
     return res.status(201).json(deal);
   }
 

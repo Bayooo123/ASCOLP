@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { prisma } from "../../../../lib/prisma";
+import { db } from "../../../../lib/db";
 import { getSessionFromReq, hashPassword } from "../../../../lib/auth";
 
 // Admin-only: grant or reset a team member's login. Returns the password
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   const { id } = req.query;
-  const member = await prisma.teamMember.findUnique({ where: { id } });
+  const { data: member } = await db("teamMembers").select("*").eq("id", id).maybeSingle();
   if (!member) return res.status(404).json({ error: "Team member not found" });
 
   const email = req.body?.email || member.email;
@@ -23,11 +23,11 @@ export default async function handler(req, res) {
   const password = req.body?.password || crypto.randomBytes(6).toString("base64url");
   const passwordHash = await hashPassword(password);
 
-  const existing = await prisma.user.findUnique({ where: { teamMemberId: id } });
+  const { data: existing } = await db("users").select("id").eq("teamMemberId", id).maybeSingle();
   if (existing) {
-    await prisma.user.update({ where: { id: existing.id }, data: { email, passwordHash } });
+    await db("users").update({ email, passwordHash }).eq("id", existing.id);
   } else {
-    await prisma.user.create({ data: { email, passwordHash, role: "TEAM_MEMBER", teamMemberId: id } });
+    await db("users").insert({ email, passwordHash, role: "TEAM_MEMBER", teamMemberId: id });
   }
 
   return res.status(200).json({ ok: true, email, password });

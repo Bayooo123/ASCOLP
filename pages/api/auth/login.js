@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { comparePassword, signSession, sessionCookie } from "../../../lib/auth";
 
 export default async function handler(req, res) {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Email and password are required" });
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const { data: user } = await db("users").select("*").eq("email", email).maybeSingle();
   if (!user || !(await comparePassword(password, user.passwordHash))) {
     return res.status(401).json({ error: "Invalid email or password" });
   }

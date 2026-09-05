@@ -5,12 +5,9 @@
   "description": "ASCOLP law firm website",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate deploy",
-    "prisma:seed": "node prisma/seed.js"
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
@@ -22,15 +19,12 @@
   },
   "homepage": "https://github.com/Bayooo123/ASCOLP#readme",
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@naijabase/js": "^0.1.1",
     "bcryptjs": "^2.4.3",
     "formidable": "^3.5.1",
     "jsonwebtoken": "^9.0.2",
     "next": "^16.3.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "prisma": "^5.22.0"
   }
 }

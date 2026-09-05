@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { prisma } from "../lib/prisma";
+import { db } from "../lib/db";
 
 const FALLBACK_SLIDES = [
   { slug: "abiola-sanni", name: "Prof. Abiola Sanni (SAN) PhD.", title: "Managing Partner", photoUrl: "/assets/images/team/prof-abiola-sanni.jpg" },
@@ -12,28 +12,20 @@ export async function getStaticProps() {
   let slides = FALLBACK_SLIDES;
   let articles = [];
 
-  try {
-    const members = await prisma.teamMember.findMany({
-      where: { featuredHome: true, published: true },
-      orderBy: { homeOrder: "asc" },
-      take: 7,
-      select: { slug: true, name: true, title: true, photoUrl: true },
-    });
-    if (members.length) slides = members;
-  } catch {
-    // DB not reachable at build time (e.g. local sandbox) — fall back to seed slides.
-  }
+  const { data: members } = await db("teamMembers")
+    .select("*")
+    .eq("featuredHome", true)
+    .eq("published", true)
+    .order("homeOrder")
+    .limit(7);
+  if (members && members.length) slides = members;
 
-  try {
-    articles = await prisma.article.findMany({
-      where: { published: true },
-      orderBy: { publishedAt: "desc" },
-      take: 3,
-      select: { slug: true, title: true, summary: true, coverImageUrl: true, publishedAt: true, type: true, externalUrl: true },
-    });
-  } catch {
-    articles = [];
-  }
+  const { data: fetchedArticles } = await db("articles")
+    .select("*")
+    .eq("published", true)
+    .order("publishedAt", { ascending: false })
+    .limit(3);
+  articles = fetchedArticles || [];
 
   return { props: { slides, articles }, revalidate: 300 };
 }

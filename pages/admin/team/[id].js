@@ -1,7 +1,7 @@
 import AdminLayout from "../../../components/AdminLayout";
 import TeamMemberForm from "../../../components/admin/TeamMemberForm";
 import { getSessionFromReq } from "../../../lib/auth";
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 
 export async function getServerSideProps({ req, params }) {
   const session = getSessionFromReq(req);
@@ -11,13 +11,12 @@ export async function getServerSideProps({ req, params }) {
   const isSelf = session.teamMemberId === params.id;
   if (!isAdmin && !isSelf) return { redirect: { destination: "/admin", permanent: false } };
 
-  const member = await prisma.teamMember.findUnique({
-    where: { id: params.id },
-    include: { dealHistory: { orderBy: { order: "asc" } } },
-  });
+  const { data: member } = await db("teamMembers").select("*").eq("id", params.id).maybeSingle();
   if (!member) return { notFound: true };
 
-  return { props: { member: JSON.parse(JSON.stringify(member)), isAdmin } };
+  const { data: dealHistory } = await db("dealRecords").select("*").eq("teamMemberId", params.id).order("sortOrder");
+
+  return { props: { member: { ...member, dealHistory: dealHistory || [] }, isAdmin } };
 }
 
 export default function EditTeamMember({ member, isAdmin }) {

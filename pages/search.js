@@ -1,7 +1,19 @@
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import PageHeader from "../components/PageHeader";
-import { prisma } from "../lib/prisma";
+import { db } from "../lib/db";
+
+// The Naijabase client has no OR-filter, so "match either column" is done as
+// two separate ilike queries merged and de-duplicated by key.
+function mergeByKey(key, ...lists) {
+  const seen = new Map();
+  for (const list of lists) {
+    for (const row of list || []) {
+      if (!seen.has(row[key])) seen.set(row[key], row);
+    }
+  }
+  return [...seen.values()].slice(0, 10);
+}
 
 export async function getServerSideProps({ query }) {
   const q = (query.q || "").trim();
@@ -10,29 +22,18 @@ export async function getServerSideProps({ query }) {
   let alumni = [];
 
   if (q) {
-    try {
-      [team, articles, alumni] = await Promise.all([
-        prisma.teamMember.findMany({
-          where: { published: true, OR: [{ name: { contains: q, mode: "insensitive" } }, { title: { contains: q, mode: "insensitive" } }] },
-          select: { slug: true, name: true, title: true },
-          take: 10,
-        }),
-        prisma.article.findMany({
-          where: { published: true, OR: [{ title: { contains: q, mode: "insensitive" } }, { summary: { contains: q, mode: "insensitive" } }] },
-          select: { slug: true, title: true, externalUrl: true },
-          take: 10,
-        }),
-        prisma.alumni.findMany({
-          where: { approved: true, name: { contains: q, mode: "insensitive" } },
-          select: { id: true, name: true, currentOrganization: true },
-          take: 10,
-        }),
-      ]);
-    } catch {
-      team = [];
-      articles = [];
-      alumni = [];
-    }
+    const pattern = `%${q}%`;
+    const [teamByName, teamByTitle, articlesByTitle, articlesBySummary, alumniByName] = await Promise.all([
+      db("teamMembers").select("*").eq("published", true).ilike("name", pattern).limit(10),
+      db("teamMembers").select("*").eq("published", true).ilike("title", pattern).limit(10),
+      db("articles").select("*").eq("published", true).ilike("title", pattern).limit(10),
+      db("articles").select("*").eq("published", true).ilike("summary", pattern).limit(10),
+      db("alumni").select("*").eq("approved", true).ilike("name", pattern).limit(10),
+    ]);
+
+    team = mergeByKey("slug", teamByName.data, teamByTitle.data);
+    articles = mergeByKey("slug", articlesByTitle.data, articlesBySummary.data);
+    alumni = mergeByKey("id", alumniByName.data);
   }
 
   return { props: { q, team, articles, alumni } };

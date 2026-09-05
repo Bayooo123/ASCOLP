@@ -1,30 +1,24 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import PageHeader from "../../components/PageHeader";
-import { prisma } from "../../lib/prisma";
+import { db } from "../../lib/db";
 
 export async function getStaticPaths() {
   return { paths: [], fallback: "blocking" };
 }
 
 export async function getStaticProps({ params }) {
-  let member = null;
-  try {
-    member = await prisma.teamMember.findUnique({
-      where: { slug: params.slug },
-      include: { dealHistory: { orderBy: { order: "asc" } } },
-    });
-  } catch {
-    member = null;
-  }
+  const { data: member } = await db("teamMembers").select("*").eq("slug", params.slug).maybeSingle();
 
   if (!member || !member.published) {
     return { notFound: true, revalidate: 60 };
   }
 
+  const { data: dealHistory } = await db("dealRecords").select("*").eq("teamMemberId", member.id).order("sortOrder");
+
   return {
     props: {
-      member: JSON.parse(JSON.stringify(member)),
+      member: { ...member, dealHistory: dealHistory || [] },
     },
     revalidate: 60,
   };

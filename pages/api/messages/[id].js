@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { getSessionFromReq } from "../../../lib/auth";
 
 export default async function handler(req, res) {
@@ -8,12 +8,13 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   if (req.method === "PUT") {
-    const message = await prisma.contactMessage.update({ where: { id }, data: { read: !!req.body?.read } });
+    const { data: message, error } = await db("contactMessages").update({ read: !!req.body?.read }).eq("id", id).select().single();
+    if (error) return res.status(500).json({ error: "Failed to update" });
     return res.status(200).json(message);
   }
 
   if (req.method === "DELETE") {
-    await prisma.contactMessage.delete({ where: { id } });
+    await db("contactMessages").delete().eq("id", id);
     return res.status(204).end();
   }
 

@@ -1,19 +1,11 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import PageHeader from "../../components/PageHeader";
-import { prisma } from "../../lib/prisma";
+import { db } from "../../lib/db";
 
 export async function getStaticProps() {
-  let alumni = [];
-  try {
-    alumni = await prisma.alumni.findMany({
-      where: { approved: true },
-      orderBy: { createdAt: "desc" },
-    });
-  } catch {
-    alumni = [];
-  }
-  return { props: { alumni: JSON.parse(JSON.stringify(alumni)) }, revalidate: 300 };
+  const { data } = await db("alumni").select("*").eq("approved", true).order("createdAt", { ascending: false });
+  return { props: { alumni: data || [] }, revalidate: 300 };
 }
 
 export default function AlumniPage({ alumni }) {

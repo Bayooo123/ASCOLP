@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { upsertOne } from "../../lib/db";
 
 // The footer's newsletter form is a plain HTML form (no JS) so it keeps
 // working even on pages that don't hydrate it — this redirects back to
@@ -15,12 +15,8 @@ export default async function handler(req, res) {
   const redirectUrl = new URL(back, `http://${req.headers.host}`);
 
   if (email) {
-    try {
-      await prisma.newsletterSubscriber.upsert({ where: { email }, update: {}, create: { email } });
-      redirectUrl.searchParams.set("subscribed", "1");
-    } catch {
-      redirectUrl.searchParams.set("subscribed", "0");
-    }
+    const { error } = await upsertOne("newsletterSubscribers", "email", email, {});
+    redirectUrl.searchParams.set("subscribed", error ? "0" : "1");
   } else {
     redirectUrl.searchParams.set("subscribed", "0");
   }

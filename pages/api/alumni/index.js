@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { db } from "../../../lib/db";
 import { getSessionFromReq } from "../../../lib/auth";
 import { sanitizeAlumniAdminInput, sanitizeAlumniSubmission } from "../../../lib/alumniFields";
 
@@ -6,8 +6,8 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const session = getSessionFromReq(req);
     if (!session || session.role !== "ADMIN") return res.status(403).json({ error: "Forbidden" });
-    const alumni = await prisma.alumni.findMany({ orderBy: { createdAt: "desc" } });
-    return res.status(200).json(alumni);
+    const { data } = await db("alumni").select("*").order("createdAt", { ascending: false });
+    return res.status(200).json(data || []);
   }
 
   if (req.method === "POST") {
@@ -21,7 +21,8 @@ export default async function handler(req, res) {
       ? { ...sanitizeAlumniAdminInput(data), source: "ADMIN", approved: data.approved !== false }
       : { ...sanitizeAlumniSubmission(data), source: "SELF_SUBMITTED", approved: false };
 
-    const alumnus = await prisma.alumni.create({ data: record });
+    const { data: alumnus, error } = await db("alumni").insert(record).select().single();
+    if (error) return res.status(500).json({ error: "Failed to submit" });
     return res.status(201).json(alumnus);
   }
 

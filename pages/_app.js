@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { VENDOR_JS } from "../lib/vendorAssets";
 
 // The Oslim template's vendor scripts depend on load order (jQuery must be
@@ -26,14 +27,21 @@ function loadScriptsSequentially(srcs, onDone) {
 }
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const isAdmin = router.pathname.startsWith("/admin");
+
   useEffect(() => {
+    // Admin pages have their own minimal layout and don't need (or want) the
+    // public site's jQuery/Bootstrap template — see _document.js, which
+    // skips that CSS entirely on /admin routes.
+    if (isAdmin) return;
     loadScriptsSequentially(VENDOR_JS, () => {
       // oslim.js wires the preloader fade-out, Swiper init, WOW.js, etc. to
       // window's native "load" event, which has already fired by the time
       // these scripts finish injecting — re-fire it manually so those run.
       if (window.jQuery) window.jQuery(window).trigger("load");
     });
-  }, []);
+  }, [isAdmin]);
 
   return <Component {...pageProps} />;
 }

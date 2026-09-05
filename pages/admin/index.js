@@ -20,7 +20,9 @@ export default function AdminDashboard({ email }) {
         <li>
           <a href="/admin/team">Manage Team Profiles</a>
         </li>
-        <li style={{ color: "#888" }}>Alumni management — coming soon</li>
+        <li>
+          <a href="/admin/alumni">Manage Alumni</a>
+        </li>
         <li style={{ color: "#888" }}>Articles &amp; Newsletters — coming soon</li>
       </ul>
     </AdminLayout>

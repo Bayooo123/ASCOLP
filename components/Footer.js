@@ -1,4 +1,9 @@
+import { useRouter } from "next/router";
+
 export default function Footer() {
+  const router = useRouter();
+  const subscribed = router.query.subscribed;
+
   return (
     <footer className="site-footer">
       <div className="site-footer__top">
@@ -53,14 +58,20 @@ export default function Footer() {
               <div className="footer-widget__column footer-widget__newsletter-box clearfix">
                 <h3 className="footer-widget__title">Newsletter</h3>
                 <p className="footer-widget__newsletter-text">Subscribe for our upcoming latest articles and resources</p>
-                <form className="footer-widget__newsletter-form" action="/api/newsletter-signup" method="post">
-                  <div className="footer-widget__newsletter-input-box">
-                    <input type="email" placeholder="Email address" name="email" required />
-                    <button type="submit" className="footer-widget__newsletter-btn">
-                      <i className="far fa-paper-plane"></i>
-                    </button>
-                  </div>
-                </form>
+                {subscribed === "1" ? (
+                  <p style={{ color: "#4ade80" }}>Thanks for subscribing!</p>
+                ) : subscribed === "0" ? (
+                  <p style={{ color: "#f87171" }}>Please enter a valid email address.</p>
+                ) : (
+                  <form className="footer-widget__newsletter-form" action="/api/newsletter-signup" method="post">
+                    <div className="footer-widget__newsletter-input-box">
+                      <input type="email" placeholder="Email address" name="email" required />
+                      <button type="submit" className="footer-widget__newsletter-btn">
+                        <i className="far fa-paper-plane"></i>
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </div>
             <div className="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">

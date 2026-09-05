@@ -26,6 +26,9 @@ export default function AdminDashboard({ email }) {
         <li>
           <a href="/admin/articles">Manage Articles &amp; Newsletters</a>
         </li>
+        <li>
+          <a href="/admin/messages">Contact Messages</a>
+        </li>
       </ul>
     </AdminLayout>
   );

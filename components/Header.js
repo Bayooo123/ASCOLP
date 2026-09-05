@@ -59,6 +59,9 @@ export default function Header() {
                       <li>
                         <a href="/practice-areas/corporate-secretarial">Corporate Secretarial Services</a>
                       </li>
+                      <li>
+                        <a href="/practice-areas/regulatory-public-policy">Regulatory &amp; Public Policy</a>
+                      </li>
                     </ul>
                   </li>
                   <li>

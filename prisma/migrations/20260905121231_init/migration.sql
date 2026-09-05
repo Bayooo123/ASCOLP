@@ -99,6 +99,20 @@ CREATE TABLE "Article" (
     CONSTRAINT "Article_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "ContactMessage" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "phone" TEXT,
+    "subject" TEXT,
+    "message" TEXT NOT NULL,
+    "read" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ContactMessage_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -128,6 +142,9 @@ CREATE INDEX "Article_published_publishedAt_idx" ON "Article"("published", "publ
 
 -- CreateIndex
 CREATE INDEX "Article_type_idx" ON "Article"("type");
+
+-- CreateIndex
+CREATE INDEX "ContactMessage_read_createdAt_idx" ON "ContactMessage"("read", "createdAt");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_teamMemberId_fkey" FOREIGN KEY ("teamMemberId") REFERENCES "TeamMember"("id") ON DELETE SET NULL ON UPDATE CASCADE;

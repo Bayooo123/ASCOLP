@@ -3,15 +3,25 @@ const bcrypt = require("bcryptjs");
 
 const prisma = new PrismaClient();
 
-const { TEAM_MEMBERS } = require("./seedData");
+const { TEAM_MEMBERS, DEAL_HISTORY } = require("./seedData");
 
 async function main() {
   for (const member of TEAM_MEMBERS) {
-    await prisma.teamMember.upsert({
+    const record = await prisma.teamMember.upsert({
       where: { slug: member.slug },
       update: {},
       create: member,
     });
+
+    const deals = DEAL_HISTORY[member.slug];
+    if (deals && deals.length) {
+      const existing = await prisma.dealRecord.count({ where: { teamMemberId: record.id } });
+      if (existing === 0) {
+        await prisma.dealRecord.createMany({
+          data: deals.map((deal, i) => ({ ...deal, teamMemberId: record.id, order: i })),
+        });
+      }
+    }
   }
 
   const adminEmail = process.env.ADMIN_EMAIL;

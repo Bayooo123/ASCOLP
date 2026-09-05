@@ -7,8 +7,8 @@ export const config = {
   api: { bodyParser: false },
 };
 
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_SIZE = 15 * 1024 * 1024; // 15MB (covers newsletter/article PDFs)
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"];
 
 export default async function handler(req, res) {
   const session = getSessionFromReq(req);
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
   const file = files.file && files.file[0];
   if (!file) return res.status(400).json({ error: "No file provided" });
   if (!ALLOWED_TYPES.includes(file.mimetype)) {
-    return res.status(400).json({ error: "Only JPEG, PNG or WebP images are allowed" });
+    return res.status(400).json({ error: "Only JPEG, PNG, WebP images or PDF files are allowed" });
   }
 
   try {

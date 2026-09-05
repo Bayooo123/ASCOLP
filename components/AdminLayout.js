@@ -23,6 +23,9 @@ export default function AdminLayout({ title, children }) {
           <a href="/admin/alumni" style={{ color: "#ccc" }}>
             Alumni
           </a>
+          <a href="/admin/articles" style={{ color: "#ccc" }}>
+            Articles
+          </a>
         </div>
         <button
           onClick={handleLogout}

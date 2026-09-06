@@ -68,9 +68,9 @@ export default function AlumniPage({ alumni }) {
                       </ul>
                     ) : null}
                   </div>
-                  {person.currentRole || person.currentOrganization ? (
+                  {person.currentPosition || person.currentOrganization ? (
                     <p style={{ padding: "15px 10px 0", fontSize: "14px", color: "var(--oslim-text)" }}>
-                      Now: {[person.currentRole, person.currentOrganization, person.country].filter(Boolean).join(", ")}
+                      Now: {[person.currentPosition, person.currentOrganization, person.country].filter(Boolean).join(", ")}
                     </p>
                   ) : null}
                 </div>

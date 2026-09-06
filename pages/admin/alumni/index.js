@@ -72,7 +72,7 @@ function AlumniTable({ rows, onApprove, onDelete }) {
           <tr key={a.id} style={{ borderBottom: "1px solid #eee" }}>
             <td style={{ padding: "10px" }}>{a.name}</td>
             <td style={{ padding: "10px" }}>{a.roleAtFirm}</td>
-            <td style={{ padding: "10px" }}>{[a.currentRole, a.currentOrganization].filter(Boolean).join(", ")}</td>
+            <td style={{ padding: "10px" }}>{[a.currentPosition, a.currentOrganization].filter(Boolean).join(", ")}</td>
             <td style={{ padding: "10px" }}>{a.source === "SELF_SUBMITTED" ? "Self-submitted" : "Admin"}</td>
             <td style={{ padding: "10px", textAlign: "right", whiteSpace: "nowrap" }}>
               {!a.approved && onApprove ? (

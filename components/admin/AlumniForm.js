@@ -5,7 +5,7 @@ const EMPTY = {
   photoUrl: "",
   roleAtFirm: "",
   yearsAtFirm: "",
-  currentRole: "",
+  currentPosition: "",
   currentOrganization: "",
   country: "",
   bio: "",
@@ -92,7 +92,7 @@ export default function AlumniForm({ alumnus, isNew }) {
       </label>
       <label style={labelStyle}>
         <span style={labelTextStyle}>Current Role</span>
-        <input style={inputStyle} value={form.currentRole || ""} onChange={(e) => set("currentRole", e.target.value)} />
+        <input style={inputStyle} value={form.currentPosition || ""} onChange={(e) => set("currentPosition", e.target.value)} />
       </label>
       <label style={labelStyle}>
         <span style={labelTextStyle}>Current Organization</span>

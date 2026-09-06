@@ -66,7 +66,7 @@ create table alumni (
   photo_url text,
   role_at_firm text,
   years_at_firm text,
-  current_role text,
+  current_position text,
   current_organization text,
   country text,
   bio text,

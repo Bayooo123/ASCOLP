@@ -8,7 +8,7 @@ const EMPTY = {
   photoUrl: "",
   roleAtFirm: "",
   yearsAtFirm: "",
-  currentRole: "",
+  currentPosition: "",
   currentOrganization: "",
   country: "",
   bio: "",
@@ -107,7 +107,7 @@ export default function AlumniSubmit() {
               </Field>
 
               <Field label="Current Role">
-                <input style={inputStyle} value={form.currentRole} onChange={(e) => set("currentRole", e.target.value)} />
+                <input style={inputStyle} value={form.currentPosition} onChange={(e) => set("currentPosition", e.target.value)} />
               </Field>
 
               <Field label="Current Organization">

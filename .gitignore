@@ -1,0 +1,10 @@
+.env
+.env.local
+.env.*.local
+node_modules/
+.next/
+out/
+/public/uploads/
+.DS_Store
+*.pem
+npm-debug.log*

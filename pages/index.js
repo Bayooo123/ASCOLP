@@ -2,6 +2,14 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { db } from "../lib/db";
 
+const OFFICE_SLIDES = [
+  { id: "office-1", href: "/team", photoUrl: "/assets/images/team/office/office-team-1.jpg" },
+  { id: "office-2", href: "/team", photoUrl: "/assets/images/team/office/office-team-2.jpg" },
+  { id: "office-3", href: "/team", photoUrl: "/assets/images/team/office/office-team-3.jpg" },
+  { id: "office-4", href: "/team", photoUrl: "/assets/images/team/office/office-team-4.jpg" },
+  { id: "office-5", href: "/team", photoUrl: "/assets/images/team/office/office-team-5.jpg" },
+];
+
 const FALLBACK_SLIDES = [
   { slug: "abiola-sanni", name: "Prof. Abiola Sanni (SAN) PhD.", title: "Managing Partner", photoUrl: "/assets/images/team/prof-abiola-sanni.jpg" },
   { slug: "kolawole-abdusalam", name: "Kolawole G. Abdusalam", title: "Practice Head", photoUrl: "/assets/images/team/KOLAWOLE- ABDULSALAM-p.jpg" },
@@ -19,6 +27,7 @@ export async function getStaticProps() {
     .order("homeOrder")
     .limit(7);
   if (members && members.length) slides = members;
+  slides = [...OFFICE_SLIDES, ...slides];
 
   const { data: fetchedArticles } = await db("articles")
     .select("*")
@@ -49,7 +58,7 @@ export default function Home({ slides, articles }) {
         >
           <div className="swiper-wrapper">
             {slides.map((member) => (
-              <div className="swiper-slide" key={member.slug}>
+              <div className="swiper-slide" key={member.slug || member.id}>
                 <div className="image-layer" style={{ backgroundImage: `url(${member.photoUrl})` }}></div>
                 <div className="main-slider-shape-1"></div>
                 <div className="main-slider-shape-2"></div>
@@ -58,9 +67,11 @@ export default function Home({ slides, articles }) {
                   <div className="row">
                     <div className="col-xl-7">
                       <div className="main-slider__content">
-                        <h2>{member.name}</h2>
-                        {member.title ? <p className="main-slider__subtitle">{member.title}</p> : null}
-                        <a href={`/team/${member.slug}`} className="thm-btn">
+                        <h2>{member.name || "Meet Our Team"}</h2>
+                        <p className="main-slider__subtitle">
+                          {member.title || "Legal | Arbitration | Tax Practice"}
+                        </p>
+                        <a href={member.slug ? `/team/${member.slug}` : member.href} className="thm-btn">
                           Meet the Team
                         </a>
                       </div>

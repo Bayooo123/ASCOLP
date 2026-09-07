@@ -3,11 +3,11 @@ import Seo from "../components/Seo";
 import { db } from "../lib/db";
 
 const OFFICE_SLIDES = [
-  { id: "office-1", href: "/team", photoUrl: "/assets/images/team/office/office-team-1.jpg" },
-  { id: "office-2", href: "/team", photoUrl: "/assets/images/team/office/office-team-2.jpg" },
-  { id: "office-3", href: "/team", photoUrl: "/assets/images/team/office/office-team-3.jpg" },
-  { id: "office-4", href: "/team", photoUrl: "/assets/images/team/office/office-team-4.jpg" },
-  { id: "office-5", href: "/team", photoUrl: "/assets/images/team/office/office-team-5.jpg" },
+  { id: "office-1", photoUrl: "/assets/images/team/office/office-team-1.jpg" },
+  { id: "office-2", photoUrl: "/assets/images/team/office/office-team-2.jpg" },
+  { id: "office-3", photoUrl: "/assets/images/team/office/office-team-3.jpg" },
+  { id: "office-4", photoUrl: "/assets/images/team/office/office-team-4.jpg" },
+  { id: "office-5", photoUrl: "/assets/images/team/office/office-team-5.jpg" },
 ];
 
 const FALLBACK_SLIDES = [
@@ -60,24 +60,6 @@ export default function Home({ slides, articles }) {
             {slides.map((member) => (
               <div className="swiper-slide" key={member.slug || member.id}>
                 <div className="image-layer" style={{ backgroundImage: `url(${member.photoUrl})` }}></div>
-                <div className="main-slider-shape-1"></div>
-                <div className="main-slider-shape-2"></div>
-                <div className="main-slider-shape-3"></div>
-                <div className="container">
-                  <div className="row">
-                    <div className="col-xl-7">
-                      <div className="main-slider__content">
-                        <h2>{member.name || "Meet Our Team"}</h2>
-                        <p className="main-slider__subtitle">
-                          {member.title || "Legal | Arbitration | Tax Practice"}
-                        </p>
-                        <a href={member.slug ? `/team/${member.slug}` : member.href} className="thm-btn">
-                          Meet the Team
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             ))}
           </div>

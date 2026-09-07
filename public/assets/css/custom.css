@@ -1,0 +1,80 @@
+/* ASCOLP-specific overrides on top of the oslim template. */
+
+/* Hero slideshow: plain images only, no text overlay, and a shorter, less
+   overwhelming height instead of the template's near-full-screen default. */
+.main-slider .swiper-slide {
+  min-height: 380px;
+}
+
+.main-slider .container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Images no longer sit behind a text caption, so show them at full clarity
+   instead of the template's darkened/desaturated treatment. */
+.main-slider .image-layer,
+.main-slider .swiper-slide-active .image-layer {
+  opacity: 1;
+  background-blend-mode: normal;
+}
+
+/* Slimmer sticky nav bar once you scroll (it re-uses the same markup/classes
+   as the full-height hero header, so it inherited the same tall padding). */
+.stricky-header .main-menu-wrapper__logo {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-right: 60px;
+}
+
+.stricky-header .main-menu-wrapper__logo img {
+  max-height: 32px;
+  width: auto;
+}
+
+.stricky-header .main-menu__list > li {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.stricky-header .main-menu-wrapper__right {
+  padding: 10px 0;
+}
+
+.stricky-header .main-menu-wrapper__call-icon {
+  height: 38px;
+  width: 38px;
+}
+
+.stricky-header .main-menu-wrapper__call-icon span {
+  font-size: 16px;
+}
+
+.stricky-header .main-menu-wrapper__call-number h5 {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.stricky-header .main-menu-wrapper__call-number p {
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.stricky-header .main-menu-wrapper__search-cat {
+  padding: 8px 0;
+  margin-left: 40px;
+}
+
+/* Dropdown menus (About / Practice Areas): wide enough that every item stays
+   on one line, so the full list is always visible without scrolling. */
+.main-menu .main-menu__list li ul,
+.stricky-header .main-menu__list li ul {
+  min-width: 300px;
+}
+
+.main-menu .main-menu__list li ul li a,
+.stricky-header .main-menu__list li ul li a {
+  white-space: nowrap;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

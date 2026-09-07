@@ -24,7 +24,7 @@ export default function AdminLayout({ title, children }) {
             Alumni
           </a>
           <a href="/admin/articles" style={{ color: "#ccc" }}>
-            Articles
+            Thought Leadership
           </a>
           <a href="/admin/messages" style={{ color: "#ccc" }}>
             Messages

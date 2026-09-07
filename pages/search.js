@@ -83,7 +83,7 @@ export default function Search({ q, team, articles, alumni }) {
 
           {articles.length ? (
             <div style={{ marginBottom: "30px" }}>
-              <h3>Articles &amp; Newsletters</h3>
+              <h3>Thought Leadership</h3>
               <ul>
                 {articles.map((a) => (
                   <li key={a.slug}>

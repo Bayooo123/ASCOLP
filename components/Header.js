@@ -68,7 +68,7 @@ export default function Header() {
                     <a href="/alumni">Alumni</a>
                   </li>
                   <li>
-                    <a href="/articles">Articles &amp; Newsletters</a>
+                    <a href="/articles">Thought Leadership</a>
                   </li>
                   <li>
                     <a href="/contact">Contact</a>

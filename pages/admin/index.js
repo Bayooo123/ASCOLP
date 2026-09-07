@@ -24,7 +24,7 @@ export default function AdminDashboard({ email }) {
           <a href="/admin/alumni">Manage Alumni</a>
         </li>
         <li>
-          <a href="/admin/articles">Manage Articles &amp; Newsletters</a>
+          <a href="/admin/articles">Manage Thought Leadership</a>
         </li>
         <li>
           <a href="/admin/messages">Contact Messages</a>

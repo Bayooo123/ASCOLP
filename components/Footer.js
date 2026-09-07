@@ -49,7 +49,7 @@ export default function Footer() {
                     <a href="/csr">Corporate Social Responsibility</a>
                   </li>
                   <li>
-                    <a href="/articles">Articles &amp; Newsletters</a>
+                    <a href="/articles">Thought Leadership</a>
                   </li>
                 </ul>
               </div>

@@ -88,7 +88,7 @@ export default function ArticleForm({ article, isNew }) {
         <span style={labelTextStyle}>Type</span>
         <select style={inputStyle} value={form.type} onChange={(e) => set("type", e.target.value)}>
           <option value="ARTICLE">Article</option>
-          <option value="NEWSLETTER">Newsletter</option>
+          <option value="NEWSLETTER">ASCO Publication</option>
         </select>
       </label>
 
@@ -133,7 +133,7 @@ export default function ArticleForm({ article, isNew }) {
       </label>
 
       <label style={labelStyle}>
-        <span style={labelTextStyle}>PDF File (for a newsletter or downloadable article)</span>
+        <span style={labelTextStyle}>PDF File (for an ASCO publication or downloadable article)</span>
         {form.fileUrl ? (
           <p style={{ marginBottom: "8px" }}>
             <a href={form.fileUrl} target="_blank" rel="noreferrer">

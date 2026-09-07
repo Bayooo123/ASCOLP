@@ -3,7 +3,8 @@
 /* Hero slideshow: plain images only, no text overlay, and a shorter, less
    overwhelming height instead of the template's near-full-screen default. */
 .main-slider .swiper-slide {
-  min-height: 380px;
+  min-height: 460px;
+  background-color: var(--oslim-black);
 }
 
 .main-slider .container {
@@ -11,10 +12,14 @@
   padding-bottom: 0;
 }
 
-/* Images no longer sit behind a text caption, so show them at full clarity
-   instead of the template's darkened/desaturated treatment. */
+/* Images no longer sit behind a text caption. Show the whole photo
+   uncropped (contain, not cover) against the template's dark backdrop
+   instead of stretching/cropping it to fill the box -- cropping to a wide,
+   short box was cutting people out of the group photos. */
 .main-slider .image-layer,
 .main-slider .swiper-slide-active .image-layer {
+  background-size: contain;
+  background-repeat: no-repeat;
   opacity: 1;
   background-blend-mode: normal;
 }

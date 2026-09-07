@@ -22,10 +22,10 @@ export default function AdminArticlesList({ articles: initial }) {
   }
 
   return (
-    <AdminLayout title="Articles & Newsletters">
+    <AdminLayout title="Thought Leadership">
       <p style={{ marginBottom: "20px" }}>
         <a href="/admin/articles/new" style={{ background: "#7a1f2b", color: "#fff", padding: "8px 16px", borderRadius: "4px", textDecoration: "none" }}>
-          + Add Article / Newsletter
+          + Add Article / ASCO Publication
         </a>
       </p>
       <table style={{ width: "100%", borderCollapse: "collapse", background: "#fff" }}>

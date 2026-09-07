@@ -256,7 +256,7 @@ export default function Home({ slides, articles }) {
                         </a>
                       </div>
                       <div className="news-one__content">
-                        <p className="news-one__sub-title">{article.type === "NEWSLETTER" ? "newsletter" : "article"}</p>
+                        <p className="news-one__sub-title">{article.type === "NEWSLETTER" ? "ASCO publication" : "article"}</p>
                         <h3 className="news-one__title">
                           <a href={href} target={article.externalUrl ? "_blank" : undefined} rel="noreferrer">
                             {article.title}

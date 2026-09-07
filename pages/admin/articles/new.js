@@ -11,7 +11,7 @@ export async function getServerSideProps({ req }) {
 
 export default function NewArticle() {
   return (
-    <AdminLayout title="Add Article / Newsletter">
+    <AdminLayout title="Add Article / ASCO Publication">
       <ArticleForm isNew article={{}} />
     </AdminLayout>
   );

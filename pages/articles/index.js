@@ -11,8 +11,8 @@ export async function getStaticProps() {
 export default function ArticlesPage({ articles }) {
   return (
     <Layout>
-      <Seo title="Articles & Newsletters" path="/articles" description="Articles, publications and newsletters from ASCOLP." />
-      <PageHeader title="Articles & Newsletters" crumb="Articles & Newsletters" />
+      <Seo title="Thought Leadership" path="/articles" description="Articles and ASCO publications from ASCOLP." />
+      <PageHeader title="Thought Leadership" crumb="Thought Leadership" />
 
       <section className="news-one">
         <div className="container">
@@ -30,7 +30,7 @@ export default function ArticlesPage({ articles }) {
                         </a>
                       </div>
                       <div className="news-one__content">
-                        <p className="news-one__sub-title">{article.type === "NEWSLETTER" ? "newsletter" : "article"}</p>
+                        <p className="news-one__sub-title">{article.type === "NEWSLETTER" ? "ASCO publication" : "article"}</p>
                         <h3 className="news-one__title">
                           <a href={href} target={article.externalUrl ? "_blank" : undefined} rel="noreferrer">
                             {article.title}
@@ -51,7 +51,7 @@ export default function ArticlesPage({ articles }) {
               })}
             </div>
           ) : (
-            <p className="text-center">Articles and newsletters are on their way — check back soon.</p>
+            <p className="text-center">Articles and ASCO publications are on their way — check back soon.</p>
           )}
         </div>
       </section>

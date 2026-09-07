@@ -17,7 +17,7 @@ export default function ArticleDetail({ article }) {
   return (
     <Layout>
       <Seo title={article.title} path={`/articles/${article.slug}`} description={article.summary || undefined} image={article.coverImageUrl || undefined} />
-      <PageHeader title={article.title} crumb="Articles & Newsletters" />
+      <PageHeader title={article.title} crumb="Thought Leadership" />
 
       <section className="blog-details">
         <div className="container" style={{ maxWidth: "800px" }}>
@@ -41,7 +41,7 @@ export default function ArticleDetail({ article }) {
           {article.fileUrl ? (
             <p style={{ marginTop: "30px" }}>
               <a href={article.fileUrl} target="_blank" rel="noreferrer" className="thm-btn">
-                Download {article.type === "NEWSLETTER" ? "Newsletter" : "Article"} (PDF)
+                Download {article.type === "NEWSLETTER" ? "ASCO Publication" : "Article"} (PDF)
               </a>
             </p>
           ) : null}

@@ -125,7 +125,7 @@ export default function Home({ slides, articles }) {
             {[
               { title: "Tax Unit", href: "/practice-areas/tax-unit", img: "/assets/images/case/tax-law-lagos.jpg" },
               { title: "Corporate & Commercial Department", href: "/practice-areas/corporate", img: "/assets/images/case/corporate.jpg" },
-              { title: "Litigation & Arbitrations", href: "/practice-areas/litigation-arbitrations", img: "/assets/images/case/litigation-arbitrations.jpg" },
+              { title: "Litigation & Alternative Dispute Resolution", href: "/practice-areas/litigation-arbitrations", img: "/assets/images/case/litigation-arbitrations.jpg" },
             ].map((area, i) => (
               <div className="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay={`${(i + 1) * 100}ms`} key={area.href}>
                 <div className="case-one__single">

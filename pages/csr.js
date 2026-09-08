@@ -11,6 +11,11 @@ export default function CSR() {
       paragraphs={[
         "Every now and again, we identify a good cause and support it with all our resources. We sometimes take up cases ex gratia. It is our way of giving to the society. We understand that without the society we cannot exist.",
       ]}
-    />
+    >
+      <p className="work-together-tow__text-2">
+        This includes a long-standing commitment to <a href="/practice-areas/pro-bono-services">Pro Bono Services</a>{" "}
+        for clients facing financial hardship.
+      </p>
+    </InfoPage>
   );
 }

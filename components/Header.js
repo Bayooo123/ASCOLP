@@ -51,7 +51,7 @@ export default function Header() {
                         <a href="/practice-areas/corporate">Corporate &amp; Commercial Department</a>
                       </li>
                       <li>
-                        <a href="/practice-areas/litigation-arbitrations">Litigation &amp; Arbitrations</a>
+                        <a href="/practice-areas/litigation-arbitrations">Litigation &amp; Alternative Dispute Resolution</a>
                       </li>
                       <li>
                         <a href="/practice-areas/probate">Probate Services</a>
@@ -61,6 +61,9 @@ export default function Header() {
                       </li>
                       <li>
                         <a href="/practice-areas/regulatory-public-policy">Regulatory &amp; Public Policy</a>
+                      </li>
+                      <li>
+                        <a href="/practice-areas/pro-bono-services">Pro Bono Services</a>
                       </li>
                     </ul>
                   </li>

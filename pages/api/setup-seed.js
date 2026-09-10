@@ -19,15 +19,35 @@ export default async function handler(req, res) {
 
   if (req.query.testStorage) {
     const name = `diag-${Date.now()}.txt`;
-    const { error: uploadError } = await naijabase.storage
-      .from("uploads")
-      .upload(name, Buffer.from("ok"), { contentType: "text/plain", upsert: true });
-    if (uploadError) {
-      return res.status(200).json({ ok: false, step: "upload", error: uploadError });
-    }
-    const { publicUrl } = naijabase.storage.from("uploads").getPublicUrl(name);
-    await naijabase.storage.from("uploads").remove([name]);
-    return res.status(200).json({ ok: true, publicUrl });
+    const objectUrl = `${process.env.NAIJABASE_URL}/storage/v1/object/uploads/${name}`;
+
+    const attempt = async (label, headers) => {
+      const r = await fetch(objectUrl, { method: "POST", headers, body: "ok" });
+      let body;
+      try {
+        body = await r.json();
+      } catch {
+        body = await r.text().catch(() => null);
+      }
+      return { label, status: r.status, ok: r.ok, body };
+    };
+
+    const results = [];
+    results.push(
+      await attempt("apikey+bearer", {
+        apikey: process.env.NAIJABASE_ANON_KEY,
+        Authorization: `Bearer ${process.env.NAIJABASE_ANON_KEY}`,
+        "Content-Type": "text/plain",
+      })
+    );
+    results.push(
+      await attempt("apikey-only", {
+        apikey: process.env.NAIJABASE_ANON_KEY,
+        "Content-Type": "text/plain",
+      })
+    );
+
+    return res.status(200).json({ ok: results.some((r) => r.ok), results });
   }
 
   if (req.query.deleteSlugs) {

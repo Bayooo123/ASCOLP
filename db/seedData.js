@@ -133,6 +133,16 @@ She has interests in Arbitration, Tax Law, Family Law, Property Law and Corporat
 He obtained his qualification in Mass Communication from Lagos State Polytechnic in 2023. His passion for learning and versatility have made him a valuable member of the ASCOLP team, bringing energy, strong communication and original creative ideas to the Firm.`,
     displayOrder: 15,
   },
+  {
+    slug: "akinola-olabampe",
+    name: "Akinola Olabampe",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Akinola holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Ilorin. He proceeded to the Nigerian Law School, Abuja Campus, and was called to the Nigerian Bar on 10 July 2026.
+
+He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Disputes and Arbitration. He has a particular focus on Criminal Litigation and Defence, and continues to build a well-rounded practice across the Firm's dispute resolution and tax advisory work.`,
+    displayOrder: 16,
+  },
 ];
 
 // Example entries so admins can see how deal/legal-experience history looks

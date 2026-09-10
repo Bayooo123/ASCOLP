@@ -20,11 +20,10 @@ export default async function handler(req, res) {
 
   if (req.query.testStorage) {
     const projectId = process.env.NAIJABASE_URL?.split("/projects/")[1]?.split("/")[0];
-    const endpoint = `${process.env.NAIJABASE_URL}/storage/v1`;
     const anonKey = process.env.NAIJABASE_ANON_KEY;
     const serviceKey = process.env.NAIJABASE_SERVICE_KEY;
 
-    const attempt = async (label, accessKeyId, secretAccessKey) => {
+    const attempt = async (label, endpoint, accessKeyId, secretAccessKey) => {
       try {
         const client = new S3Client({
           endpoint,
@@ -40,19 +39,30 @@ export default async function handler(req, res) {
             ContentType: "text/plain",
           })
         );
-        return { label, ok: true };
+        return { label, endpoint, ok: true };
       } catch (err) {
-        return { label, ok: false, name: err.name, message: err.message, code: err.Code || err.code };
+        return {
+          label,
+          endpoint,
+          ok: false,
+          name: err.name,
+          message: err.message,
+          httpStatus: err.$metadata?.httpStatusCode,
+          rawBody: err.$response?.body ? String(err.$response.body).slice(0, 300) : undefined,
+        };
       }
     };
 
-    const results = [];
-    results.push(await attempt("projectId+anon", projectId, anonKey));
-    results.push(await attempt("projectId+service", projectId, serviceKey));
-    results.push(await attempt("anon+service", anonKey, serviceKey));
-    results.push(await attempt("service+service", serviceKey, serviceKey));
+    const base = process.env.NAIJABASE_URL;
+    const endpoints = [`${base}/storage/v1`, `${base}/storage/v1/s3`];
 
-    return res.status(200).json({ ok: results.some((r) => r.ok), projectId, endpoint, results });
+    const results = [];
+    for (const endpoint of endpoints) {
+      results.push(await attempt("projectId+service", endpoint, projectId, serviceKey));
+      results.push(await attempt("service+service", endpoint, serviceKey, serviceKey));
+    }
+
+    return res.status(200).json({ ok: results.some((r) => r.ok), projectId, results });
   }
 
   if (req.query.deleteSlugs) {

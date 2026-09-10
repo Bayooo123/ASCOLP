@@ -7,12 +7,12 @@ import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 // from wherever this is deployed from. Gated by SETUP_TOKEN so it isn't a
 // public write endpoint. Safe to call more than once (all writes upsert).
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+  if (req.method !== "POST" && req.method !== "GET") {
+    res.setHeader("Allow", "POST, GET");
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const token = req.headers["x-setup-token"];
+  const token = req.headers["x-setup-token"] || req.query.token;
   if (!process.env.SETUP_TOKEN || token !== process.env.SETUP_TOKEN) {
     return res.status(401).json({ error: "Unauthorized" });
   }

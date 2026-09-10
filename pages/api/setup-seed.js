@@ -17,6 +17,18 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
+  if (req.query.deleteSlugs) {
+    const slugs = req.query.deleteSlugs.split(",").map((s) => s.trim()).filter(Boolean);
+    const deleted = [];
+    const errors = [];
+    for (const slug of slugs) {
+      const { error } = await db("teamMembers").delete().eq("slug", slug);
+      if (error) errors.push(`${slug}: ${error.message}`);
+      else deleted.push(slug);
+    }
+    return res.status(200).json({ ok: true, deleted, errors });
+  }
+
   const results = { teamMembers: 0, admin: null, errors: [] };
 
   for (const member of TEAM_MEMBERS) {

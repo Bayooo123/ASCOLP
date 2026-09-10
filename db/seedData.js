@@ -92,45 +92,6 @@ Mrs. Adeoye is not a stranger to the Firm, having spent most of her undergraduat
     displayOrder: 6,
   },
   {
-    slug: "bafewa-sanni",
-    name: "Bafewa Sanni",
-    credentials: "LL.B., B.L",
-    title: "Associate",
-    photoUrl: "/assets/images/team/Bafewa Sanni-p.png",
-    bio: `Bafewa is a Law graduate from the University of Lagos. A member of the Nigerian Bar since 2019, he has gained robust experience in general law practice, notably litigation, taxation and commercial law.
-
-As a tax and commercial law professional, his skilful representation of clients in audits and appeals, adept negotiation with tax authorities, and consultation on tax planning, compliance and risk management have earned him a reputation as a trusted advisor for clients facing complex tax challenges. His keen eye for detail is evident in his meticulous drafting and review of contracts and agreements, ensuring tax compliance and safeguarding clients' interests.
-
-He maintains an active presence in the legal community and lends his voice through research and case analysis, and has a keen interest in technology, further piqued during his experience as a Junior Project Manager at a leading tax management company in Nigeria. He is currently an MBA candidate at the University of the West of England, Bristol — a combination of legal and business acumen that allows him to deliver differentiated, comprehensive services for clients navigating the intersection of law and business.`,
-    featuredHome: true,
-    homeOrder: 7,
-    displayOrder: 7,
-  },
-  {
-    slug: "ayanfeoluwa-sanni",
-    name: "Ayanfeoluwa Sanni",
-    credentials: "LL.B., B.L., LL.M.",
-    title: "Associate",
-    photoUrl: "/assets/images/team/Ayanfe-Sanni-p.png",
-    bio: `Ayanfeoluwa Sanni is a legal practitioner who graduated from the University of Lagos in 2018 and was called to the Nigerian Bar in 2019.
-
-After her call to the Bar, she undertook her National Youth Service in the firm of George Etomi and Partners, where she gained valuable experience in Energy Law and Corporate and Commercial transactions. As an energy and corporate lawyer, she worked with a team advising on multi-million naira transactions and contributed articles to a published monthly Energy Report. She is skilled in legal writing, drafting and legal analysis, among others.
-
-She holds a Master's Degree in Intellectual Property Law and Management from the University of Reading, where she graduated with Distinction, and has a keen interest in Intellectual Property and Commercial Law.`,
-    displayOrder: 8,
-  },
-  {
-    slug: "emmanuel-abaniwo",
-    name: "Emmanuel Sokowonci Abaniwo",
-    credentials: "LL.B., B.L.",
-    title: "Associate",
-    photoUrl: "/assets/images/team/emanuel.jpg",
-    bio: `Emmanuel Sokowonci Abaniwo obtained his law degree from the University of Lagos in 2019 and was called to the Nigerian Bar in 2021. Prior to his call, he interned with the law firm of SPA Ajibade & Co. After his call to the Bar, he began practice at the law firm of Obafunke Akinkugbe & Co., where he handled a wide range of Real Estate and Corporate Commercial transactions and represented clients at the High Court and Court of Appeal.
-
-His areas of practice include Dispute Resolution, Corporate Commercial Law and Real Estate Law, alongside a keen interest in taxation. He is currently working towards becoming an Associate of the Institute of Chartered Secretaries and Administrators of Nigeria (ICSAN).`,
-    displayOrder: 9,
-  },
-  {
     slug: "adeoye-adeola",
     name: "Adeoye Adeola Osemudiame",
     credentials: "LL.B., BL",
@@ -153,30 +114,6 @@ He specializes in Property Law and has a keen interest in Corporate Law, Arbitra
 She has interests in Arbitration, Tax Law, Family Law, Property Law and Corporate Law, alongside General Litigation, and aspires to join the Chartered Institute of Taxation of Nigeria. She interned at the Chambers of Festus Keyamo, Lagos, and the office of Hon. Justice E. I. Alakija. She has a flair for advocacy and is also responsible for client interviews and support for the Firm's private and public clients.`,
     linkedinUrl: "https://www.linkedin.com/in/maureen-omaegbu-930800206",
     displayOrder: 11,
-  },
-  {
-    slug: "babarinde-iyanuoluwa",
-    name: "Babarinde Iyanuoluwa Peculiar",
-    credentials: "LL.B., AICMC",
-    title: "Associate",
-    photoUrl: "/assets/images/team/babarinde-iyanu.jpg",
-    bio: `Ms. Babarinde is a graduate of Law from Bowen University, Iwo, Osun State, with a passion for law and sport. She combines a genuine, nurturing nature with a professional and ambitious approach to her work.
-
-She undertook her internship training at the Firm, where she garnered valuable and wide experience across different areas of law. She has interests in Tax Law, Commercial Law, Company Law, Entertainment Law and Sports Law.`,
-    linkedinUrl: "http://linkedin.com/in/iyanuoluwa-babarinde-aicmc-6995411a7",
-    displayOrder: 12,
-  },
-  {
-    slug: "oyedele-aishat",
-    name: "Oyedele Aishat Oyewumi",
-    credentials: "LL.B., ACARB",
-    title: "Associate",
-    photoUrl: "/assets/images/team/aishat.jpg",
-    bio: `Ms. Oyedele is a graduate of Adeleke University with a Bachelor of Laws (LL.B. Hons) degree.
-
-She is interested in General Litigation, Corporate Law, Maritime Law, Tax Law, Arbitration and Family Law, and aspires to join the Nigerian Institute of Chartered Secretaries and Administrators. She has interned at several firms, has a growing expertise across a range of legal fields with a particular focus on litigation, and demonstrates a strong passion for legal research. She is also responsible for conducting routine interviews and providing support to the Firm's private and public clients.`,
-    linkedinUrl: "https://ng.linkedin.com/in/oyedele-aishat-9444831b2",
-    displayOrder: 13,
   },
   {
     slug: "ofodirinwa-chinonye",

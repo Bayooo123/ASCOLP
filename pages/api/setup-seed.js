@@ -1,4 +1,5 @@
-import { db, upsertOne, naijabase } from "../../lib/db";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { db, upsertOne } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
 import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 
@@ -18,35 +19,40 @@ export default async function handler(req, res) {
   }
 
   if (req.query.testStorage) {
-    const name = `diag-${Date.now()}.txt`;
-    const objectUrl = `${process.env.NAIJABASE_URL}/storage/v1/object/uploads/${name}`;
+    const projectId = process.env.NAIJABASE_URL?.split("/projects/")[1]?.split("/")[0];
+    const endpoint = `${process.env.NAIJABASE_URL}/storage/v1`;
+    const anonKey = process.env.NAIJABASE_ANON_KEY;
+    const serviceKey = process.env.NAIJABASE_SERVICE_KEY;
 
-    const attempt = async (label, headers) => {
-      const r = await fetch(objectUrl, { method: "POST", headers, body: "ok" });
-      let body;
+    const attempt = async (label, accessKeyId, secretAccessKey) => {
       try {
-        body = await r.json();
-      } catch {
-        body = await r.text().catch(() => null);
+        const client = new S3Client({
+          endpoint,
+          region: "auto",
+          forcePathStyle: true,
+          credentials: { accessKeyId, secretAccessKey },
+        });
+        await client.send(
+          new PutObjectCommand({
+            Bucket: "uploads",
+            Key: `diag-${Date.now()}.txt`,
+            Body: "ok",
+            ContentType: "text/plain",
+          })
+        );
+        return { label, ok: true };
+      } catch (err) {
+        return { label, ok: false, name: err.name, message: err.message, code: err.Code || err.code };
       }
-      return { label, status: r.status, ok: r.ok, body };
     };
 
-    const email = `storage-diag-${Date.now()}@ascolp.internal`;
-    const password = `TempPass${Date.now()}!`;
-    const { user, session, error: signUpError } = await naijabase.auth.signUp({ email, password });
+    const results = [];
+    results.push(await attempt("projectId+anon", projectId, anonKey));
+    results.push(await attempt("projectId+service", projectId, serviceKey));
+    results.push(await attempt("anon+service", anonKey, serviceKey));
+    results.push(await attempt("service+service", serviceKey, serviceKey));
 
-    if (signUpError || !session?.access_token) {
-      return res.status(200).json({ ok: false, step: "signUp", error: signUpError, hasUser: !!user, hasSession: !!session });
-    }
-
-    const result = await attempt("apikey(anon)+bearer(session jwt)", {
-      apikey: process.env.NAIJABASE_ANON_KEY,
-      Authorization: `Bearer ${session.access_token}`,
-      "Content-Type": "text/plain",
-    });
-
-    return res.status(200).json({ ok: result.ok, tokenPrefix: session.access_token.slice(0, 20), result });
+    return res.status(200).json({ ok: results.some((r) => r.ok), projectId, endpoint, results });
   }
 
   if (req.query.deleteSlugs) {

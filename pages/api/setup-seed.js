@@ -1,4 +1,4 @@
-import { db, upsertOne } from "../../lib/db";
+import { db, upsertOne, naijabase } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
 import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 
@@ -15,6 +15,19 @@ export default async function handler(req, res) {
   const token = req.headers["x-setup-token"] || req.query.token;
   if (!process.env.SETUP_TOKEN || token !== process.env.SETUP_TOKEN) {
     return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  if (req.query.testStorage) {
+    const name = `diag-${Date.now()}.txt`;
+    const { error: uploadError } = await naijabase.storage
+      .from("uploads")
+      .upload(name, Buffer.from("ok"), { contentType: "text/plain", upsert: true });
+    if (uploadError) {
+      return res.status(200).json({ ok: false, step: "upload", error: uploadError });
+    }
+    const { publicUrl } = naijabase.storage.from("uploads").getPublicUrl(name);
+    await naijabase.storage.from("uploads").remove([name]);
+    return res.status(200).json({ ok: true, publicUrl });
   }
 
   if (req.query.deleteSlugs) {

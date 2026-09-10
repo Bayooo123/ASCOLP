@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
   try {
     const buffer = await fs.readFile(file.filepath);
-    const url = await saveUpload(buffer, file.originalFilename);
+    const url = await saveUpload(buffer, file.originalFilename, file.mimetype);
     return res.status(200).json({ url });
   } catch (err) {
     return res.status(500).json({ error: err.message });

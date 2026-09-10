@@ -32,17 +32,23 @@ export default async function handler(req, res) {
       return { label, status: r.status, ok: r.ok, body };
     };
 
-    if (!process.env.NAIJABASE_SERVICE_KEY) {
+    const key = process.env.NAIJABASE_SERVICE_KEY;
+    if (!key) {
       return res.status(200).json({ ok: false, error: "NAIJABASE_SERVICE_KEY is not set" });
     }
+    const keyInfo = { prefix: key.slice(0, 14), length: key.length };
 
-    const result = await attempt("apikey+bearer(service)", {
-      apikey: process.env.NAIJABASE_SERVICE_KEY,
-      Authorization: `Bearer ${process.env.NAIJABASE_SERVICE_KEY}`,
-      "Content-Type": "text/plain",
-    });
+    const results = [];
+    results.push(
+      await attempt("apikey+bearer", {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "text/plain",
+      })
+    );
+    results.push(await attempt("apikey-only", { apikey: key, "Content-Type": "text/plain" }));
 
-    return res.status(200).json({ ok: result.ok, result });
+    return res.status(200).json({ ok: results.some((r) => r.ok), keyInfo, results });
   }
 
   if (req.query.deleteSlugs) {

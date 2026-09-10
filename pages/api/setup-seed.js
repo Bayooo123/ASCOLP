@@ -1,4 +1,4 @@
-import { db, upsertOne, naijabase } from "../../lib/db";
+import { db, upsertOne } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
 import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 
@@ -32,22 +32,17 @@ export default async function handler(req, res) {
       return { label, status: r.status, ok: r.ok, body };
     };
 
-    const results = [];
-    results.push(
-      await attempt("apikey+bearer", {
-        apikey: process.env.NAIJABASE_ANON_KEY,
-        Authorization: `Bearer ${process.env.NAIJABASE_ANON_KEY}`,
-        "Content-Type": "text/plain",
-      })
-    );
-    results.push(
-      await attempt("apikey-only", {
-        apikey: process.env.NAIJABASE_ANON_KEY,
-        "Content-Type": "text/plain",
-      })
-    );
+    if (!process.env.NAIJABASE_SERVICE_KEY) {
+      return res.status(200).json({ ok: false, error: "NAIJABASE_SERVICE_KEY is not set" });
+    }
 
-    return res.status(200).json({ ok: results.some((r) => r.ok), results });
+    const result = await attempt("apikey+bearer(service)", {
+      apikey: process.env.NAIJABASE_SERVICE_KEY,
+      Authorization: `Bearer ${process.env.NAIJABASE_SERVICE_KEY}`,
+      "Content-Type": "text/plain",
+    });
+
+    return res.status(200).json({ ok: result.ok, result });
   }
 
   if (req.query.deleteSlugs) {

@@ -1,4 +1,4 @@
-import { db, upsertOne } from "../../lib/db";
+import { db, upsertOne, naijabase } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
 import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
 
@@ -32,23 +32,21 @@ export default async function handler(req, res) {
       return { label, status: r.status, ok: r.ok, body };
     };
 
-    const key = process.env.NAIJABASE_SERVICE_KEY;
-    if (!key) {
-      return res.status(200).json({ ok: false, error: "NAIJABASE_SERVICE_KEY is not set" });
+    const email = `storage-diag-${Date.now()}@ascolp.internal`;
+    const password = `TempPass${Date.now()}!`;
+    const { user, session, error: signUpError } = await naijabase.auth.signUp({ email, password });
+
+    if (signUpError || !session?.access_token) {
+      return res.status(200).json({ ok: false, step: "signUp", error: signUpError, hasUser: !!user, hasSession: !!session });
     }
-    const keyInfo = { prefix: key.slice(0, 14), length: key.length };
 
-    const results = [];
-    results.push(
-      await attempt("apikey+bearer", {
-        apikey: key,
-        Authorization: `Bearer ${key}`,
-        "Content-Type": "text/plain",
-      })
-    );
-    results.push(await attempt("apikey-only", { apikey: key, "Content-Type": "text/plain" }));
+    const result = await attempt("apikey(anon)+bearer(session jwt)", {
+      apikey: process.env.NAIJABASE_ANON_KEY,
+      Authorization: `Bearer ${session.access_token}`,
+      "Content-Type": "text/plain",
+    });
 
-    return res.status(200).json({ ok: results.some((r) => r.ok), keyInfo, results });
+    return res.status(200).json({ ok: result.ok, tokenPrefix: session.access_token.slice(0, 20), result });
   }
 
   if (req.query.deleteSlugs) {

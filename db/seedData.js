@@ -143,6 +143,16 @@ He obtained his qualification in Mass Communication from Lagos State Polytechnic
 He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Disputes and Arbitration. He has a particular focus on Criminal Litigation and Defence, and continues to build a well-rounded practice across the Firm's dispute resolution and tax advisory work.`,
     displayOrder: 16,
   },
+  {
+    slug: "adebayo-gbadebo",
+    name: "Adebayo Gbadebo",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Gbadebo holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Port Harcourt Campus, and was called to the Nigerian Bar in 2025.
+
+He joined ASCOLP in February 2026, with professional interests in Tax and Corporate Advisory. He also maintains strong research interests in Constitutional, Administrative and Development Law.`,
+    displayOrder: 17,
+  },
 ];
 
 // Example entries so admins can see how deal/legal-experience history looks

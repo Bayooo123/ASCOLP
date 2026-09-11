@@ -151,6 +151,7 @@ He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Dis
     bio: `Mr. Gbadebo holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Port Harcourt Campus, and was called to the Nigerian Bar in 2025.
 
 He joined ASCOLP in February 2026, with professional interests in Tax and Corporate Advisory. He also maintains strong research interests in Constitutional, Administrative and Development Law.`,
+    photoUrl: "/assets/images/team/adebayo-gbadebo.jpg",
     displayOrder: 17,
   },
 ];

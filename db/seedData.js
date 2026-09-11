@@ -141,6 +141,7 @@ He obtained his qualification in Mass Communication from Lagos State Polytechnic
     bio: `Mr. Akinola holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Ilorin. He proceeded to the Nigerian Law School, Abuja Campus, and was called to the Nigerian Bar on 10 July 2026.
 
 He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Disputes and Arbitration. He has a particular focus on Criminal Litigation and Defence, and continues to build a well-rounded practice across the Firm's dispute resolution and tax advisory work.`,
+    photoUrl: "/assets/images/team/akinola-olabampe.jpg",
     displayOrder: 16,
   },
   {

@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { put, del } from "@vercel/blob";
 import { db, upsertOne } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
 import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
@@ -19,50 +19,13 @@ export default async function handler(req, res) {
   }
 
   if (req.query.testStorage) {
-    const projectId = process.env.NAIJABASE_URL?.split("/projects/")[1]?.split("/")[0];
-    const anonKey = process.env.NAIJABASE_ANON_KEY;
-    const serviceKey = process.env.NAIJABASE_SERVICE_KEY;
-
-    const attempt = async (label, endpoint, accessKeyId, secretAccessKey) => {
-      try {
-        const client = new S3Client({
-          endpoint,
-          region: "auto",
-          forcePathStyle: true,
-          credentials: { accessKeyId, secretAccessKey },
-        });
-        await client.send(
-          new PutObjectCommand({
-            Bucket: "uploads",
-            Key: `diag-${Date.now()}.txt`,
-            Body: "ok",
-            ContentType: "text/plain",
-          })
-        );
-        return { label, endpoint, ok: true };
-      } catch (err) {
-        return {
-          label,
-          endpoint,
-          ok: false,
-          name: err.name,
-          message: err.message,
-          httpStatus: err.$metadata?.httpStatusCode,
-          rawBody: err.$response?.body ? String(err.$response.body).slice(0, 300) : undefined,
-        };
-      }
-    };
-
-    const base = process.env.NAIJABASE_URL;
-    const endpoints = [`${base}/storage/v1`, `${base}/storage/v1/s3`];
-
-    const results = [];
-    for (const endpoint of endpoints) {
-      results.push(await attempt("projectId+service", endpoint, projectId, serviceKey));
-      results.push(await attempt("service+service", endpoint, serviceKey, serviceKey));
+    try {
+      const blob = await put(`diag-${Date.now()}.txt`, "ok", { access: "public", contentType: "text/plain" });
+      await del(blob.url);
+      return res.status(200).json({ ok: true, url: blob.url });
+    } catch (err) {
+      return res.status(200).json({ ok: false, error: err.message });
     }
-
-    return res.status(200).json({ ok: results.some((r) => r.ok), projectId, results });
   }
 
   if (req.query.deleteSlugs) {

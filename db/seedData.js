@@ -155,6 +155,18 @@ He joined ASCOLP in February 2026, with professional interests in Tax and Corpor
     photoUrl: "/assets/images/team/adebayo-gbadebo.jpg",
     displayOrder: 17,
   },
+  {
+    slug: "benjamin-adeyanju",
+    name: "Benjamin Adeyanju",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Adeyanju holds a Bachelor of Laws (LL.B.) degree from the University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Lagos Campus, and was called to the Nigerian Bar in 2025.
+
+His practice interests lie in Litigation and Alternative Dispute Resolution. He also maintains a keen interest in Sports Law, where he regularly researches and writes on emerging issues in the sports law space.`,
+    photoUrl: "/assets/images/team/benjamin-adeyanju.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/benjamin-adeyanju-255a31135",
+    displayOrder: 18,
+  },
 ];
 
 // Example entries so admins can see how deal/legal-experience history looks

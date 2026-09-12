@@ -250,7 +250,7 @@ export default function Home({ slides, articles }) {
                   <div className="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay={`${(i + 1) * 100}ms`} key={article.slug}>
                     <div className="news-one__single">
                       <div className="news-one__img">
-                        <img src={article.coverImageUrl || "/assets/images/blog/Prof-Abiola-Sanni-Olaitan.jpg"} alt={article.title} />
+                        <img src={article.coverImageUrl || "/assets/images/backgrounds/law_justice_ascolp.jpg"} alt={article.title} />
                         <a href={href} target={article.externalUrl ? "_blank" : undefined} rel="noreferrer">
                           <span className="news-one__plus"></span>
                         </a>

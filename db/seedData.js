@@ -169,6 +169,81 @@ His practice interests lie in Litigation and Alternative Dispute Resolution. He 
   },
 ];
 
+module.exports.ARTICLES = [
+  {
+    slug: "sugar-tax-in-nigeria-legal-analysis",
+    title: "Sugar Tax in Nigeria: A Comprehensive Legal Analysis",
+    type: "ARTICLE",
+    summary:
+      "An analysis of the CETA Bill 2025's proposed sugar tax reforms — the constitutional questions around a Private Member Bill increasing excise duty, revenue earmarking under Section 162, and the parties likely to feel its impact.",
+    body: `The Customs, Excise Tariff, Etc. (Consolidation) Act (CETA) is the principal legislation governing excise duties and customs tariffs in Nigeria, and it is the existing law that the CETA Bill 2025 seeks to amend. CETA establishes the legal framework under which goods manufactured in Nigeria attract excise duty, administered through the Nigeria Customs Service, and consolidates all tariff and excise provisions into a single legislative instrument. This makes it the foundation on which any sugar tax in Nigeria must rest. Far from being a new law, CETA has existed for decades and has been amended periodically through Finance Acts and other legislative instruments.
+
+Objective of the CETA Bill 2025
+
+The CETA Bill 2025 pursues two primary objectives.
+
+The first is to raise the excise duty on Sugar-Sweetened Beverages (SSBs) from the current fixed rate of ₦10 per litre to an ad valorem levy — a percentage calculated on the retail price of the beverage. Inflation had gradually eroded both the real value and the deterrent effect of the original ₦10 per litre sugar tax, prompting the National Assembly to introduce reforms through the Customs, Excise Tariff, etc. (Consolidation) Act (Amendment) Bill. This marks a major shift in Nigeria's approach to taxing SSBs: rather than a fixed-rate duty that stays constant regardless of price changes, the new framework lets the tax burden rise proportionately with the value of the product, preserving its revenue and public health objectives over time. The amended framework also gives the Minister of Finance the statutory authority to determine and periodically adjust the applicable percentage rates, allowing excise rates to stay aligned with fiscal and macroeconomic conditions.
+
+The second objective is to ensure that a portion of the revenue this tax generates is channelled specifically into healthcare, particularly programmes targeting non-communicable diseases such as diabetes and obesity that are linked to excessive sugar consumption. The funds are intended to support public health promotion and disease prevention campaigns, strengthen primary healthcare services through additional funding for infrastructure, service delivery and community-based programmes, and expand health insurance coverage for vulnerable and underserved populations. In short, the tax is meant not only to discourage unhealthy consumption but to help fund the response to the very health challenges it targets.
+
+Procedure for Amending the Rate of Tariff Under CETA
+
+The procedure for amending tariff and excise rates under CETA is far from simple or informal.
+
+Section 12 of CETA, titled "Restriction on modification of duty imposed on goods, etc.," provides that "the duties imposed on goods specified in the First Schedule to this Act shall remain in force for seven years with respect thereto from the date of commencement of this Act."
+
+Section 13, however, states that "notwithstanding the provisions of section 12 of this Act, the President may, on the recommendation of the Tariff Review Board, by order — (a) impose, vary or remove any import or excise duty; (b) add to or vary any of the Schedules; (c) delete the whole or any part of any of the Schedules; (d) substitute a new Schedule or Schedules thereto."
+
+In other words, Section 12 promises tariff stability for seven years, yet Section 13 immediately grants the President power to override that stability by executive order. The practical effect of Section 12 is therefore limited, and the true operative provision is Section 13, which places substantial control of customs and excise tariff policy in the hands of the Executive, subject only to a recommendation from the Tariff Review Board and publication in the Gazette.
+
+Section 13 already provides a mechanism for adjusting excise duty rates, but it does not clearly authorise the creation of new earmarking arrangements or a fundamental restructuring of the tax. Those objectives properly belong within the legislative domain, which is what justifies a Bill such as SB 713.
+
+Under the existing law, the Minister of Finance holds the statutory authority to adjust excise rates, but only within a defined legal framework — any significant amendment to the rates specified in the Fifth Schedule requires legislative action, either through a Finance Act or an amendment bill passed by the National Assembly. That amendment must follow the constitutional procedure for Money Bills: first, second and third readings in both the Senate and House of Representatives, a committee stage, and Presidential assent before it can take legal effect. It is, in other words, a process that is fundamentally executive-led and legislatively controlled, not something an individual lawmaker can initiate unilaterally.
+
+What Is a Private Member Bill?
+
+A Private Member Bill is a bill introduced in the National Assembly by an individual legislator — a Senator or a member of the House of Representatives — acting in their personal legislative capacity rather than on behalf of the Executive arm of government. It is distinct from a Government Bill, which is sponsored by the President or a Ministry and carries the full weight of Executive policy behind it.
+
+Is a Private Member Bill Appropriate for Tax Purposes?
+
+This is where the CETA Bill 2025 faces its most serious legal challenge — and, constitutionally, the answer is no.
+
+Section 59(1)(b) of the 1999 Constitution expressly provides that its special procedure applies to "a bill for the imposition of or increase in any tax, duty or fee." Nigeria's constitutional architecture treats taxation as an Executive function, because tax policy affects the entire economy, the national budget, and the welfare of all citizens. It must therefore be driven by the arm of government that is democratically accountable for economic management — the Executive.
+
+A Private Member Bill that seeks to impose or increase a tax is not the individual lawmaker's to make. It encroaches on Executive fiscal territory and violates the constitutional design. Even if such a bill passes through both chambers of the National Assembly, it remains constitutionally vulnerable and liable to be challenged and struck down in court. The CETA Bill 2025 — a Private Member Bill that increases excise duty on SSBs — sits squarely within this constitutional danger zone.
+
+Does the Law Provide for Medical Assistance? Section 162 and the Federation Account
+
+Section 162(1) of the 1999 Constitution provides that "the Federation shall maintain a special account to be called 'the Federation Account' into which shall be paid all revenues collected by the Government of the Federation, except the proceeds from the personal income tax of the personnel of the armed forces of the Federation, the Nigeria Police Force, the Ministry or department of government charged with responsibility for Foreign Affairs and the residents of the Federal Capital Territory, Abuja."
+
+The Revenue Earmarking Question
+
+The CETA Bill 2025 proposes that a portion of the sugar tax revenue be specifically allocated to healthcare — funding disease prevention campaigns, strengthening primary healthcare, and expanding health insurance for vulnerable Nigerians. It's an admirable policy intention, but one that collides with a fundamental constitutional provision.
+
+Section 162 of the 1999 Constitution establishes the Federation Account, a single pool into which all revenues collected by the Federal Government must be paid, and from which funds are distributed to the Federal Government, States, and Local Governments according to the revenue-sharing formula prescribed by law. The constitutional problem is this: Section 162 does not permit selective earmarking of federally collected revenue for specific purposes outside the appropriation process. Once excise duty is collected, it flows into the Federation Account, and directing it specifically to healthcare without going through the Appropriation Act process may be constitutionally irregular. Lawfully ring-fencing federally collected revenue for health spending would require either a specific constitutional provision or a properly structured statutory framework — not a mere clause in an amendment bill. This is therefore both a policy aspiration and a constitutional complication that the Bill has not adequately addressed.
+
+Nature of the Tax — Is This an Excise Duty?
+
+The tax at issue under the CETA Bill 2025 is unambiguously an excise duty, and understanding its nature is essential to understanding the legal controversies surrounding the Bill.
+
+An excise duty is a tax imposed on goods manufactured or produced domestically, collected at the point of production from the manufacturer before the goods reach the consumer. This makes it entirely distinct from customs duty, which is levied on goods crossing the Nigerian border from abroad. Because SSBs such as Coca-Cola, Pepsi, and local fruit drinks are manufactured inside Nigeria, the appropriate tax instrument is excise duty, and the appropriate legislative vehicle is therefore CETA.
+
+Is This Also a Food Labelling Issue?
+
+Beyond excise duty, the CETA Bill 2025 touches on a broader regulatory concern: food and beverage labelling. In several jurisdictions where SSB taxes have been successfully implemented, the tax was accompanied by mandatory nutritional labelling laws requiring manufacturers to clearly display sugar content on packaging, empowering consumers to make informed choices. Nigeria currently lacks a robust mandatory sugar-labelling regime for beverages, and critics of the Bill argue that imposing a tax without addressing consumer information and labelling at the same time is an incomplete policy response. A comprehensive sugar-reduction strategy would combine excise taxation with labelling requirements under the relevant food safety and standards legislation.
+
+Who Are the Parties Affected?
+
+The CETA Bill 2025 does not affect only the government and manufacturers — its impact radiates across a broad range of parties.
+
+The Federal Government stands to gain revenue but risks constitutional litigation if the Bill's procedure is successfully challenged. Manufacturers, including multinationals such as Coca-Cola Nigeria and Nigerian Breweries as well as local producers, face increased production costs that may be passed on to consumers or force restructuring. Consumers — particularly low-income Nigerians — bear the burden of higher prices for everyday beverages, making this a regressive tax that hits the poor harder than the wealthy.
+
+Sugarcane farmers in states like Benue, who supply raw materials under the Nigeria Sugar Master Plan, risk losing off-take commitments if beverage production declines. Workers across the value chain — factory operatives, truck drivers, market traders, and kiosk owners — face potential job losses, with PwC projections estimating that sectoral employment could fall from 1.5 million to 1.2 million by 2030.`,
+    published: true,
+    publishedAt: new Date().toISOString(),
+  },
+];
+
 // Example entries so admins can see how deal/legal-experience history looks
 // on a team profile before replacing them with the firm's real matters.
 module.exports.DEAL_HISTORY = {

@@ -1,7 +1,7 @@
 import { put, del } from "@vercel/blob";
 import { db, upsertOne } from "../../lib/db";
 import { hashPassword } from "../../lib/auth";
-import { TEAM_MEMBERS, DEAL_HISTORY } from "../../db/seedData";
+import { TEAM_MEMBERS, DEAL_HISTORY, ARTICLES } from "../../db/seedData";
 
 // One-time bootstrap endpoint: run initial team roster + first admin login
 // against the production database without needing a direct DB connection
@@ -40,7 +40,16 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true, deleted, errors });
   }
 
-  const results = { teamMembers: 0, admin: null, errors: [] };
+  const results = { teamMembers: 0, articles: 0, admin: null, errors: [] };
+
+  for (const article of ARTICLES || []) {
+    const { error } = await upsertOne("articles", "slug", article.slug, article);
+    if (error) {
+      results.errors.push(`${article.slug}: ${error.message}`);
+      continue;
+    }
+    results.articles += 1;
+  }
 
   for (const member of TEAM_MEMBERS) {
     const { data: record, error } = await upsertOne("teamMembers", "slug", member.slug, member);

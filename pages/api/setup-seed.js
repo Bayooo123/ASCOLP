@@ -30,8 +30,15 @@ export default async function handler(req, res) {
 
   if (req.query.debugArticle) {
     const article = ARTICLES[0];
-    const { data, error } = await db("articles").insert(article).select().single();
-    return res.status(200).json({ ok: !error, data, error, bodyLength: article.body.length });
+    const lengths = [2000, 4000, 6000, 8000, 9000, 10000];
+    const results = [];
+    for (const len of lengths) {
+      const test = { ...article, slug: `${article.slug}-len${len}`, body: article.body.slice(0, len) };
+      const { error } = await db("articles").insert(test);
+      results.push({ len, ok: !error, error: error?.hint || error?.message });
+      await db("articles").delete().eq("slug", test.slug);
+    }
+    return res.status(200).json({ results, fullLength: article.body.length });
   }
 
   if (req.query.deleteSlugs) {

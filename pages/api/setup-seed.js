@@ -28,19 +28,6 @@ export default async function handler(req, res) {
     }
   }
 
-  if (req.query.debugArticle) {
-    const article = ARTICLES[0];
-    const lengths = [6500, 6800, 6900, 7000, 7100, 7200];
-    const results = [];
-    for (const len of lengths) {
-      const test = { ...article, slug: `${article.slug}-len${len}`, body: article.body.slice(0, len) };
-      const { error } = await db("articles").insert(test);
-      results.push({ len, ok: !error, error: error?.hint || error?.message });
-      await db("articles").delete().eq("slug", test.slug);
-    }
-    return res.status(200).json({ results, fullLength: article.body.length });
-  }
-
   if (req.query.deleteSlugs) {
     const slugs = req.query.deleteSlugs.split(",").map((s) => s.trim()).filter(Boolean);
     const deleted = [];

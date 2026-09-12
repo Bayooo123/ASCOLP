@@ -202,43 +202,16 @@ Under the existing law, the Minister of Finance holds the statutory authority to
 
 What Is a Private Member Bill?
 
-A Private Member Bill is a bill introduced in the National Assembly by an individual legislator — a Senator or a member of the House of Representatives — acting in their personal legislative capacity rather than on behalf of the Executive arm of government. It is distinct from a Government Bill, which is sponsored by the President or a Ministry and carries the full weight of Executive policy behind it.
+A Private Member Bill is introduced in the National Assembly by an individual legislator — a Senator or a member of the House of Representatives — acting in a personal legislative capacity rather than on behalf of the Executive. This distinction matters a great deal for the CETA Bill 2025, because Section 59(1)(b) of the 1999 Constitution requires that any bill imposing or increasing a tax follow a special procedure, on the basis that taxation is constitutionally an Executive function affecting the entire economy. A Private Member Bill that seeks to raise excise duty on SSBs therefore sits squarely within this constitutional danger zone — even if it passes both chambers of the National Assembly, it remains vulnerable to being challenged and struck down in court.
 
-Is a Private Member Bill Appropriate for Tax Purposes?
+The Bill also proposes to earmark a portion of the sugar tax revenue specifically for healthcare, but this collides with Section 162 of the Constitution, which requires all revenue collected by the Federal Government to pass through the single Federation Account and be distributed according to the statutory revenue-sharing formula, rather than being ring-fenced for a particular purpose by a clause in an amendment bill outside the ordinary appropriation process.
 
-This is where the CETA Bill 2025 faces its most serious legal challenge — and, constitutionally, the answer is no.
+The tax itself is unambiguously an excise duty rather than a customs duty, since SSBs such as Coca-Cola, Pepsi and local fruit drinks are manufactured domestically — and its rollout also raises a further, unresolved question around food and beverage labelling that the Bill does not fully address.
 
-Section 59(1)(b) of the 1999 Constitution expressly provides that its special procedure applies to "a bill for the imposition of or increase in any tax, duty or fee." Nigeria's constitutional architecture treats taxation as an Executive function, because tax policy affects the entire economy, the national budget, and the welfare of all citizens. It must therefore be driven by the arm of government that is democratically accountable for economic management — the Executive.
+Finally, the impact of the Bill extends well beyond government and manufacturers. It touches consumers who bear higher prices for everyday beverages, sugarcane farmers who supply the beverage industry under the Nigeria Sugar Master Plan, and workers across the value chain, with PwC projections estimating that sectoral employment could fall from 1.5 million to 1.2 million by 2030.
 
-A Private Member Bill that seeks to impose or increase a tax is not the individual lawmaker's to make. It encroaches on Executive fiscal territory and violates the constitutional design. Even if such a bill passes through both chambers of the National Assembly, it remains constitutionally vulnerable and liable to be challenged and struck down in court. The CETA Bill 2025 — a Private Member Bill that increases excise duty on SSBs — sits squarely within this constitutional danger zone.
-
-Does the Law Provide for Medical Assistance? Section 162 and the Federation Account
-
-Section 162(1) of the 1999 Constitution provides that "the Federation shall maintain a special account to be called 'the Federation Account' into which shall be paid all revenues collected by the Government of the Federation, except the proceeds from the personal income tax of the personnel of the armed forces of the Federation, the Nigeria Police Force, the Ministry or department of government charged with responsibility for Foreign Affairs and the residents of the Federal Capital Territory, Abuja."
-
-The Revenue Earmarking Question
-
-The CETA Bill 2025 proposes that a portion of the sugar tax revenue be specifically allocated to healthcare — funding disease prevention campaigns, strengthening primary healthcare, and expanding health insurance for vulnerable Nigerians. It's an admirable policy intention, but one that collides with a fundamental constitutional provision.
-
-Section 162 of the 1999 Constitution establishes the Federation Account, a single pool into which all revenues collected by the Federal Government must be paid, and from which funds are distributed to the Federal Government, States, and Local Governments according to the revenue-sharing formula prescribed by law. The constitutional problem is this: Section 162 does not permit selective earmarking of federally collected revenue for specific purposes outside the appropriation process. Once excise duty is collected, it flows into the Federation Account, and directing it specifically to healthcare without going through the Appropriation Act process may be constitutionally irregular. Lawfully ring-fencing federally collected revenue for health spending would require either a specific constitutional provision or a properly structured statutory framework — not a mere clause in an amendment bill. This is therefore both a policy aspiration and a constitutional complication that the Bill has not adequately addressed.
-
-Nature of the Tax — Is This an Excise Duty?
-
-The tax at issue under the CETA Bill 2025 is unambiguously an excise duty, and understanding its nature is essential to understanding the legal controversies surrounding the Bill.
-
-An excise duty is a tax imposed on goods manufactured or produced domestically, collected at the point of production from the manufacturer before the goods reach the consumer. This makes it entirely distinct from customs duty, which is levied on goods crossing the Nigerian border from abroad. Because SSBs such as Coca-Cola, Pepsi, and local fruit drinks are manufactured inside Nigeria, the appropriate tax instrument is excise duty, and the appropriate legislative vehicle is therefore CETA.
-
-Is This Also a Food Labelling Issue?
-
-Beyond excise duty, the CETA Bill 2025 touches on a broader regulatory concern: food and beverage labelling. In several jurisdictions where SSB taxes have been successfully implemented, the tax was accompanied by mandatory nutritional labelling laws requiring manufacturers to clearly display sugar content on packaging, empowering consumers to make informed choices. Nigeria currently lacks a robust mandatory sugar-labelling regime for beverages, and critics of the Bill argue that imposing a tax without addressing consumer information and labelling at the same time is an incomplete policy response. A comprehensive sugar-reduction strategy would combine excise taxation with labelling requirements under the relevant food safety and standards legislation.
-
-Who Are the Parties Affected?
-
-The CETA Bill 2025 does not affect only the government and manufacturers — its impact radiates across a broad range of parties.
-
-The Federal Government stands to gain revenue but risks constitutional litigation if the Bill's procedure is successfully challenged. Manufacturers, including multinationals such as Coca-Cola Nigeria and Nigerian Breweries as well as local producers, face increased production costs that may be passed on to consumers or force restructuring. Consumers — particularly low-income Nigerians — bear the burden of higher prices for everyday beverages, making this a regressive tax that hits the poor harder than the wealthy.
-
-Sugarcane farmers in states like Benue, who supply raw materials under the Nigeria Sugar Master Plan, risk losing off-take commitments if beverage production declines. Workers across the value chain — factory operatives, truck drivers, market traders, and kiosk owners — face potential job losses, with PwC projections estimating that sectoral employment could fall from 1.5 million to 1.2 million by 2030.`,
+The full legal analysis, including every relevant constitutional and statutory provision in full, is available to download below.`,
+    fileUrl: "/assets/images/publications/sugar-tax-in-nigeria-legal-analysis.pdf",
     published: true,
     publishedAt: new Date().toISOString(),
   },

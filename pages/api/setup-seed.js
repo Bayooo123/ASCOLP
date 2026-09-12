@@ -28,6 +28,12 @@ export default async function handler(req, res) {
     }
   }
 
+  if (req.query.debugArticle) {
+    const article = ARTICLES[0];
+    const { data, error } = await db("articles").insert(article).select().single();
+    return res.status(200).json({ ok: !error, data, error, bodyLength: article.body.length });
+  }
+
   if (req.query.deleteSlugs) {
     const slugs = req.query.deleteSlugs.split(",").map((s) => s.trim()).filter(Boolean);
     const deleted = [];

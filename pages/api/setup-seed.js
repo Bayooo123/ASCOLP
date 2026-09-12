@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
   if (req.query.debugArticle) {
     const article = ARTICLES[0];
-    const lengths = [2000, 4000, 6000, 8000, 9000, 10000];
+    const lengths = [6500, 6800, 6900, 7000, 7100, 7200];
     const results = [];
     for (const len of lengths) {
       const test = { ...article, slug: `${article.slug}-len${len}`, body: article.body.slice(0, len) };

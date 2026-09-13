@@ -2,32 +2,14 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { db } from "../lib/db";
 
-const OFFICE_SLIDES = [
-  { id: "office-1", photoUrl: "/assets/images/team/office/office-team-1.jpg" },
-  { id: "office-2", photoUrl: "/assets/images/team/office/office-team-2.jpg" },
-  { id: "office-3", photoUrl: "/assets/images/team/office/office-team-3.jpg" },
-  { id: "office-4", photoUrl: "/assets/images/team/office/office-team-4.jpg" },
-  { id: "office-5", photoUrl: "/assets/images/team/office/office-team-5.jpg" },
-];
-
-const FALLBACK_SLIDES = [
-  { slug: "abiola-sanni", name: "Prof. Abiola Sanni (SAN) PhD.", title: "Managing Partner", photoUrl: "/assets/images/team/prof-abiola-sanni.jpg" },
-  { slug: "kolawole-abdusalam", name: "Kolawole G. Abdusalam", title: "Practice Head", photoUrl: "/assets/images/team/KOLAWOLE- ABDULSALAM-p.jpg" },
-  { slug: "iniobong-umoh", name: "Iniobong Inieke Umoh", title: "Senior Associate", photoUrl: "/assets/images/team/iniobong-umoh.jpg" },
+const HERO_SLIDES = [
+  { id: "hero-1", image: "/assets/images/backgrounds/law_justice_ascolp.jpg", heading: "Justice, Equity & Trust" },
+  { id: "hero-2", image: "/assets/images/backgrounds/abiola-sanni-bg.jpg", heading: "Strategic Counsel, Legal Excellence." },
+  { id: "hero-3", image: "/assets/images/backgrounds/prof-abiola-sanni.jpg", heading: "Transforming Disputes into Agreements." },
 ];
 
 export async function getStaticProps() {
-  let slides = FALLBACK_SLIDES;
   let articles = [];
-
-  const { data: members } = await db("teamMembers")
-    .select("*")
-    .eq("featuredHome", true)
-    .eq("published", true)
-    .order("homeOrder")
-    .limit(7);
-  if (members && members.length) slides = members;
-  slides = [...OFFICE_SLIDES, ...slides];
 
   const { data: fetchedArticles } = await db("articles")
     .select("*")
@@ -36,10 +18,10 @@ export async function getStaticProps() {
     .limit(3);
   articles = fetchedArticles || [];
 
-  return { props: { slides, articles }, revalidate: 300 };
+  return { props: { articles }, revalidate: 300 };
 }
 
-export default function Home({ slides, articles }) {
+export default function Home({ articles }) {
   return (
     <Layout>
       <Seo path="/" />
@@ -57,9 +39,24 @@ export default function Home({ slides, articles }) {
           })}
         >
           <div className="swiper-wrapper">
-            {slides.map((member) => (
-              <div className="swiper-slide" key={member.slug || member.id}>
-                <div className="image-layer" style={{ backgroundImage: `url(${member.photoUrl})` }}></div>
+            {HERO_SLIDES.map((slide) => (
+              <div className="swiper-slide" key={slide.id}>
+                <div className="image-layer" style={{ backgroundImage: `url(${slide.image})` }}></div>
+                <div className="main-slider-shape-1"></div>
+                <div className="main-slider-shape-2"></div>
+                <div className="main-slider-shape-3"></div>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-xl-7">
+                      <div className="main-slider__content">
+                        <h2>{slide.heading}</h2>
+                        <a href="/about" className="thm-btn">
+                          Discover More
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

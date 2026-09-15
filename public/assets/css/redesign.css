@@ -1210,6 +1210,314 @@
   font-size: 13.5px;
 }
 
+/* ---------- Homepage hero carousel ---------- */
+
+.rd-hero-carousel {
+  position: relative;
+  background: var(--rd-ink-deep);
+  overflow: hidden;
+}
+
+.rd-hero-carousel__inner {
+  position: relative;
+  min-height: min(78vh, 680px);
+  display: flex;
+  align-items: flex-end;
+}
+
+.rd-hero-carousel__layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+}
+
+.rd-hero-carousel__layer--active {
+  opacity: 1;
+}
+
+.rd-hero-carousel--no-motion .rd-hero-carousel__layer {
+  transition: none;
+}
+
+.rd-hero-carousel__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20, 19, 29, 0.92) 0%, rgba(20, 19, 29, 0.78) 46%, rgba(20, 19, 29, 0.28) 100%);
+}
+
+.rd-hero-carousel__content {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 96px 24px 104px;
+  display: grid;
+  gap: 20px;
+}
+
+.rd-hero-carousel__content-inner {
+  max-width: 44ch;
+  display: grid;
+  gap: 20px;
+}
+
+.rd-hero-carousel__kicker {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e5b9bf;
+}
+
+h1.rd-hero-carousel__title {
+  margin: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(40px, 5.6vw, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.rd-hero-carousel__sub {
+  margin: 0;
+  font-size: 18.5px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 54ch;
+}
+
+.rd-hero-carousel__btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rd-hero-carousel__btn-row .rd-btn {
+  padding: 15px 26px;
+}
+
+.rd-hero-carousel__controls {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rd-hero-carousel__arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.rd-hero-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(20, 19, 29, 0.35);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.rd-hero-carousel__arrow:hover {
+  border-color: #ffffff;
+  background: rgba(142, 47, 57, 0.9);
+}
+
+.rd-hero-carousel__indicators {
+  display: flex;
+  gap: 4px;
+}
+
+.rd-hero-carousel__indicator {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.rd-hero-carousel__indicator span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s ease;
+}
+
+.rd-hero-carousel__indicator--active span {
+  background: #ffffff;
+}
+
+/* ---------- Positioning strip ---------- */
+
+.rd-positioning-strip {
+  background: var(--rd-ivory);
+  border-bottom: 1px solid var(--rd-ivory-border);
+  padding: 30px 24px;
+}
+
+.rd-positioning-strip__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.rd-positioning-strip p.rd-serif {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--rd-ink);
+  max-width: 60ch;
+}
+
+.rd-positioning-strip a.rd-phone-link {
+  color: var(--rd-maroon);
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+/* ---------- Practice groups ---------- */
+
+.rd-practice-groups {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 72px 24px 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 44px;
+}
+
+.rd-practice-groups__left h2 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 3.6vw, 44px);
+}
+
+.rd-practice-groups__left p.rd-intro {
+  margin: 0 0 16px;
+  font-size: 17px;
+  line-height: 1.68;
+  color: var(--rd-secondary);
+  max-width: 54ch;
+}
+
+.rd-practice-groups__stack {
+  display: grid;
+  gap: 1px;
+  background: var(--rd-border);
+  border: 1px solid var(--rd-border);
+}
+
+.rd-practice-groups__row {
+  background: #ffffff;
+  padding: 24px 26px;
+}
+
+.rd-practice-groups__row h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.rd-practice-groups__row p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--rd-secondary);
+}
+
+/* ---------- Principal Partner highlight band ---------- */
+
+.rd-partner-band {
+  background: var(--rd-ivory);
+  border-top: 1px solid var(--rd-ivory-border);
+  border-bottom: 1px solid var(--rd-ivory-border);
+  padding: 68px 24px;
+}
+
+.rd-partner-band__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  gap: 36px;
+}
+
+.rd-partner-band__portrait {
+  aspect-ratio: 4 / 4.6;
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid var(--rd-border);
+}
+
+.rd-partner-band__body h2 {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.2vw, 40px);
+}
+
+.rd-partner-band__body p.rd-summary {
+  margin: 0 0 20px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--rd-secondary);
+  max-width: 62ch;
+}
+
+/* ---------- Enquiry CTA band ---------- */
+
+.rd-enquiry-band {
+  position: relative;
+  background: var(--rd-ink);
+  overflow: hidden;
+}
+
+.rd-enquiry-band__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+}
+
+.rd-enquiry-band__inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 72px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rd-enquiry-band__text h2 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: #ffffff;
+}
+
+.rd-enquiry-band__text p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 /* ---------- Responsive (single breakpoint) ---------- */
 
 @media (max-width: 980px) {
@@ -1218,8 +1526,21 @@
   .rd-split--portrait-left,
   .rd-layout-2col,
   .rd-layout-2col--about,
-  .rd-layout-2col--articles {
+  .rd-layout-2col--articles,
+  .rd-practice-groups,
+  .rd-partner-band__inner {
     grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .rd-partner-band__portrait {
+    aspect-ratio: auto !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    height: 360px !important;
+  }
+
+  .rd-hero-carousel__content-inner {
+    max-width: 100%;
   }
 
   .rd-split__media {

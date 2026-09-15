@@ -160,8 +160,8 @@ export default function Home({ articles }) {
             </div>
             <div className="free-consultation__right">
               <h4 className="free-consultation__contact-info">
-                <a href="tel:+703319018" className="free-consultation__contact-number">
-                  +703319018
+                <a href="tel:+2347069268744" className="free-consultation__contact-number">
+                  +234 706 926 8744
                 </a>
                 <a href="mailto:info@abiolasanniandco.com" className="free-consultation__contact-email">
                   info@abiolasanniandco.com

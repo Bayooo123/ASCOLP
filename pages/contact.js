@@ -48,7 +48,7 @@ export default function Contact() {
               <h3>Get in Touch</h3>
               <p style={{ marginTop: "10px" }}>14 Barikisu Street, Iyede Onike, Off Custom, Yaba, Lagos, Nigeria</p>
               <p style={{ marginTop: "10px" }}>
-                <a href="tel:+703319018">+703319018</a>
+                <a href="tel:+2347069268744">+234 706 926 8744</a>
                 <br />
                 <a href="mailto:info@abiolasanniandco.com">info@abiolasanniandco.com</a>
               </p>

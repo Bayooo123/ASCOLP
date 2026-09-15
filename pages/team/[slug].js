@@ -1,6 +1,5 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
-import PageHeader from "../../components/PageHeader";
 import { db } from "../../lib/db";
 
 export async function getStaticPaths() {
@@ -15,17 +14,44 @@ export async function getStaticProps({ params }) {
   }
 
   const { data: dealHistory } = await db("dealRecords").select("*").eq("teamMemberId", member.id).order("sortOrder");
+  const { data: articles } = await db("articles").select("*").eq("published", true).order("publishedAt", { ascending: false });
 
   return {
     props: {
       member: { ...member, dealHistory: dealHistory || [] },
+      articles: articles || [],
     },
     revalidate: 60,
   };
 }
 
-export default function TeamMemberPage({ member }) {
-  const bioParagraphs = member.bio ? member.bio.split("\n\n") : [];
+const CREDENTIAL_CHIPS = [
+  "Senior Advocate of Nigeria, 2021",
+  "Chairman, National Tax Policy Review Committee, 2016",
+  "Chairman, National Tax Policy Implementation Committee, 2017",
+  "Fulbright Fellow, Temple University, 2003",
+  "Fellow, Chartered Institute of Taxation of Nigeria",
+  "ICC & UNCITRAL arbitration since 2011",
+];
+
+const STATS = [
+  { figure: "2021", label: "Admitted to the Inner Bar as SAN" },
+  { figure: "33", label: "Years post-call experience" },
+  { figure: "2016", label: "Simultaneous professorial chair, UNILAG" },
+  { figure: "2", label: "Federal tax policy committees chaired" },
+];
+
+const PRINCIPAL_PARTNER_PROFILE = [
+  "His distinguished career has shaped the development of Nigerian tax law across academia, corporate advisory and public policy. His contributions to the field extend from scholarship and teaching to advising businesses and institutions on complex tax matters and contributing to tax policy development. He was admitted to the Inner Bar as a Senior Advocate of Nigeria (SAN) in 2021.",
+  "He obtained his Bachelor's and Masters of Law degrees from Obafemi Awolowo University, Ile-Ife in 1989 and 1992 respectively. In 1991 he began his teaching career at Obafemi Awolowo University as a Junior Trainee Fellow, rose through the ranks to Lecturer 1 and served as Acting Head, Department of Business Law in 1997. He transferred his service to the University of Lagos in 1999. In 2003 he won the prestigious Fulbright Fellowship for foreign scholars — a ten-month fellowship at the International Tax Programme of Beasley School of Law, Temple University, Philadelphia — and was appointed a Research Fellow of the same University's Institute of International Law and Policy. In 2016 he had the singular honour of being simultaneously appointed Professor of Commercial Law and occupier of a professorial chair endowed by Lagos State for the advancement of taxation and fiscal matters.",
+  "He is a Fellow of the Chartered Institute of Taxation of Nigeria, where he has served as Dean of the Faculty of Indirect Tax and a member of the Taxation Standard Board; a Fellow of the Nigerian Institute of Chartered Arbitrators; and a life member of the Nigerian Society of International Law. Since 2011 he has been involved in international arbitration under the ICC and UNCITRAL Rules as well as domestic arbitration. He is the author of Introduction to Nigerian Business Law and the founder and publisher of the Nigerian Revenue Law Reports and African Tax Law Reports — the first law reports devoted to tax cases in Nigeria and Africa respectively.",
+  "He is a member of the Tax Advisory Committee “Think-Tank” Group for the Federal Inland Revenue Service, has served on the Federal Government Fiscal Reform Committee responsible for incubating annual Finance Acts since 2019, and has been a member of the Advisory Group of the International Centre for Tax and Development since 2017.",
+];
+
+export default function TeamMemberPage({ member, articles }) {
+  const isPrincipalPartner = member.slug === "abiola-sanni";
+  const bioParagraphs = isPrincipalPartner ? PRINCIPAL_PARTNER_PROFILE : member.bio ? member.bio.split("\n\n") : [];
+  const authoredArticles = isPrincipalPartner ? articles : [];
 
   return (
     <Layout>
@@ -35,120 +61,145 @@ export default function TeamMemberPage({ member }) {
         description={bioParagraphs[0] ? bioParagraphs[0].slice(0, 160) : `${member.name}${member.title ? `, ${member.title}` : ""} at ASCOLP.`}
         image={member.photoUrl || undefined}
       />
-      <PageHeader title={member.name} crumb={member.name} />
 
-      <section className="work-together-two">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-6 col-lg-6">
-              <div className="work-together-two__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
-                <div className="work-together-two__img">
-                  <img src={member.photoUrl || "/assets/images/logo/logo.png"} alt={member.name} />
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6">
-              <div className="work-together-tow__right">
-                <div className="section-title text-left">
-                  <span className="section-title__tagline">{member.title || member.name}</span>
-                  <h2 className="section-title__title">
-                    {member.name}
-                    {member.credentials ? <span style={{ display: "block", fontSize: "16px", fontWeight: 400 }}>{member.credentials}</span> : null}
-                  </h2>
-                </div>
-
-                {bioParagraphs.length ? (
-                  bioParagraphs.map((para, i) => (
-                    <p className="work-together-tow__text-2" key={i}>
-                      {para}
-                    </p>
-                  ))
-                ) : (
-                  <p className="work-together-tow__text-2">Full profile coming soon.</p>
-                )}
-
-                <ul className="list-unstyled" style={{ marginTop: "10px" }}>
-                  {member.email ? (
-                    <li>
-                      <strong>Email:</strong> <a href={`mailto:${member.email}`}>{member.email}</a>
-                    </li>
-                  ) : null}
-                  {member.phone ? (
-                    <li>
-                      <strong>Phone:</strong> <a href={`tel:${member.phone}`}>{member.phone}</a>
-                    </li>
-                  ) : null}
-                </ul>
-
-                {member.linkedinUrl || member.twitterUrl || member.facebookUrl ? (
-                  <div className="site-footer__social" style={{ marginTop: "15px" }}>
-                    {member.linkedinUrl ? (
-                      <a href={member.linkedinUrl} target="_blank" rel="noreferrer">
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                    ) : null}
-                    {member.twitterUrl ? (
-                      <a href={member.twitterUrl} target="_blank" rel="noreferrer">
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                    ) : null}
-                    {member.facebookUrl ? (
-                      <a href={member.facebookUrl} target="_blank" rel="noreferrer">
-                        <i className="fab fa-facebook"></i>
-                      </a>
-                    ) : null}
-                  </div>
-                ) : null}
-              </div>
-            </div>
+      <div className="rd">
+        <div className="rd-breadcrumb">
+          <div className="rd-breadcrumb__inner">
+            <a href="/team" style={{ color: "var(--rd-maroon)", fontWeight: 600 }}>
+              Our Team
+            </a>
+            <span>/</span>
+            <span>{member.name}</span>
           </div>
         </div>
-      </section>
 
-      {member.dealHistory && member.dealHistory.length ? (
-        <section className="case-one">
-          <div className="container">
-            <div className="section-title text-center">
-              <span className="section-title__tagline">Track Record</span>
-              <h2 className="section-title__title">Selected Legal &amp; Transaction Experience</h2>
+        <div className="rd-layout-2col">
+          <aside className="rd-sticky-rail">
+            <div
+              className="rd-split__portrait"
+              style={{ backgroundImage: `url("${member.photoUrl || "/assets/images/logo/logo.png"}")`, aspectRatio: "4 / 4.6", border: "1px solid var(--rd-border)" }}
+            ></div>
+            <div className="rd-enquiry-card">
+              <p className="rd-serif">{isPrincipalPartner ? "Instruct the Principal Partner" : `Instruct ${member.name.split(" ")[0]}`}</p>
+              <p className="rd-body-sm">
+                {isPrincipalPartner ? "Tax controversy, arbitration and regulatory matters." : member.title || "Get in touch about a matter."}
+              </p>
+              {member.email ? (
+                <a href={`mailto:${member.email}?subject=Instruction%20for%20${encodeURIComponent(member.name)}`} className="rd-btn rd-btn--primary" style={{ marginTop: "4px" }}>
+                  Email {member.name.split(" ")[0]}
+                </a>
+              ) : (
+                <a
+                  href={`mailto:info@abiolasanniandco.com?subject=Instruction%20for%20${encodeURIComponent(member.name)}`}
+                  className="rd-btn rd-btn--primary"
+                  style={{ marginTop: "4px" }}
+                >
+                  Email chambers
+                </a>
+              )}
+              <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary" style={{ background: "#ffffff" }}>
+                +234 706 926 8744
+              </a>
             </div>
-            <div className="row">
-              {member.dealHistory.map((deal, i) => (
-                <div className="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay={`${(i + 1) * 100}ms`} key={deal.id}>
-                  <div className="case-one__single" style={{ padding: "30px" }}>
-                    <h3 className="case-one__title" style={{ fontSize: "20px" }}>
-                      {deal.title}
-                    </h3>
-                    <p style={{ margin: "10px 0 0", fontSize: "14px", color: "var(--oslim-text)" }}>
-                      {[deal.practiceArea, deal.year].filter(Boolean).join(" · ")}
-                    </p>
-                    {deal.description ? <p style={{ marginTop: "10px" }}>{deal.description}</p> : null}
+            {isPrincipalPartner ? (
+              <div className="rd-rail-block">
+                <h3>Practice areas</h3>
+                <a href="/practice-areas" className="rd-link">
+                  Tax Unit
+                </a>
+                <a href="/practice-areas" className="rd-link">
+                  Regulatory &amp; Public Policy
+                </a>
+                <a href="/practice-areas" className="rd-link">
+                  Litigation &amp; ADR
+                </a>
+              </div>
+            ) : null}
+          </aside>
+
+          <div className="rd-profile-main">
+            <header className="rd-profile-header">
+              <p className="rd-kicker">{member.title || "Team"}</p>
+              <h1>{member.name}</h1>
+              {member.credentials ? <p className="rd-meta-line">{member.credentials}</p> : null}
+              {isPrincipalPartner ? (
+                <p className="rd-lede">Professor Abiola Sanni is one of Nigeria&rsquo;s leading authorities on tax law.</p>
+              ) : null}
+            </header>
+
+            {isPrincipalPartner ? (
+              <section className="rd-stat-strip">
+                {STATS.map((stat) => (
+                  <div className="rd-stat-strip__item" key={stat.label}>
+                    <p className="rd-stat-figure rd-serif">{stat.figure}</p>
+                    <p>{stat.label}</p>
                   </div>
+                ))}
+              </section>
+            ) : null}
+
+            <section className="rd-profile-section">
+              <h2>Profile</h2>
+              {bioParagraphs.length ? (
+                bioParagraphs.map((para, i) => (
+                  <p className="rd-body-lg" key={i}>
+                    {para}
+                  </p>
+                ))
+              ) : (
+                <p className="rd-body-lg">Full profile coming soon.</p>
+              )}
+            </section>
+
+            {member.dealHistory && member.dealHistory.length ? (
+              <section className="rd-profile-section">
+                <h2>Selected experience</h2>
+                <div className="rd-exp-list">
+                  {member.dealHistory.map((deal) => (
+                    <article className="rd-exp-item" key={deal.id}>
+                      <div className="rd-exp-item__head">
+                        <h3>{deal.title}</h3>
+                        <span>{[deal.practiceArea, deal.year].filter(Boolean).join(" · ")}</span>
+                      </div>
+                      {deal.description ? <p>{deal.description}</p> : null}
+                    </article>
+                  ))}
                 </div>
-              ))}
+              </section>
+            ) : null}
+
+            {authoredArticles.length ? (
+              <section className="rd-profile-section">
+                <h2>Publications</h2>
+                <div className="rd-pub-list">
+                  {authoredArticles.map((article) => (
+                    <a href={`/articles#article-${article.slug}`} className="rd-pub-card" key={article.slug}>
+                      <span className="rd-eyebrow">{article.type === "NEWSLETTER" ? "ASCO Publication" : "Article"}</span>
+                      <span className="rd-pub-title">{article.title}</span>
+                      {article.summary ? <span className="rd-pub-summary">{article.summary}</span> : null}
+                      <span className="rd-pub-cta">Read the analysis · PDF available</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+          </div>
+        </div>
+
+        <section className="rd-cta-band">
+          <div className="rd-cta-band__inner">
+            <h2>Legal practice, arbitration, tax practice, company secretary.</h2>
+            <div className="rd-btn-row">
+              <a href="mailto:info@abiolasanniandco.com?subject=Consultation%20request" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
+                Request a consultation
+              </a>
+              <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
+                +234 706 926 8744
+              </a>
             </div>
           </div>
         </section>
-      ) : null}
-
-      <section className="cta-one">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="cta-one__inner">
-                <div className="cta-one__inner-content">
-                  <div className="cta-one-shape-1 float-bob-x"></div>
-                  <div className="cta-one-shape-2 float-bob-x-2"></div>
-                  <h3 className="cta-one__title">Legal Practice | Arbitration | Tax Practice | Company Secretary</h3>
-                  <a href="/contact" className="thm-btn cta-one__btn">
-                    Discover More
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </Layout>
   );
 }

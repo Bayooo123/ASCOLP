@@ -1,107 +1,98 @@
-export default function Header() {
-  return (
-    <>
-      <header className="main-header clearfix">
-        <nav className="main-menu clearfix">
-          <div className="main-menu-wrapper clearfix">
-            <div className="main-menu-wrapper__left">
-              <div className="main-menu-wrapper__logo">
-                <a href="/">
-                  <img src="/assets/images/logo/logo.png" alt="ASCOLP" />
-                </a>
-              </div>
-              <div className="main-menu-wrapper__main-menu">
-                <a href="#" className="mobile-nav__toggler">
-                  <i className="fa fa-bars"></i>
-                </a>
-                <ul className="main-menu__list">
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">About</a>
-                    <ul>
-                      <li>
-                        <a href="/about">About ASCOLP</a>
-                      </li>
-                      <li>
-                        <a href="/philosophy">Our Philosophy</a>
-                      </li>
-                      <li>
-                        <a href="/principal-partner">Principal Partner</a>
-                      </li>
-                      <li>
-                        <a href="/team">Meet Our Team</a>
-                      </li>
-                      <li>
-                        <a href="/csr">Corporate Social Responsibility</a>
-                      </li>
-                      <li>
-                        <a href="/contact">Contact Us</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="dropdown">
-                    <a href="#">Practice Areas</a>
-                    <ul>
-                      <li>
-                        <a href="/practice-areas/tax-unit">Tax Unit</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/corporate">Corporate &amp; Commercial Department</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/litigation-arbitrations">Litigation &amp; Alternative Dispute Resolution</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/probate">Probate Services</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/corporate-secretarial">Corporate Secretarial Services</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/regulatory-public-policy">Regulatory &amp; Public Policy</a>
-                      </li>
-                      <li>
-                        <a href="/practice-areas/pro-bono-services">Pro Bono Services</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="/alumni">Alumni</a>
-                  </li>
-                  <li>
-                    <a href="/articles">Thought Leadership</a>
-                  </li>
-                  <li>
-                    <a href="/contact">Contact</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="main-menu-wrapper__right">
-              <div className="main-menu-wrapper__call">
-                <div className="main-menu-wrapper__call-icon">
-                  <span className="icon-phone-call"></span>
-                </div>
-                <div className="main-menu-wrapper__call-number">
-                  <p>Need help? Talk to Us</p>
-                  <h5>
-                    <a href="tel:+703319018">+703319018</a>
-                  </h5>
-                </div>
-              </div>
-              <div className="main-menu-wrapper__search-cat">
-                <a href="#" className="main-menu-wrapper__search search-toggler icon-magnifying-glass"></a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-      <div className="stricky-header stricked-menu main-menu">
-        <div className="sticky-header__content"></div>
+const NAV_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/team", label: "Our Team" },
+  { href: "/articles", label: "Thought Leadership" },
+  { href: "/alumni", label: "Alumni" },
+];
+
+export default function Header() {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  function isActive(href) {
+    if (href === "/team") return router.pathname === "/team" || router.pathname === "/team/[slug]";
+    return router.pathname === href;
+  }
+
+  return (
+    <div className="rd">
+      <div className="rd-utilitybar">
+        <div className="rd-container rd-utilitybar__inner">
+          <div className="rd-utilitybar__left">
+            <a href="tel:+2347069268744" className="rd-phone">
+              +234 706 926 8744
+            </a>
+            <a href="mailto:info@abiolasanniandco.com">info@abiolasanniandco.com</a>
+          </div>
+          <div className="rd-utilitybar__right">
+            <span>14 Barikisu Street, Yaba, Lagos</span>
+            <a href="https://www.linkedin.com/company/ascolp/" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+          </div>
+        </div>
       </div>
-    </>
+
+      <header className="rd-header">
+        <div className="rd-container rd-header__inner">
+          <Link href="/" className="rd-header__logo">
+            <img src="/assets/images/logo/ascolp.png" alt="ASCOLP — Abiola Sanni & Co." />
+          </Link>
+
+          <nav className="rd-nav">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rd-nav__link${isActive(link.href) ? " rd-nav__link--active" : ""}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <a href="mailto:info@abiolasanniandco.com?subject=Consultation%20request" className="rd-btn rd-btn--primary rd-header__cta">
+            Request a consultation
+          </a>
+
+          <button
+            type="button"
+            className="rd-mobile-toggle"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span></span>
+          </button>
+        </div>
+
+        <div className={`rd-mobile-drawer${open ? " is-open" : ""}`}>
+          <nav className="rd-nav">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rd-nav__link${isActive(link.href) ? " rd-nav__link--active" : ""}`}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <a
+            href="mailto:info@abiolasanniandco.com?subject=Consultation%20request"
+            className="rd-btn rd-btn--primary rd-header__cta"
+            onClick={() => setOpen(false)}
+          >
+            Request a consultation
+          </a>
+        </div>
+      </header>
+    </div>
   );
 }

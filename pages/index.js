@@ -4,6 +4,10 @@ import HeroCarousel from "../components/HeroCarousel";
 
 const PRACTICE_GROUPS = [
   {
+    title: "Tax Practice & Advisory",
+    description: "Tax planning, compliance, advisory and controversy for public and private businesses across multiple jurisdictions.",
+  },
+  {
     title: "Litigation & ADR",
     description: "Representation and strategic guidance for clients in disputes, through the courts or through arbitration and mediation.",
   },
@@ -40,9 +44,9 @@ export default function Home() {
         <section className="rd-practice-groups">
           <div className="rd-practice-groups__left">
             <p className="rd-kicker">Practice groups</p>
-            <h2>Four groups, one standard of practice.</h2>
+            <h2>Five groups, one standard of practice.</h2>
             <p className="rd-intro">
-              ASCOLP comprises practice area groups covering litigation, corporate advisory, property law and
+              ASCOLP comprises practice area groups covering taxation, litigation, corporate advisory, property law and
               government regulatory work, each led by senior counsel.
             </p>
             <a href="/practice-areas" className="rd-link">
@@ -56,30 +60,6 @@ export default function Home() {
                 <p>{group.description}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="rd-section" style={{ paddingBottom: "24px" }}>
-          <div className="rd-split">
-            <div className="rd-split__media" style={{ backgroundImage: 'url("/assets/images/hero/scales.jpg")', minHeight: "360px" }}></div>
-            <div className="rd-split__body">
-              <p className="rd-kicker" style={{ marginBottom: "12px" }}>
-                Flagship practice
-              </p>
-              <h2>The Tax Unit</h2>
-              <p className="rd-lead">
-                Headed by Prof. Abiola Sanni (SAN), internationally and locally recognised as a tax expert, advising
-                public and private businesses on all tax aspects of their operations in multiple jurisdictions.
-              </p>
-              <div className="rd-btn-row" style={{ alignItems: "center" }}>
-                <a href="mailto:info@abiolasanniandco.com?subject=Tax%20Unit%20enquiry" className="rd-btn rd-btn--primary">
-                  Speak to the Tax Unit
-                </a>
-                <a href="/articles" className="rd-link rd-link--underline">
-                  Read our tax analyses
-                </a>
-              </div>
-            </div>
           </div>
         </section>
 

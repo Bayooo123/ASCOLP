@@ -4,11 +4,21 @@ import Seo from "../../components/Seo";
 const DEPARTMENTS = [
   {
     eyebrow: "Department",
+    title: "Tax Practice & Advisory",
+    summary:
+      "Primary tax advisors and counsel to corporations, public institutions and individuals — covering tax planning, compliance, advisory and tax controversy including arbitration and litigation.",
+    lead: "Led by Prof. Abiola Sanni (SAN) & Tax Attorneys",
+    enquireSubject: "Tax%20Unit%20enquiry",
+    href: "/practice-areas/tax-unit",
+  },
+  {
+    eyebrow: "Department",
     title: "Corporate & Commercial Practice",
     summary:
       "A cohesive team combining extensive experience with the skill to deal with any legal challenge — dealing with every assignment with the primary purpose of establishing an enduring client relationship.",
     lead: "Practice Head — Kolawole G. Abdulsalam, Esq.",
     enquireSubject: "Corporate%20%26%20Commercial%20enquiry",
+    href: "/practice-areas/corporate",
   },
   {
     eyebrow: "Department",
@@ -17,6 +27,7 @@ const DEPARTMENTS = [
       "Comprehensive representation and strategic guidance for clients in disputes — through litigation in the courts or through arbitration and mediation, with a pragmatic approach to outcomes.",
     lead: "Legal & Property — Iniobong Inieke Umoh, Senior Associate",
     enquireSubject: "Litigation%20%26%20ADR%20enquiry",
+    href: "/practice-areas/litigation-arbitrations",
   },
   {
     eyebrow: "Regulatory",
@@ -25,6 +36,7 @@ const DEPARTMENTS = [
       "Review and improvement of policy and legislative documents across taxation, lottery and gaming regulation and tax administration, plus capacity building for MDAs including the Federal Ministry of Finance, the Nigeria Revenue Service and the Kano State Revenue Service.",
     lead: "Led by the Principal Partner",
     enquireSubject: "Regulatory%20%26%20Public%20Policy%20enquiry",
+    href: "/practice-areas/regulatory-public-policy",
   },
   {
     eyebrow: "Company secretary",
@@ -33,6 +45,7 @@ const DEPARTMENTS = [
       "As certified company secretaries: board meeting materials and minutes, statutory registers and records, annual filings with government agencies, and identification and mitigation of legal and regulatory risk.",
     lead: "Certified company secretaries",
     enquireSubject: "Corporate%20Secretarial%20enquiry",
+    href: "/practice-areas/corporate-secretarial",
   },
   {
     eyebrow: "Private client",
@@ -41,6 +54,7 @@ const DEPARTMENTS = [
       "Documentation and filing of the probate process for testate and intestate clients — reading and marking of the will, court processes, asset identification, estate distribution, conflict resolution and estate management.",
     lead: "Acting as probate officer",
     enquireSubject: "Probate%20enquiry",
+    href: "/practice-areas/probate",
   },
   {
     eyebrow: "Access to justice",
@@ -50,6 +64,7 @@ const DEPARTMENTS = [
     lead: "Across all departments",
     enquireSubject: "Pro%20bono%20enquiry",
     enquireLabel: "Apply",
+    href: "/practice-areas/pro-bono-services",
     ivory: true,
   },
 ];
@@ -60,7 +75,7 @@ export default function PracticeAreasPage() {
       <Seo
         title="Practice Areas"
         path="/practice-areas"
-        description="ASCOLP's practice area groups: Litigation and ADR, Corporate Advisory and Secretarial Services, Real Estate and Property Law, and Government and Regulatory Advisory."
+        description="ASCOLP's practice area groups: Tax Practice, Litigation and ADR, Corporate Advisory and Secretarial Services, Real Estate and Property Law, and Government and Regulatory Advisory."
       />
 
       <div className="rd">
@@ -70,10 +85,11 @@ export default function PracticeAreasPage() {
               <p className="rd-kicker">Practice Areas</p>
               <h1>ASCOLP prides itself in offering the highest standards in legal practice.</h1>
               <p className="rd-intro">
-                Formerly Abiola Sanni and Co., the Firm comprises practice area groups covering Litigation and ADR; Corporate
+                Formerly Abiola Sanni and Co., the Firm comprises practice area groups covering Tax Practice &amp; Advisory; Litigation and ADR; Corporate
                 Advisory and Secretarial Services; Real Estate and Property Law; and Government and Regulatory Advisory.
               </p>
               <ul className="rd-chips">
+                <li className="rd-chip">Tax Practice &amp; Advisory</li>
                 <li className="rd-chip">Litigation &amp; ADR</li>
                 <li className="rd-chip">Corporate Advisory &amp; Secretarial Services</li>
                 <li className="rd-chip">Real Estate &amp; Property Law</li>
@@ -95,41 +111,7 @@ export default function PracticeAreasPage() {
           </div>
         </section>
 
-        <section className="rd-section" style={{ paddingBottom: "24px" }}>
-          <div className="rd-split">
-            <div
-              className="rd-split__media"
-              style={{ backgroundImage: "url(/assets/images/about/ascolp-tax-p.jpg)" }}
-            ></div>
-            <div className="rd-split__body">
-              <p className="rd-kicker" style={{ marginBottom: "12px" }}>
-                Flagship practice
-              </p>
-              <h2>Tax Unit</h2>
-              <p className="rd-lead">
-                Headed by Prof. Abiola Sanni (SAN), internationally and locally recognised as a tax expert, and supported by
-                tax attorneys who serve as primary tax advisors and outside general tax counsel to public and private
-                businesses — from start-ups to multinationals — on all tax aspects of their operations in multiple
-                jurisdictions.
-              </p>
-              <ul className="rd-bullets">
-                <li>Tax controversy: arbitration, litigation and negotiation, including interface with government tax authorities</li>
-                <li>Preventive advice identifying transactions that expose clients to penalties and investigations</li>
-                <li>Advisory to public and regulatory sector clients on tax laws and administrative matters</li>
-              </ul>
-              <div className="rd-btn-row" style={{ alignItems: "center" }}>
-                <a href="mailto:info@abiolasanniandco.com?subject=Tax%20Unit%20enquiry" className="rd-btn rd-btn--primary">
-                  Speak to the Tax Unit
-                </a>
-                <a href="/practice-areas/tax-unit" className="rd-link rd-link--underline">
-                  Read the full practice note
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="rd-section" style={{ paddingTop: "24px", paddingBottom: "72px" }}>
+        <section className="rd-section" style={{ paddingTop: "32px", paddingBottom: "72px" }}>
           <div className="rd-cards-grid">
             {DEPARTMENTS.map((dept) => (
               <article className={`rd-dept-card${dept.ivory ? " rd-dept-card--ivory" : ""}`} key={dept.title}>
@@ -138,9 +120,15 @@ export default function PracticeAreasPage() {
                 <p className="rd-body-sm">{dept.summary}</p>
                 <p className="rd-lead-line">{dept.lead}</p>
                 <div className="rd-card-links">
-                  <a href="#" className="rd-link">
-                    Read more
-                  </a>
+                  {dept.href ? (
+                    <a href={dept.href} className="rd-link">
+                      Practice note
+                    </a>
+                  ) : (
+                    <a href="/contact" className="rd-link">
+                      Contact team
+                    </a>
+                  )}
                   <a href={`mailto:info@abiolasanniandco.com?subject=${dept.enquireSubject}`} className="rd-link--muted">
                     {dept.enquireLabel || "Enquire"}
                   </a>

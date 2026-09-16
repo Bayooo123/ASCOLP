@@ -89,10 +89,22 @@ const BUSINESS_SERVICES = [
     bio: "Library, Archival and Information Science, University of Ibadan (2016). Years of experience across diverse sectors in customer care and front-desk management, now running the Firm's day-to-day practice operations and client reception.",
   },
   {
+    photo: "/assets/images/team/aliu-nazeem.jpg",
+    name: "Aliu Nazeem",
+    role: "Litigation Officer",
+    bio: "",
+  },
+  {
     photo: "/assets/images/team/popoola.jpg",
     name: "Popoola Ayodeji Jeremiah",
     role: "Head of IT",
     bio: "Leads the Firm's technology and digital operations — systems, practice tools and the ASCOLP web presence — alongside the multimedia, marketing and print design work he built his career on at Edikan Publications and with a number of multinational organisations. Mass Communication, Lagos State Polytechnic (2023).",
+  },
+  {
+    photo: "/assets/images/team/lekan-adebayo.jpg",
+    name: "Lekan Adebayo",
+    role: "Litigation Officer",
+    bio: "",
   },
 ];
 
@@ -217,7 +229,7 @@ export default function TeamPage() {
 
         <section className="rd-section" style={{ paddingBottom: "72px" }}>
           <div className="rd-section-head">
-            <h2>Business services</h2>
+            <h2>Business Support</h2>
             <p>Administrative and support staff</p>
           </div>
           <div className="rd-bizsvc-grid">

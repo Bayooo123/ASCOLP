@@ -134,6 +134,22 @@ He obtained his qualification in Mass Communication from Lagos State Polytechnic
     displayOrder: 15,
   },
   {
+    slug: "aliu-nazeem",
+    name: "Aliu Nazeem",
+    title: "Litigation Officer",
+    photoUrl: "/assets/images/team/aliu-nazeem.jpg",
+    bio: ``,
+    displayOrder: 16,
+  },
+  {
+    slug: "lekan-adebayo",
+    name: "Lekan Adebayo",
+    title: "Litigation Officer",
+    photoUrl: "/assets/images/team/lekan-adebayo.jpg",
+    bio: ``,
+    displayOrder: 17,
+  },
+  {
     slug: "akinola-olabampe",
     name: "Akinola Olabampe",
     credentials: "LL.B., B.L.",

@@ -31,7 +31,6 @@ export default function Home() {
 
         <section className="rd-positioning-strip">
           <div className="rd-positioning-strip__inner">
-            <p className="rd-serif">Tax, corporate, property and regulatory counsel — under one roof in Yaba, Lagos.</p>
             <a href="tel:+2347069268744" className="rd-phone-link">
               Call +234 706 926 8744
             </a>

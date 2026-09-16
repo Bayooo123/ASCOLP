@@ -116,21 +116,45 @@ She has interests in Arbitration, Tax Law, Family Law, Property Law and Corporat
     displayOrder: 11,
   },
   {
+    slug: "benjamin-adeyanju",
+    name: "Benjamin Adeyanju",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Adeyanju holds a Bachelor of Laws (LL.B.) degree from the University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Lagos Campus, and was called to the Nigerian Bar in 2025.
+
+His practice interests lie in Litigation and Alternative Dispute Resolution. He also maintains a keen interest in Sports Law, where he regularly researches and writes on emerging issues in the sports law space.`,
+    photoUrl: "/assets/images/team/benjamin-adeyanju.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/benjamin-adeyanju-255a31135",
+    displayOrder: 12,
+  },
+  {
+    slug: "adebayo-gbadebo",
+    name: "Adebayo Gbadebo",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Gbadebo holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Port Harcourt Campus, and was called to the Nigerian Bar in 2025.
+
+He joined ASCOLP in February 2026, with professional interests in Tax and Corporate Advisory. He also maintains strong research interests in Constitutional, Administrative and Development Law.`,
+    photoUrl: "/assets/images/team/adebayo-gbadebo.jpg",
+    displayOrder: 13,
+  },
+  {
+    slug: "akinola-olabampe",
+    name: "Akinola Olabampe",
+    credentials: "LL.B., B.L.",
+    title: "Associate",
+    bio: `Mr. Akinola holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Ilorin. He proceeded to the Nigerian Law School, Abuja Campus, and was called to the Nigerian Bar on 10 July 2026.
+
+He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Disputes and Arbitration. He has a particular focus on Criminal Litigation and Defence, and continues to build a well-rounded practice across the Firm's dispute resolution and tax advisory work.`,
+    photoUrl: "/assets/images/team/akinola-olabampe.jpg",
+    displayOrder: 14,
+  },
+  {
     slug: "ofodirinwa-chinonye",
     name: "Ofodirinwa Harieta Chinonye",
     title: "Practice Manager",
     photoUrl: "/assets/images/team/chinoye.jpg",
     bio: `Ms. Ofodirinwa obtained her first degree in Library, Archival and Information Science from the University of Ibadan in 2016. She has years of working experience across diverse sectors as a Customer Care Agent and Front Desk Officer/Receptionist.`,
-    displayOrder: 14,
-  },
-  {
-    slug: "popoola-ayodeji",
-    name: "Popoola Ayodeji Jeremiah",
-    title: "Head of IT",
-    photoUrl: "/assets/images/team/popoola.jpg",
-    bio: `Mr. Popoola leads the Firm's technology and digital operations — systems, practice tools and the ASCOLP web presence — alongside the multimedia, marketing and print design work he built his career on at Edikan Publications and with a number of multinational organisations.
-
-He obtained his qualification in Mass Communication from Lagos State Polytechnic in 2023. His passion for learning and versatility have made him a valuable member of the ASCOLP team, bringing energy, strong communication and original creative ideas to the Firm.`,
     displayOrder: 15,
   },
   {
@@ -142,45 +166,21 @@ He obtained his qualification in Mass Communication from Lagos State Polytechnic
     displayOrder: 16,
   },
   {
+    slug: "popoola-ayodeji",
+    name: "Popoola Ayodeji Jeremiah",
+    title: "Head of IT",
+    photoUrl: "/assets/images/team/popoola.jpg",
+    bio: `Mr. Popoola leads the Firm's technology and digital operations — systems, practice tools and the ASCOLP web presence — alongside the multimedia, marketing and print design work he built his career on at Edikan Publications and with a number of multinational organisations.
+
+He obtained his qualification in Mass Communication from Lagos State Polytechnic in 2023. His passion for learning and versatility have made him a valuable member of the ASCOLP team, bringing energy, strong communication and original creative ideas to the Firm.`,
+    displayOrder: 17,
+  },
+  {
     slug: "lekan-adebayo",
     name: "Lekan Adebayo",
     title: "Litigation Officer",
     photoUrl: "/assets/images/team/lekan-adebayo.jpg",
     bio: ``,
-    displayOrder: 17,
-  },
-  {
-    slug: "akinola-olabampe",
-    name: "Akinola Olabampe",
-    credentials: "LL.B., B.L.",
-    title: "Associate",
-    bio: `Mr. Akinola holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Ilorin. He proceeded to the Nigerian Law School, Abuja Campus, and was called to the Nigerian Bar on 10 July 2026.
-
-He joined ASCOLP in July 2026, bringing a strong interest in Litigation, Tax Disputes and Arbitration. He has a particular focus on Criminal Litigation and Defence, and continues to build a well-rounded practice across the Firm's dispute resolution and tax advisory work.`,
-    photoUrl: "/assets/images/team/akinola-olabampe.jpg",
-    displayOrder: 16,
-  },
-  {
-    slug: "adebayo-gbadebo",
-    name: "Adebayo Gbadebo",
-    credentials: "LL.B., B.L.",
-    title: "Associate",
-    bio: `Mr. Gbadebo holds a Bachelor of Laws (LL.B.) degree from the Faculty of Law, University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Port Harcourt Campus, and was called to the Nigerian Bar in 2025.
-
-He joined ASCOLP in February 2026, with professional interests in Tax and Corporate Advisory. He also maintains strong research interests in Constitutional, Administrative and Development Law.`,
-    photoUrl: "/assets/images/team/adebayo-gbadebo.jpg",
-    displayOrder: 17,
-  },
-  {
-    slug: "benjamin-adeyanju",
-    name: "Benjamin Adeyanju",
-    credentials: "LL.B., B.L.",
-    title: "Associate",
-    bio: `Mr. Adeyanju holds a Bachelor of Laws (LL.B.) degree from the University of Lagos, obtained in 2024. He proceeded to the Nigerian Law School, Lagos Campus, and was called to the Nigerian Bar in 2025.
-
-His practice interests lie in Litigation and Alternative Dispute Resolution. He also maintains a keen interest in Sports Law, where he regularly researches and writes on emerging issues in the sports law space.`,
-    photoUrl: "/assets/images/team/benjamin-adeyanju.jpg",
-    linkedinUrl: "https://www.linkedin.com/in/benjamin-adeyanju-255a31135",
     displayOrder: 18,
   },
 ];

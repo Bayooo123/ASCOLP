@@ -59,11 +59,11 @@ const ASSOCIATES = [
     bio: "LL.B (Hons), Nnamdi Azikiwe University; called to the Bar in 2022. Interned at the Chambers of Festus Keyamo, Lagos, and the office of Hon. Justice E. I. Alakija. Practises arbitration, tax, family and property law, corporate law and general litigation, and is working towards membership of the Chartered Institute of Taxation of Nigeria.",
   },
   {
-    slug: "akinola-olabampe",
-    photo: "/assets/images/team/akinola-olabampe.jpg",
-    name: "Akinola Olabampe",
-    meta: "LL.B., B.L. · Called 2026",
-    bio: "LL.B, Faculty of Law, University of Ilorin; Nigerian Law School, Abuja, called to the Bar in July 2026. Joined ASCOLP the same month, with a strong interest in litigation, tax disputes and arbitration and a particular focus on criminal litigation and defence.",
+    slug: "benjamin-adeyanju",
+    photo: "/assets/images/team/benjamin-adeyanju.jpg",
+    name: "Benjamin Adeyanju",
+    meta: "LL.B., B.L. · Called 2025",
+    bio: "LL.B, University of Lagos (2024); Nigerian Law School, Lagos Campus, called to the Bar in 2025. Practises litigation and alternative dispute resolution, and maintains a keen interest in sports law, where he regularly researches and writes on emerging issues.",
   },
   {
     slug: "adebayo-gbadebo",
@@ -73,11 +73,11 @@ const ASSOCIATES = [
     bio: "LL.B, Faculty of Law, University of Lagos (2024); Nigerian Law School, Port Harcourt, called to the Bar in 2025. Joined ASCOLP in February 2026, with professional interests in tax and corporate advisory and research interests in constitutional, administrative and development law.",
   },
   {
-    slug: "benjamin-adeyanju",
-    photo: "/assets/images/team/benjamin-adeyanju.jpg",
-    name: "Benjamin Adeyanju",
-    meta: "LL.B., B.L. · Called 2025",
-    bio: "LL.B, University of Lagos (2024); Nigerian Law School, Lagos Campus, called to the Bar in 2025. Practises litigation and alternative dispute resolution, and maintains a keen interest in sports law, where he regularly researches and writes on emerging issues.",
+    slug: "akinola-olabampe",
+    photo: "/assets/images/team/akinola-olabampe.jpg",
+    name: "Akinola Olabampe",
+    meta: "LL.B., B.L. · Called 2026",
+    bio: "LL.B, Faculty of Law, University of Ilorin; Nigerian Law School, Abuja, called to the Bar in July 2026. Joined ASCOLP the same month, with a strong interest in litigation, tax disputes and arbitration and a particular focus on criminal litigation and defence.",
   },
 ];
 
@@ -239,7 +239,7 @@ export default function TeamPage() {
                 <div className="rd-bizsvc-card__body">
                   <h3>{member.name}</h3>
                   <p className="rd-role">{member.role}</p>
-                  <p className="rd-body-sm">{member.bio}</p>
+                  {member.bio ? <p className="rd-body-sm">{member.bio}</p> : null}
                 </div>
               </article>
             ))}

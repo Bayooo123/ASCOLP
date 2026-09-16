@@ -646,15 +646,16 @@
 
 .rd-bizsvc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .rd-bizsvc-card {
   border: 1px solid var(--rd-border);
   display: flex;
-  gap: 20px;
-  align-items: stretch;
+  flex-direction: column;
+  background: var(--rd-surface, #ffffff);
+  transition: border-color 0.2s ease;
 }
 
 .rd-bizsvc-card:hover {
@@ -662,22 +663,51 @@
 }
 
 .rd-bizsvc-card__media {
-  flex: 0 0 170px;
+  width: 100%;
+  aspect-ratio: 4 / 4.2;
   background-size: cover;
   background-position: top center;
 }
 
 .rd-bizsvc-card__body {
-  padding: 26px 28px 26px 0;
-  display: grid;
-  gap: 8px;
-  align-content: center;
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .rd-bizsvc-card__body h3 {
   margin: 0;
-  font-size: 24px;
-  line-height: 1.2;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.rd-bizsvc-card__body .rd-role {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rd-maroon);
+}
+
+.rd-bizsvc-card__body p.rd-body-sm {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--rd-secondary);
+}
+
+@media (max-width: 1024px) {
+  .rd-bizsvc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .rd-bizsvc-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Breadcrumb ---------- */

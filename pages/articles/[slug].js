@@ -150,8 +150,8 @@ export default function ArticleDetailPage({ article, recentArticles = [] }) {
           <div className="rd-cta-band__inner">
             <h2>Need counsel or analysis on legal developments?</h2>
             <div className="rd-btn-row">
-              <a href="mailto:info@abiolasanniandco.com?subject=Consultation%20request" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Request a consultation
+              <a href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
+                Discuss a Matter
               </a>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

@@ -84,33 +84,27 @@ export default function TeamMemberPage({ member, articles }) {
               <p className="rd-body-sm">
                 {isPrincipalPartner ? "Tax controversy, arbitration and regulatory matters." : member.title || "Get in touch about a matter."}
               </p>
-              {member.email ? (
-                <a href={`mailto:${member.email}?subject=Instruction%20for%20${encodeURIComponent(member.name)}`} className="rd-btn rd-btn--primary" style={{ marginTop: "4px" }}>
-                  Email {member.name.split(" ")[0]}
-                </a>
-              ) : (
-                <a
-                  href={`mailto:info@abiolasanniandco.com?subject=Instruction%20for%20${encodeURIComponent(member.name)}`}
-                  className="rd-btn rd-btn--primary"
-                  style={{ marginTop: "4px" }}
-                >
-                  Email chambers
-                </a>
-              )}
-              <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary" style={{ background: "#ffffff" }}>
+              <a
+                href="/discuss-a-matter"
+                className="rd-btn rd-btn--primary"
+                style={{ marginTop: "8px", textAlign: "center" }}
+              >
+                Discuss a Matter
+              </a>
+              <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary" style={{ background: "#ffffff", textAlign: "center" }}>
                 +234 706 926 8744
               </a>
             </div>
             {isPrincipalPartner ? (
               <div className="rd-rail-block">
                 <h3>Practice areas</h3>
-                <a href="/practice-areas" className="rd-link">
-                  Tax Unit
+                <a href="/practice-areas/tax-unit" className="rd-link">
+                  Tax Practice &amp; Advisory
                 </a>
-                <a href="/practice-areas" className="rd-link">
+                <a href="/practice-areas/regulatory-public-policy" className="rd-link">
                   Regulatory &amp; Public Policy
                 </a>
-                <a href="/practice-areas" className="rd-link">
+                <a href="/practice-areas/litigation-arbitrations" className="rd-link">
                   Litigation &amp; ADR
                 </a>
               </div>
@@ -170,14 +164,14 @@ export default function TeamMemberPage({ member, articles }) {
 
             {authoredArticles.length ? (
               <section className="rd-profile-section">
-                <h2>Publications</h2>
+                <h2>Publications &amp; Insights</h2>
                 <div className="rd-pub-list">
                   {authoredArticles.map((article) => (
-                    <a href={`/articles#article-${article.slug}`} className="rd-pub-card" key={article.slug}>
-                      <span className="rd-eyebrow">{article.type === "NEWSLETTER" ? "ASCO Publication" : "Article"}</span>
+                    <a href={`/articles/${article.slug}`} className="rd-pub-card" key={article.slug}>
+                      <span className="rd-eyebrow">{article.type === "NEWSLETTER" ? "ASCO Publication" : "Legal Treatise"}</span>
                       <span className="rd-pub-title">{article.title}</span>
                       {article.summary ? <span className="rd-pub-summary">{article.summary}</span> : null}
-                      <span className="rd-pub-cta">Read the analysis · PDF available</span>
+                      <span className="rd-pub-cta">Read the analysis · PDF available →</span>
                     </a>
                   ))}
                 </div>
@@ -188,10 +182,10 @@ export default function TeamMemberPage({ member, articles }) {
 
         <section className="rd-cta-band">
           <div className="rd-cta-band__inner">
-            <h2>Legal practice, arbitration, tax practice, company secretary.</h2>
+            <h2>Instruct senior counsel on your legal matter.</h2>
             <div className="rd-btn-row">
-              <a href="mailto:info@abiolasanniandco.com?subject=Consultation%20request" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Request a consultation
+              <a href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
+                Discuss a Matter
               </a>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

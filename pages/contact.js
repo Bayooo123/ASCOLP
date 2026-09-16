@@ -66,6 +66,16 @@ export default function Contact() {
                   <i className="fab fa-whatsapp"></i>
                 </a>
               </div>
+
+              <div style={{ background: "#fdf6f7", border: "1.5px solid var(--rd-maroon, #7B1B2A)", padding: "18px 20px", marginTop: "28px", borderRadius: "4px" }}>
+                <strong style={{ display: "block", color: "var(--rd-maroon, #7B1B2A)", fontSize: "14.5px", marginBottom: "6px" }}>Instructing on an Active Legal Matter?</strong>
+                <p style={{ margin: "0 0 12px", fontSize: "13.5px", lineHeight: 1.55, color: "var(--rd-ink, #11161B)" }}>
+                  Use our confidential intake portal to initiate preliminary conflict checking and route your brief directly to the responsible practice lead.
+                </p>
+                <a href="/discuss-a-matter" style={{ display: "inline-block", background: "var(--rd-maroon, #7B1B2A)", color: "#fff", padding: "8px 16px", fontSize: "13px", fontWeight: 700, textDecoration: "none", borderRadius: "3px" }}>
+                  Discuss a Matter →
+                </a>
+              </div>
             </div>
             <div className="col-xl-6 col-lg-6">
               {done ? (

@@ -3,12 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/practice-areas", label: "Practice Areas" },
-  { href: "/team", label: "Our Team" },
-  { href: "/articles", label: "Thought Leadership" },
-  { href: "/alumni", label: "Alumni" },
+  { href: "/about", label: "The Firm" },
+  { href: "/practice-areas", label: "Expertise" },
+  { href: "/team", label: "People" },
+  { href: "/articles", label: "Knowledge" },
+  { href: "/publishers", label: "ASCO Publishers" },
 ];
 
 export default function Header() {
@@ -16,7 +15,11 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   function isActive(href) {
-    if (href === "/team") return router.pathname === "/team" || router.pathname === "/team/[slug]";
+    if (href === "/team") return router.pathname.startsWith("/team");
+    if (href === "/practice-areas") return router.pathname.startsWith("/practice-areas");
+    if (href === "/articles") return router.pathname.startsWith("/articles") || router.pathname.startsWith("/knowledge");
+    if (href === "/publishers") return router.pathname.startsWith("/publishers");
+    if (href === "/about") return router.pathname === "/about";
     return router.pathname === href;
   }
 
@@ -57,9 +60,9 @@ export default function Header() {
             ))}
           </nav>
 
-          <a href="mailto:info@abiolasanniandco.com?subject=Consultation%20request" className="rd-btn rd-btn--primary rd-header__cta">
-            Request a consultation
-          </a>
+          <Link href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-header__cta">
+            Discuss a Matter
+          </Link>
 
           <button
             type="button"
@@ -85,13 +88,13 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <a
-            href="mailto:info@abiolasanniandco.com?subject=Consultation%20request"
+          <Link
+            href="/discuss-a-matter"
             className="rd-btn rd-btn--primary rd-header__cta"
             onClick={() => setOpen(false)}
           >
-            Request a consultation
-          </a>
+            Discuss a Matter
+          </Link>
         </div>
       </header>
     </div>

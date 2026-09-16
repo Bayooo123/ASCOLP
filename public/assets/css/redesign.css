@@ -1637,3 +1637,391 @@ h1.rd-hero-carousel__title {
     display: block;
   }
 }
+
+/* ==========================================================================
+   INSTITUTIONAL REDESIGN ADDITIONS
+   ========================================================================== */
+
+/* ---------- Fixed Mobile Bottom Action Bar ---------- */
+.rd-mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .rd-mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--rd-ink, #11161B);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .rd-mobile-bottom-bar__call,
+  .rd-mobile-bottom-bar__matter {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .rd-mobile-bottom-bar__call {
+    color: #ffffff;
+    background: transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .rd-mobile-bottom-bar__call:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .rd-mobile-bottom-bar__matter {
+    color: #ffffff;
+    background: var(--rd-maroon, #7B1B2A);
+  }
+
+  .rd-mobile-bottom-bar__matter:active {
+    background: #5d1420;
+  }
+
+  /* Ensure page content has bottom clearance on mobile */
+  body {
+    padding-bottom: 54px;
+  }
+}
+
+/* ---------- Client Scenarios ("How We Assist") ---------- */
+.rd-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.rd-scenario-card {
+  border: 1px solid var(--rd-border);
+  background: #ffffff;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rd-scenario-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--rd-maroon);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.rd-scenario-card__tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rd-maroon);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.rd-scenario-card h3 {
+  font-size: 19px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+  color: var(--rd-ink);
+}
+
+.rd-scenario-card p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--rd-secondary);
+  margin: 0 0 20px;
+}
+
+.rd-scenario-card__action {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--rd-maroon);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* ---------- Matter Intake Flow (pages/discuss-a-matter) ---------- */
+.rd-intake-card {
+  background: #ffffff;
+  border: 1px solid var(--rd-border);
+  padding: 36px 36px 42px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.rd-intake-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rd-border);
+}
+
+.rd-intake-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--rd-muted);
+}
+
+.rd-intake-step__num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--rd-border);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--rd-muted);
+}
+
+.rd-intake-step__title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rd-intake-step.is-active {
+  color: var(--rd-ink);
+}
+
+.rd-intake-step.is-active .rd-intake-step__num {
+  border-color: var(--rd-maroon);
+  background: var(--rd-maroon);
+  color: #ffffff;
+}
+
+.rd-intake-step.is-done .rd-intake-step__num {
+  border-color: #137333;
+  background: #137333;
+  color: #ffffff;
+}
+
+.rd-intake-step__line {
+  flex: 1;
+  height: 2px;
+  background: var(--rd-border);
+  margin: 0 14px;
+}
+
+.rd-intake-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.rd-category-tile {
+  border: 1.5px solid var(--rd-border);
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.rd-category-tile:hover {
+  border-color: var(--rd-border-strong);
+  background: var(--rd-ivory);
+}
+
+.rd-category-tile.is-selected {
+  border-color: var(--rd-maroon);
+  background: #fdf6f7;
+}
+
+.rd-category-tile__radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--rd-border);
+  margin-top: 3px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.rd-category-tile.is-selected .rd-category-tile__radio {
+  border-color: var(--rd-maroon);
+}
+
+.rd-category-tile.is-selected .rd-category-tile__radio::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rd-maroon);
+}
+
+.rd-category-tile__content strong {
+  display: block;
+  font-size: 15.5px;
+  color: var(--rd-ink);
+  margin-bottom: 4px;
+}
+
+.rd-category-tile__content span {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--rd-secondary);
+}
+
+.rd-form-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.rd-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.rd-form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.rd-form-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--rd-ink);
+}
+
+.rd-form-field input,
+.rd-form-field textarea,
+.rd-form-field select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--rd-border);
+  font-family: inherit;
+  font-size: 15px;
+  background: #ffffff;
+  color: var(--rd-ink);
+  transition: border-color 0.15s ease;
+}
+
+.rd-form-field input:focus,
+.rd-form-field textarea:focus,
+.rd-form-field select:focus {
+  outline: none;
+  border-color: var(--rd-maroon);
+}
+
+.rd-privilege-notice {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: var(--rd-ivory);
+  border-left: 3px solid var(--rd-maroon);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--rd-secondary);
+}
+
+.rd-privilege-notice p {
+  margin: 0;
+}
+
+/* ---------- ASCO Publishers Cards ---------- */
+.rd-publisher-card {
+  border: 1px solid var(--rd-border);
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rd-publisher-card:hover {
+  border-color: var(--rd-border-strong);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.rd-publisher-card__badge-col {
+  background: var(--rd-ivory);
+  border-right: 1px solid var(--rd-border);
+  padding: 32px 16px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.rd-publisher-badge {
+  display: grid;
+  gap: 12px;
+  place-items: center;
+}
+
+.rd-publisher-badge__category {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--rd-maroon);
+}
+
+.rd-publisher-badge__mark {
+  width: 72px;
+  height: 94px;
+  border: 2px solid var(--rd-ink);
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--rd-ink);
+}
+
+.rd-publisher-card__content {
+  padding: 30px 32px;
+}
+
+@media (max-width: 768px) {
+  .rd-publisher-card {
+    grid-template-columns: 1fr;
+  }
+
+  .rd-publisher-card__badge-col {
+    border-right: none;
+    border-bottom: 1px solid var(--rd-border);
+    padding: 20px;
+  }
+
+  .rd-intake-card {
+    padding: 24px 18px;
+  }
+
+  .rd-intake-steps {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .rd-intake-step__line {
+    display: none;
+  }
+}
+

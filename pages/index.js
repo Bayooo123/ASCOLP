@@ -4,61 +4,35 @@ import Seo from "../components/Seo";
 import HeroCarousel from "../components/HeroCarousel";
 import { db } from "../lib/db";
 
-const SCENARIOS = [
-  {
-    tag: "Tax Controversy",
-    title: "Facing an unexpected tax audit, penalty or assessment?",
-    desc: "From the Tax Appeal Tribunal to appellate courts, we represent multinationals, banks and local enterprises against disputed liabilities.",
-    action: "Tax Controversy Counsel",
-    href: "/practice-areas/tax-unit",
-  },
-  {
-    tag: "Corporate Advisory",
-    title: "Structuring a cross-border merger, acquisition or joint venture?",
-    desc: "Comprehensive transaction structuring, statutory due diligence, board advisory and certified company secretarial execution.",
-    action: "Corporate & M&A Practice",
-    href: "/practice-areas/corporate",
-  },
-  {
-    tag: "Commercial Litigation",
-    title: "Involved in high-stakes contract, maritime or banking dispute?",
-    desc: "Led by Senior Advocates and seasoned trial counsel across superior courts of record, domestic tribunals and international arbitration.",
-    action: "Litigation & ADR Practice",
-    href: "/practice-areas/litigation-arbitrations",
-  },
-  {
-    tag: "Public Law & Policy",
-    title: "Navigating legislative reform, state tax rules or MDA regulations?",
-    desc: "Direct counsel on policy incubation, statutory interpretation and institutional regulatory compliance across federal and state levels.",
-    action: "Regulatory Advisory",
-    href: "/practice-areas/regulatory-public-policy",
-  },
+const CREDENTIALS = [
+  { figure: "35+", label: "Operational History" },
+  { figure: "4", label: "Practice Groups" },
+  { figure: "SAN", label: "Senior Advocate-led tax unit" },
 ];
 
-const PRACTICE_GROUPS = [
-  {
-    title: "Tax Practice & Advisory",
-    description: "Tax planning, compliance, advisory and controversy for public and private businesses across multiple jurisdictions.",
-    href: "/practice-areas/tax-unit",
-  },
+const PRACTICE_CARDS = [
   {
     title: "Litigation & ADR",
-    description: "Representation and strategic guidance for clients in disputes, through the courts or through arbitration and mediation.",
+    tagline: "Trial advocacy, arbitration and mediation.",
+    image: "/assets/images/case/litigation-arbitrations.jpg",
     href: "/practice-areas/litigation-arbitrations",
   },
   {
-    title: "Corporate Advisory & Secretarial",
-    description: "Corporate and commercial advisory, board governance and certified company secretarial services.",
+    title: "Corporate Advisory",
+    tagline: "Transactions, governance, company secretarial.",
+    image: "/assets/images/case/corporate.jpg",
     href: "/practice-areas/corporate",
   },
   {
-    title: "Real Estate & Property Law",
-    description: "Property transactions, documentation and disputes across residential, commercial and probate matters.",
+    title: "Real Estate & Property",
+    tagline: "Title, development and tenancy matters.",
+    image: "/assets/images/about/corporate.jpg",
     href: "/practice-areas/probate",
   },
   {
-    title: "Government & Regulatory Advisory",
-    description: "Policy and legislative advisory, tax administration and capacity building for public sector clients.",
+    title: "Government & Regulatory",
+    tagline: "Tax law, administration, regulatory exposure.",
+    image: "/assets/images/backgrounds/asco-lp.jpg",
     href: "/practice-areas/regulatory-public-policy",
   },
 ];
@@ -91,104 +65,87 @@ export default function Home({ latestArticles = [] }) {
       <Seo path="/" />
 
       <div className="rd">
-        {/* 1. Hero Carousel */}
+        {/* A. Hero Carousel */}
         <HeroCarousel />
 
-        {/* 2. Positioning Strip */}
-        <section className="rd-positioning-strip">
-          <div className="rd-positioning-strip__inner">
-            <a href="tel:+2347069268744" className="rd-phone-link">
-              Chambers Direct: +234 706 926 8744
-            </a>
-            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "13.5px" }}>
-              14 Barikisu Street, Yaba, Lagos · Established in Practice Over 35 Years
-            </span>
+        {/* B. Credentials card, overhangs the hero */}
+        <section className="rd-credentials-wrap">
+          <div className="rd-credentials-wrap__inner">
+            <div className="rd-credentials-card">
+              {CREDENTIALS.map((c) => (
+                <div className="rd-credentials-card__cell" key={c.label}>
+                  <p className="rd-credentials-card__figure">{c.figure}</p>
+                  <p className="rd-credentials-card__label">{c.label}</p>
+                </div>
+              ))}
+              <div className="rd-credentials-card__cell rd-credentials-card__cell--cta">
+                <p className="rd-credentials-card__cta-label">Speak to us</p>
+                <a href="tel:+2347069268744" className="rd-credentials-card__cta-phone">
+                  +234 706 926 8744
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* 3. Client Intent Scenarios ("How We Assist") */}
-        <section className="rd-section" style={{ paddingBottom: "20px" }}>
+        {/* C. Practice groups — photographic cards */}
+        <section className="rd-section" style={{ paddingTop: "64px", paddingBottom: "16px" }}>
           <div className="rd-container">
-            <p className="rd-kicker">Client Intent</p>
-            <h2 style={{ fontSize: "clamp(26px, 3.2vw, 36px)", lineHeight: 1.2, margin: "0 0 10px" }}>
-              Immediate pathways to counsel based on your legal situation.
-            </h2>
-            <p style={{ fontSize: "16.5px", lineHeight: 1.65, color: "var(--rd-secondary)", maxWidth: "66ch", margin: 0 }}>
-              Whether responding to a tax assessment notice, preparing for appellate litigation, or negotiating a commercial joint venture, our practice heads provide direct strategic guidance.
-            </p>
-
-            <div className="rd-scenarios-grid">
-              {SCENARIOS.map((sc) => (
-                <Link href={sc.href} key={sc.tag} className="rd-scenario-card">
-                  <div>
-                    <span className="rd-scenario-card__tag">{sc.tag}</span>
-                    <h3>{sc.title}</h3>
-                    <p>{sc.desc}</p>
+            <div className="rd-practice-photo-head">
+              <div>
+                <p className="rd-kicker">Practice groups</p>
+                <h2>Four groups, one standard of practice.</h2>
+              </div>
+              <Link href="/practice-areas" className="rd-link">
+                See all practice areas →
+              </Link>
+            </div>
+            <div className="rd-practice-photo-grid">
+              {PRACTICE_CARDS.map((card) => (
+                <Link href={card.href} key={card.title} className="rd-practice-photo-card" style={{ backgroundImage: `url("${card.image}")` }}>
+                  <div className="rd-practice-photo-card__scrim" />
+                  <div className="rd-practice-photo-card__content">
+                    <h3>{card.title}</h3>
+                    <p>{card.tagline}</p>
                   </div>
-                  <span className="rd-scenario-card__action">
-                    {sc.action} →
-                  </span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 4. Core Practice Groups */}
-        <section className="rd-practice-groups">
-          <div className="rd-practice-groups__left">
-            <p className="rd-kicker">Core Practice</p>
-            <h2>Five groups, one standard of practice.</h2>
-            <p className="rd-intro">
-              ASCOLP comprises practice area groups covering taxation, litigation, corporate advisory, property law and
-              government regulatory work, each led by senior counsel.
-            </p>
-            <Link href="/practice-areas" className="rd-link">
-              Explore all practice areas →
-            </Link>
-          </div>
-          <div className="rd-practice-groups__stack">
-            {PRACTICE_GROUPS.map((group) => (
-              <div className="rd-practice-groups__row" key={group.title}>
-                <Link href={group.href} style={{ textDecoration: "none", color: "inherit" }}>
-                  <h3>{group.title}</h3>
-                  <p>{group.description}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 5. Institutional Authority: The Principal Partner & Senior Bench */}
+        {/* E. Principal Partner highlight, offset maroon plate */}
         <section className="rd-partner-band">
           <div className="rd-partner-band__inner">
-            <div
-              className="rd-partner-band__portrait"
-              style={{ backgroundImage: 'url("/assets/images/team/prof-abiola-sanni.jpg")' }}
-            ></div>
+            <div className="rd-partner-band__portrait-wrap">
+              <div className="rd-partner-band__plate"></div>
+              <div
+                className="rd-partner-band__portrait"
+                style={{ backgroundImage: 'url("/assets/images/team/prof-abiola-sanni.jpg")' }}
+              ></div>
+            </div>
             <div className="rd-partner-band__body">
-              <p className="rd-kicker">Principal Partner &amp; Senior Advocate of Nigeria</p>
+              <p className="rd-kicker">Principal Partner</p>
               <h2>Prof. Abiola Sanni (SAN) PhD.</h2>
               <p className="rd-summary">
-                Professor Abiola Sanni is one of Nigeria&rsquo;s foremost authorities on tax law, with thirty-three
-                years post-call experience shaping the development of Nigerian fiscal law across academia, corporate
-                advisory and public policy. He chaired both the National Tax Policy Review Committee (2016) and the National Tax Policy Implementation Committee (2017).
+                Professor of Commercial and Industrial Law, University of Lagos. Senior Advocate of Nigeria. Three
+                decades of practice at every level of the courts.
               </p>
               <div className="rd-btn-row" style={{ alignItems: "center" }}>
                 <Link href="/team/abiola-sanni" className="rd-btn rd-btn--primary">
-                  Read Full Dossier
+                  Read the full profile
                 </Link>
                 <Link href="/team" className="rd-btn rd-btn--secondary">
-                  Meet the Full Bench
+                  Meet the whole team
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 6. Knowledge & Legal Intelligence */}
+        {/* Knowledge & Legal Intelligence */}
         {latestArticles.length > 0 && (
-          <section className="rd-section" style={{ paddingBottom: "24px" }}>
+          <section className="rd-section" style={{ paddingTop: "56px", paddingBottom: "24px" }}>
             <div className="rd-container">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px", marginBottom: "28px" }}>
                 <div>
@@ -231,7 +188,7 @@ export default function Home({ latestArticles = [] }) {
           </section>
         )}
 
-        {/* 7. ASCO Publishers Highlight */}
+        {/* ASCO Publishers Highlight */}
         <section className="rd-section" style={{ paddingTop: "24px", paddingBottom: "24px" }}>
           <div className="rd-container">
             <div className="rd-split" style={{ border: "1px solid var(--rd-border)", background: "var(--rd-ivory)" }}>
@@ -260,19 +217,18 @@ export default function Home({ latestArticles = [] }) {
           </div>
         </section>
 
-        {/* 8. Executive Matter Intake CTA Band */}
+        {/* F. Enquiry CTA — the only conversion band, kept last */}
         <section className="rd-enquiry-band">
           <div className="rd-enquiry-band__bg" style={{ backgroundImage: 'url("/assets/images/hero/lagos.jpg")' }}></div>
+          <div className="rd-enquiry-band__vignette"></div>
           <div className="rd-enquiry-band__inner">
             <div className="rd-enquiry-band__text">
-              <h2>Instruct the Firm on an active matter.</h2>
-              <p>
-                Confidential matter intake, conflict check initiation and scoping with senior counsel within one business day.
-              </p>
+              <h2>Tell us about your matter.</h2>
+              <p>We will route your enquiry to the right department within one working day.</p>
             </div>
             <div className="rd-btn-row">
               <Link href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Discuss a Matter
+                Describe your matter
               </Link>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

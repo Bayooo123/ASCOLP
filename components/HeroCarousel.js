@@ -54,6 +54,7 @@ export default function HeroCarousel() {
           />
         ))}
         <div className="rd-hero-carousel__scrim" />
+        <div className="rd-hero-carousel__vignette" />
 
         <div className="rd-hero-carousel__content">
           <div className="rd-hero-carousel__content-inner">
@@ -76,27 +77,28 @@ export default function HeroCarousel() {
       </div>
 
       <div className="rd-hero-carousel__controls">
-        <div className="rd-hero-carousel__arrows">
+        <div className="rd-hero-carousel__cluster">
           <button type="button" className="rd-hero-carousel__arrow" aria-label="Previous slide" onClick={goPrev}>
             ←
           </button>
           <button type="button" className="rd-hero-carousel__arrow" aria-label="Next slide" onClick={goNext}>
             →
           </button>
-        </div>
-        <div className="rd-hero-carousel__indicators">
-          {SLIDES.map((s, i) => (
-            <button
-              key={s.image}
-              type="button"
-              className={`rd-hero-carousel__indicator${i === slide ? " rd-hero-carousel__indicator--active" : ""}`}
-              aria-label={`Go to slide ${i + 1}`}
-              aria-current={i === slide}
-              onClick={() => goTo(i)}
-            >
-              <span></span>
-            </button>
-          ))}
+          <div className="rd-hero-carousel__cluster-spacer" />
+          <div className="rd-hero-carousel__indicators">
+            {SLIDES.map((s, i) => (
+              <button
+                key={s.image}
+                type="button"
+                className={`rd-hero-carousel__indicator${i === slide ? " rd-hero-carousel__indicator--active" : ""}`}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === slide}
+                onClick={() => goTo(i)}
+              >
+                <span></span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

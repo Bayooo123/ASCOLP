@@ -251,7 +251,7 @@ export default function TeamPage() {
             <h2>Speak to the counsel handling your matter.</h2>
             <div className="rd-btn-row">
               <a href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Discuss a Matter
+                Brief Us
               </a>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

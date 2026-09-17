@@ -33,7 +33,7 @@ export default function Footer() {
             <a href="mailto:info@abiolasanniandco.com">info@abiolasanniandco.com</a>
             <div style={{ marginTop: "12px" }}>
               <Link href="/discuss-a-matter" className="rd-link" style={{ color: "var(--rd-ivory)", fontWeight: 600 }}>
-                Discuss a Matter →
+                Brief Us →
               </Link>
             </div>
           </div>

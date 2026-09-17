@@ -62,7 +62,7 @@ export default function Header() {
           </nav>
 
           <Link href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-header__cta">
-            Discuss a Matter
+            Brief Us
           </Link>
 
           <button
@@ -94,7 +94,7 @@ export default function Header() {
             className="rd-btn rd-btn--primary rd-header__cta"
             onClick={() => setOpen(false)}
           >
-            Discuss a Matter
+            Brief Us
           </Link>
         </div>
       </header>

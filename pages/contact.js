@@ -73,7 +73,7 @@ export default function Contact() {
                   Use our confidential intake portal to initiate preliminary conflict checking and route your brief directly to the responsible practice lead.
                 </p>
                 <a href="/discuss-a-matter" style={{ display: "inline-block", background: "var(--rd-maroon, #7B1B2A)", color: "#fff", padding: "8px 16px", fontSize: "13px", fontWeight: 700, textDecoration: "none", borderRadius: "3px" }}>
-                  Discuss a Matter →
+                  Brief Us →
                 </a>
               </div>
             </div>

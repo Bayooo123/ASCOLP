@@ -62,7 +62,7 @@ export default function DiscussAMatterPage() {
   return (
     <Layout>
       <Seo
-        title="Discuss a Matter | ASCOLP"
+        title="Brief Us | ASCOLP"
         path="/discuss-a-matter"
         description="Confidential matter intake and instruction scoping with ASCOLP senior counsel."
       />

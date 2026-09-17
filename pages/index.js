@@ -209,7 +209,7 @@ export default function Home({ latestArticles = [] }) {
                     Explore Publishers Catalogue
                   </Link>
                   <Link href="/discuss-a-matter" className="rd-btn rd-btn--secondary">
-                    Discuss a Matter
+                    Brief Us
                   </Link>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function Home({ latestArticles = [] }) {
           <div className="rd-enquiry-band__vignette"></div>
           <div className="rd-enquiry-band__inner">
             <div className="rd-enquiry-band__text">
-              <h2>Tell us about your matter.</h2>
+              <h2>Brief us.</h2>
               <p>We will route your enquiry to the right department within one working day.</p>
             </div>
             <div className="rd-btn-row">

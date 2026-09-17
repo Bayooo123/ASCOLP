@@ -172,7 +172,7 @@ export default function PracticeAreaLayout({
                   className="rd-btn rd-btn--primary"
                   style={{ marginTop: "8px", width: "100%", textAlign: "center" }}
                 >
-                  Discuss a Matter
+                  Brief Us
                 </Link>
                 <a
                   href="tel:+2347069268744"
@@ -215,7 +215,7 @@ export default function PracticeAreaLayout({
             <h2>Ready to brief our {title.toLowerCase()} practice?</h2>
             <div className="rd-btn-row">
               <Link href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Discuss a Matter
+                Brief Us
               </Link>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

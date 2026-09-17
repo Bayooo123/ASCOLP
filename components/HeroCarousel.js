@@ -5,6 +5,7 @@ const SLIDES = [
   { image: "/assets/images/hero/lagos.jpg", position: "center" },
   { image: "/assets/images/hero/scales.jpg", position: "center 55%" },
   { image: "/assets/images/hero/ruleoflaw.jpg", position: "center 45%" },
+  { image: "/assets/images/hero/chambers.jpg", position: "center" },
 ];
 
 export default function HeroCarousel() {

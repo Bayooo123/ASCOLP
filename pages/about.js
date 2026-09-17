@@ -1,6 +1,20 @@
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
+const FIRM_STATS = [
+  { figure: "35+", label: "Years advising businesses and public institutions in Nigeria" },
+  { figure: "5", label: "Practice groups, each led by senior counsel" },
+  { figure: "2021", label: "Principal Partner admitted Senior Advocate of Nigeria" },
+  { figure: "2", label: "Law report series founded by the Firm" },
+];
+
+const PARTNER_CHIPS = [
+  "Senior Advocate of Nigeria, 2021",
+  "Professor of Commercial Law, University of Lagos",
+  "Fellow, Chartered Institute of Taxation of Nigeria",
+  "Founder & Publisher, Nigerian Revenue Law Reports",
+];
+
 export default function About() {
   return (
     <Layout>
@@ -25,9 +39,9 @@ export default function About() {
           </div>
         </section>
 
-        <div className="rd-layout-2col rd-layout-2col--about">
-          <div style={{ display: "grid", gap: "56px", minWidth: 0 }}>
-            <section className="rd-profile-section">
+        <section className="rd-section" style={{ paddingBottom: "16px" }}>
+          <div className="rd-container">
+            <div className="rd-profile-section" style={{ marginBottom: "40px" }}>
               <h2 style={{ fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.15 }}>The Firm</h2>
               <p className="rd-body-lg">
                 The Firm [ASCOLP] is a distinguished and leading legal/tax services provider in Nigeria, comprised of
@@ -48,94 +62,106 @@ export default function About() {
                 dedication to the unique aspects of each case, delivering bespoke and effective solutions aligned with
                 our clients&rsquo; needs.
               </p>
-            </section>
+            </div>
 
-            <section className="rd-profile-section" id="our-philosophy">
-              <h2 style={{ fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.15 }}>Our philosophy</h2>
+            <section className="rd-stat-strip">
+              {FIRM_STATS.map((stat) => (
+                <div className="rd-stat-strip__item" key={stat.label}>
+                  <p className="rd-stat-figure rd-serif">{stat.figure}</p>
+                  <p>{stat.label}</p>
+                </div>
+              ))}
+            </section>
+          </div>
+        </section>
+
+        <section className="rd-section" id="our-philosophy" style={{ paddingTop: "16px", paddingBottom: "16px" }}>
+          <div className="rd-container rd-philosophy-grid">
+            <div>
+              <p className="rd-kicker">Our Philosophy</p>
               <blockquote
                 style={{
                   margin: 0,
                   padding: "4px 0 4px 26px",
                   borderLeft: "3px solid var(--rd-maroon)",
                   fontFamily: "'Newsreader', Georgia, serif",
-                  fontSize: "clamp(21px, 2.3vw, 27px)",
-                  lineHeight: 1.5,
+                  fontSize: "clamp(24px, 2.8vw, 32px)",
+                  lineHeight: 1.4,
                   color: "var(--rd-ink)",
-                  maxWidth: "46ch",
                 }}
               >
                 We deal with every assignment with the primary purpose of establishing an enduring relationship with our
                 clients.
               </blockquote>
-              <p className="rd-body-lg">
+            </div>
+            <div style={{ display: "grid", gap: "16px", alignContent: "center" }}>
+              <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.75, color: "var(--rd-body)" }}>
                 Our trademark approach is to give detailed attention to issues, employing extensive experience with the
                 necessary skills to deliver cutting edge solutions to legal challenges.
               </p>
-            </section>
+              <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.75, color: "var(--rd-body)" }}>
+                It is a philosophy that runs through every department of the Firm — from the tax attorneys advising
+                multinationals on complex cross-border questions, to the litigation team preparing a matter for the
+                Supreme Court. Every client relationship is built to outlast any single engagement.
+              </p>
+            </div>
+          </div>
+        </section>
 
-            <section className="rd-profile-section">
-              <h2 style={{ fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.15 }}>The Principal Partner</h2>
-              <div className="rd-split" style={{ gridTemplateColumns: "minmax(0,200px) minmax(0,1fr)" }}>
-                <div
-                  className="rd-split__portrait"
-                  style={{ backgroundImage: "url(/assets/images/team/prof-abiola-sanni.jpg)", aspectRatio: "4 / 4.6" }}
-                ></div>
-                <div className="rd-about-bio">
-                  <h3 style={{ fontSize: "27px", lineHeight: 1.18 }}>Prof. Abiola Sanni (SAN) PhD.</h3>
-                  <p className="rd-role">Managing Partner</p>
-                  <p className="rd-lead" style={{ maxWidth: "58ch" }}>
-                    Our accomplishments are attributed to the Principal Partner and Senior Advocate of Nigeria, with
-                    thirty-three years post-call experience. He has built a team of professionals well versed in
-                    handling complex legal issues across every level of the Nigerian judicial system — from the
-                    Investment and Securities Tribunal and Tax Appeal Tribunal through to the Supreme Court.
-                  </p>
-                  <a href="/team/abiola-sanni" className="rd-link" style={{ marginTop: "4px", fontSize: "15px" }}>
-                    Read the full profile
-                  </a>
-                </div>
+        <section className="rd-partner-band">
+          <div className="rd-partner-band__inner">
+            <div
+              className="rd-partner-band__portrait"
+              style={{ backgroundImage: 'url("/assets/images/team/prof-abiola-sanni.jpg")' }}
+            ></div>
+            <div className="rd-partner-band__body">
+              <p className="rd-kicker">The Principal Partner</p>
+              <h2>Prof. Abiola Sanni (SAN) PhD.</h2>
+              <p className="rd-summary">
+                Our accomplishments are attributed to the Principal Partner and Senior Advocate of Nigeria, with
+                thirty-three years post-call experience. He has built a team of professionals well versed in handling
+                complex legal issues across every level of the Nigerian judicial system — from the Investment and
+                Securities Tribunal and Tax Appeal Tribunal through to the Supreme Court.
+              </p>
+              <ul className="rd-chips" style={{ marginBottom: "20px" }}>
+                {PARTNER_CHIPS.map((chip) => (
+                  <li className="rd-chip rd-chip--sm" key={chip}>
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+              <div className="rd-btn-row" style={{ alignItems: "center" }}>
+                <a href="/team/abiola-sanni" className="rd-btn rd-btn--primary">
+                  Read the full profile
+                </a>
+                <a href="/team" className="rd-link" style={{ fontSize: "15px" }}>
+                  Meet the whole team
+                </a>
               </div>
-            </section>
+            </div>
+          </div>
+        </section>
 
-            <section className="rd-profile-section" id="csr">
-              <h2 style={{ fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.15 }}>Corporate social responsibility</h2>
-              <p className="rd-body-lg">
+        <section className="rd-section" id="csr">
+          <div className="rd-container">
+            <div className="rd-dept-card rd-dept-card--ivory" style={{ padding: "40px 44px" }}>
+              <p className="rd-eyebrow">Giving Back</p>
+              <h2 style={{ fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.15, marginBottom: "4px" }}>
+                Corporate social responsibility
+              </h2>
+              <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.75, color: "var(--rd-body)" }}>
                 Every now and again we identify a good cause and support it with all our resources. We sometimes take up
                 cases ex gratia. It is our way of giving back to the society — we understand that without the society we
                 cannot exist.
               </p>
-              <p className="rd-body-lg">
+              <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.75, color: "var(--rd-body)" }}>
                 This includes a long-standing commitment to <a href="/practice-areas">pro bono services</a> for clients
                 facing financial hardship, spanning litigation and alternative dispute resolution, corporate advisory and
                 tax matters.
               </p>
-            </section>
+            </div>
           </div>
-
-          <aside className="rd-sticky-rail">
-            <div className="rd-enquiry-card">
-              <p className="rd-serif">Work with the Firm</p>
-              <p className="rd-body-sm">Tell us about the matter and we will route it to the right department within one working day.</p>
-              <a href="mailto:info@abiolasanniandco.com?subject=New%20matter%20enquiry" className="rd-btn rd-btn--primary" style={{ marginTop: "4px" }}>
-                Describe your matter
-              </a>
-              <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary" style={{ background: "#ffffff" }}>
-                +234 706 926 8744
-              </a>
-            </div>
-            <div className="rd-rail-block">
-              <h3>Explore</h3>
-              <a href="/practice-areas" className="rd-link">
-                Practice areas
-              </a>
-              <a href="/team" className="rd-link">
-                Our team
-              </a>
-              <a href="/articles" className="rd-link">
-                Thought leadership
-              </a>
-            </div>
-          </aside>
-        </div>
+        </section>
 
         <section className="rd-cta-band">
           <div className="rd-cta-band__inner">

@@ -834,6 +834,12 @@
   color: var(--rd-secondary);
 }
 
+.rd-philosophy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+}
+
 .rd-profile-section {
   display: grid;
   gap: 18px;
@@ -1558,7 +1564,8 @@ h1.rd-hero-carousel__title {
   .rd-layout-2col--about,
   .rd-layout-2col--articles,
   .rd-practice-groups,
-  .rd-partner-band__inner {
+  .rd-partner-band__inner,
+  .rd-philosophy-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 

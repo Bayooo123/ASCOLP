@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "The Firm" },
   { href: "/practice-areas", label: "Expertise" },
   { href: "/team", label: "People" },

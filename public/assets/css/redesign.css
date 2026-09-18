@@ -1256,7 +1256,7 @@
 
 .rd-hero-carousel__inner {
   position: relative;
-  min-height: min(78vh, 680px);
+  min-height: min(56vh, 520px);
   display: flex;
   align-items: flex-end;
 }
@@ -1294,13 +1294,13 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 96px 24px 104px;
+  padding: 64px 24px 56px;
   display: grid;
   gap: 20px;
 }
 
 .rd-hero-carousel__content-inner {
-  max-width: 44ch;
+  max-width: 760px;
   display: grid;
   gap: 20px;
 }
@@ -1764,6 +1764,10 @@ h1.rd-hero-carousel__title {
 
   .rd-hero-carousel__content-inner {
     max-width: 100%;
+  }
+
+  .rd-hero-carousel__inner {
+    min-height: min(46vh, 420px);
   }
 
   .rd-split__media {

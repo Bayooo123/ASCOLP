@@ -10,6 +10,7 @@ const DEPARTMENTS = [
     lead: "Led by Prof. Abiola Sanni (SAN) & Tax Attorneys",
     enquireSubject: "Tax%20Unit%20enquiry",
     href: "/practice-areas/tax-unit",
+    image: "/assets/images/about/ascolp-tax-p.jpg",
   },
   {
     eyebrow: "Department",
@@ -19,6 +20,7 @@ const DEPARTMENTS = [
     lead: "Practice Head — Kolawole G. Abdulsalam, Esq.",
     enquireSubject: "Corporate%20%26%20Commercial%20enquiry",
     href: "/practice-areas/corporate",
+    image: "/assets/images/case/corporate-strategy.jpg",
   },
   {
     eyebrow: "Department",
@@ -28,6 +30,7 @@ const DEPARTMENTS = [
     lead: "Legal & Property — Iniobong Inieke Umoh, Senior Associate",
     enquireSubject: "Litigation%20%26%20ADR%20enquiry",
     href: "/practice-areas/litigation-arbitrations",
+    image: "/assets/images/case/litigation-arbitrations.jpg",
   },
   {
     eyebrow: "Regulatory",
@@ -37,6 +40,7 @@ const DEPARTMENTS = [
     lead: "Led by the Principal Partner",
     enquireSubject: "Regulatory%20%26%20Public%20Policy%20enquiry",
     href: "/practice-areas/regulatory-public-policy",
+    image: "/assets/images/backgrounds/asco-lp.jpg",
   },
   {
     eyebrow: "Company secretary",
@@ -46,6 +50,7 @@ const DEPARTMENTS = [
     lead: "Certified company secretaries",
     enquireSubject: "Corporate%20Secretarial%20enquiry",
     href: "/practice-areas/corporate-secretarial",
+    image: "/assets/images/about/corporate.jpg",
   },
   {
     eyebrow: "Private client",
@@ -55,6 +60,7 @@ const DEPARTMENTS = [
     lead: "Acting as probate officer",
     enquireSubject: "Probate%20enquiry",
     href: "/practice-areas/probate",
+    image: "/assets/images/backgrounds/law_justice_ascolp.jpg",
   },
   {
     eyebrow: "Access to justice",
@@ -66,6 +72,7 @@ const DEPARTMENTS = [
     enquireLabel: "Apply",
     href: "/practice-areas/pro-bono-services",
     ivory: true,
+    image: "/assets/images/about/ascolp-bg-p.jpg",
   },
 ];
 
@@ -115,23 +122,26 @@ export default function PracticeAreasPage() {
           <div className="rd-cards-grid">
             {DEPARTMENTS.map((dept) => (
               <article className={`rd-dept-card${dept.ivory ? " rd-dept-card--ivory" : ""}`} key={dept.title}>
-                <p className="rd-eyebrow">{dept.eyebrow}</p>
-                <h3>{dept.title}</h3>
-                <p className="rd-body-sm">{dept.summary}</p>
-                <p className="rd-lead-line">{dept.lead}</p>
-                <div className="rd-card-links">
-                  {dept.href ? (
-                    <a href={dept.href} className="rd-link">
-                      Practice note
+                <div className="rd-dept-card__media" style={{ backgroundImage: `url("${dept.image}")` }}></div>
+                <div className="rd-dept-card__body">
+                  <p className="rd-eyebrow">{dept.eyebrow}</p>
+                  <h3>{dept.title}</h3>
+                  <p className="rd-body-sm">{dept.summary}</p>
+                  <p className="rd-lead-line">{dept.lead}</p>
+                  <div className="rd-card-links">
+                    {dept.href ? (
+                      <a href={dept.href} className="rd-link">
+                        Practice note
+                      </a>
+                    ) : (
+                      <a href="/contact" className="rd-link">
+                        Contact team
+                      </a>
+                    )}
+                    <a href={`mailto:info@abiolasanniandco.com?subject=${dept.enquireSubject}`} className="rd-link--muted">
+                      {dept.enquireLabel || "Enquire"}
                     </a>
-                  ) : (
-                    <a href="/contact" className="rd-link">
-                      Contact team
-                    </a>
-                  )}
-                  <a href={`mailto:info@abiolasanniandco.com?subject=${dept.enquireSubject}`} className="rd-link--muted">
-                    {dept.enquireLabel || "Enquire"}
-                  </a>
+                  </div>
                 </div>
               </article>
             ))}

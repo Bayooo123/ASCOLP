@@ -1,6 +1,5 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
-import PageHeader from "../../components/PageHeader";
 import { db } from "../../lib/db";
 
 export async function getStaticProps() {
@@ -16,72 +15,66 @@ export default function AlumniPage({ alumni }) {
         path="/alumni"
         description="Over the years, ASCOLP has built a robust network of alumni practicing law and excelling across other fields within and outside Nigeria."
       />
-      <PageHeader title="ASCOLP Alumni" crumb="Alumni" />
 
-      <section className="work-together">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="section-title text-center">
-                <span className="section-title__tagline">Our Growing Network</span>
-                <h2 className="section-title__title">A Legacy Beyond the Firm</h2>
-              </div>
-              <p style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
-                Over the years, several lawyers and law students have passed through ASCOLP, and we've since developed a
-                robust network of alumni actively practicing law or excelling in their chosen endeavours — within and
-                outside Nigeria. If you're one of them, we'd love to hear where you are now.
-              </p>
-              <div style={{ textAlign: "center", marginTop: "30px" }}>
-                <a href="/alumni/submit" className="thm-btn">
-                  Share Your Story
-                </a>
-              </div>
+      <div className="rd">
+        <section className="rd-hero">
+          <div className="rd-container rd-hero__inner">
+            <p className="rd-kicker">Alumni</p>
+            <h1 style={{ fontSize: "clamp(34px, 4.4vw, 50px)" }}>A legacy beyond the Firm.</h1>
+            <p className="rd-intro">
+              Over the years, several lawyers and law students have passed through ASCOLP, and we&rsquo;ve since
+              developed a robust network of alumni actively practicing law or excelling in their chosen endeavours
+              &mdash; within and outside Nigeria. If you&rsquo;re one of them, we&rsquo;d love to hear where you are
+              now.
+            </p>
+            <div className="rd-btn-row">
+              <a href="/alumni/submit" className="rd-btn rd-btn--primary">
+                Share Your Story
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="team-page">
-        <div className="container">
-          <div className="row">
-            {alumni.map((person, i) => (
-              <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay={`${((i % 3) + 1) * 100}ms`} key={person.id}>
-                <div className="team-one__single">
-                  <div className="team-one__img">
-                    <img src={person.photoUrl || "/assets/images/logo/logo.png"} alt={person.name} />
-                    <div className="team-one__content">
-                      <h3 className="team-one__name">{person.name}</h3>
+        <section className="rd-section">
+          <div className="rd-container">
+            {alumni.length ? (
+              <div className="rd-team-grid rd-team-grid--assoc">
+                {alumni.map((person) => (
+                  <article className="rd-team-card" key={person.id}>
+                    <div
+                      className="rd-team-card__media"
+                      style={{ backgroundImage: `url("${person.photoUrl || "/assets/images/logo/logo.png"}")` }}
+                    ></div>
+                    <div className="rd-team-card__body">
+                      <h3>{person.name}</h3>
                       {person.roleAtFirm ? (
-                        <p className="team-one__title">
+                        <p className="rd-meta">
                           {person.roleAtFirm}
-                          {person.yearsAtFirm ? ` (${person.yearsAtFirm})` : ""}
+                          {person.yearsAtFirm ? ` · ${person.yearsAtFirm}` : ""}
                         </p>
                       ) : null}
+                      {person.currentPosition || person.currentOrganization ? (
+                        <p className="rd-body-sm">
+                          Now: {[person.currentPosition, person.currentOrganization, person.country].filter(Boolean).join(", ")}
+                        </p>
+                      ) : null}
+                      {person.linkedinUrl ? (
+                        <a href={person.linkedinUrl} target="_blank" rel="noreferrer" className="rd-link">
+                          LinkedIn →
+                        </a>
+                      ) : null}
                     </div>
-                    {person.linkedinUrl ? (
-                      <ul className="list-unstyled team-one__social">
-                        <li>
-                          <a href={person.linkedinUrl} target="_blank" rel="noreferrer">
-                            <i className="fab fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    ) : null}
-                  </div>
-                  {person.currentPosition || person.currentOrganization ? (
-                    <p style={{ padding: "15px 10px 0", fontSize: "14px", color: "var(--oslim-text)" }}>
-                      Now: {[person.currentPosition, person.currentOrganization, person.country].filter(Boolean).join(", ")}
-                    </p>
-                  ) : null}
-                </div>
+                  </article>
+                ))}
               </div>
-            ))}
+            ) : (
+              <p style={{ textAlign: "center", color: "var(--rd-secondary)" }}>
+                Alumni profiles are being added — check back soon, or be the first to share your story above.
+              </p>
+            )}
           </div>
-          {!alumni.length ? (
-            <p className="text-center">Alumni profiles are being added — check back soon, or be the first to share your story above.</p>
-          ) : null}
-        </div>
-      </section>
+        </section>
+      </div>
     </Layout>
   );
 }

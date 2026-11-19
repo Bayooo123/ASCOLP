@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import PageHeader from "../components/PageHeader";
 
 const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
 
@@ -39,85 +38,103 @@ export default function Contact() {
   return (
     <Layout>
       <Seo title="Contact" path="/contact" description="Get in touch with Abiola Sanni & Co. (ASCOLP)." />
-      <PageHeader title="Contact Us" crumb="Contact" />
 
-      <section className="contact-page">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-6 col-lg-6">
-              <h3>Get in Touch</h3>
-              <p style={{ marginTop: "10px" }}>14 Barikisu Street, Iyede Onike, Off Custom, Yaba, Lagos, Nigeria</p>
-              <p style={{ marginTop: "10px" }}>
-                <a href="tel:+2347069268744">+234 706 926 8744</a>
-                <br />
-                <a href="mailto:info@abiolasanniandco.com">info@abiolasanniandco.com</a>
+      <div className="rd">
+        <section className="rd-hero">
+          <div className="rd-container rd-hero__inner">
+            <p className="rd-kicker">Contact</p>
+            <h1 style={{ fontSize: "clamp(34px, 4.4vw, 50px)" }}>Speak with the Firm.</h1>
+            <p className="rd-intro">
+              Reach us directly for general enquiries, or use our confidential intake portal if you are instructing on
+              an active matter.
+            </p>
+          </div>
+        </section>
+
+        <section className="rd-section">
+          <div className="rd-container rd-contact-grid">
+            <div>
+              <h2 style={{ fontSize: "22px", marginBottom: "20px" }}>Get in Touch</h2>
+              <p style={{ fontSize: "16px", lineHeight: 1.7, color: "var(--rd-secondary)", marginBottom: "22px" }}>
+                14 Barikisu Street, Iyede Onike, Off Custom, Yaba, Lagos, Nigeria
               </p>
-              <div className="site-footer__social" style={{ marginTop: "20px" }}>
-                <a href="https://www.linkedin.com/company/ascolp/" target="_blank" rel="noreferrer">
+              <p style={{ fontSize: "16px", lineHeight: 1.9, marginBottom: "26px" }}>
+                <a href="tel:+2347069268744" style={{ display: "block", fontWeight: 700, color: "var(--rd-ink)" }}>
+                  +234 706 926 8744
+                </a>
+                <a href="mailto:info@abiolasanniandco.com" className="rd-link">
+                  info@abiolasanniandco.com
+                </a>
+              </p>
+
+              <div className="rd-social-row" style={{ marginBottom: "30px" }}>
+                <a href="https://www.linkedin.com/company/ascolp/" target="_blank" rel="noreferrer" className="rd-social-icon" aria-label="LinkedIn">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://twitter.com/ascolp2" target="_blank" rel="noreferrer">
+                <a href="https://twitter.com/ascolp2" target="_blank" rel="noreferrer" className="rd-social-icon" aria-label="Twitter">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="https://web.facebook.com/abiolasanniandco" target="_blank" rel="noreferrer">
+                <a href="https://web.facebook.com/abiolasanniandco" target="_blank" rel="noreferrer" className="rd-social-icon" aria-label="Facebook">
                   <i className="fab fa-facebook"></i>
                 </a>
-                <a href="https://wa.me/2347033190180" target="_blank" rel="noreferrer">
+                <a href="https://wa.me/2347033190180" target="_blank" rel="noreferrer" className="rd-social-icon" aria-label="WhatsApp">
                   <i className="fab fa-whatsapp"></i>
                 </a>
               </div>
 
-              <div style={{ background: "#fdf6f7", border: "1.5px solid var(--rd-maroon, #7B1B2A)", padding: "18px 20px", marginTop: "28px", borderRadius: "4px" }}>
-                <strong style={{ display: "block", color: "var(--rd-maroon, #7B1B2A)", fontSize: "14.5px", marginBottom: "6px" }}>Instructing on an Active Legal Matter?</strong>
-                <p style={{ margin: "0 0 12px", fontSize: "13.5px", lineHeight: 1.55, color: "var(--rd-ink, #11161B)" }}>
-                  Use our confidential intake portal to initiate preliminary conflict checking and route your brief directly to the responsible practice lead.
+              <div className="rd-callout">
+                <strong>Instructing on an Active Legal Matter?</strong>
+                <p>
+                  Use our confidential intake portal to initiate preliminary conflict checking and route your brief
+                  directly to the responsible practice lead.
                 </p>
-                <a href="/discuss-a-matter" style={{ display: "inline-block", background: "var(--rd-maroon, #7B1B2A)", color: "#fff", padding: "8px 16px", fontSize: "13px", fontWeight: 700, textDecoration: "none", borderRadius: "3px" }}>
+                <a href="/discuss-a-matter" className="rd-btn rd-btn--primary">
                   Brief Us →
                 </a>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6">
+
+            <div className="rd-intake-card">
               {done ? (
-                <p>Thank you — your message has been received. We'll get back to you shortly.</p>
+                <p style={{ margin: 0 }}>Thank you — your message has been received. We&rsquo;ll get back to you shortly.</p>
               ) : (
                 <form onSubmit={handleSubmit}>
                   {error ? <p style={{ color: "#b91c1c", marginBottom: "16px" }}>{error}</p> : null}
-                  <Field label="Name *">
-                    <input required style={inputStyle} value={form.name} onChange={(e) => set("name", e.target.value)} />
-                  </Field>
-                  <Field label="Email *">
-                    <input required type="email" style={inputStyle} value={form.email} onChange={(e) => set("email", e.target.value)} />
-                  </Field>
-                  <Field label="Phone">
-                    <input style={inputStyle} value={form.phone} onChange={(e) => set("phone", e.target.value)} />
-                  </Field>
-                  <Field label="Subject">
-                    <input style={inputStyle} value={form.subject} onChange={(e) => set("subject", e.target.value)} />
-                  </Field>
-                  <Field label="Message *">
-                    <textarea required style={{ ...inputStyle, minHeight: "140px" }} value={form.message} onChange={(e) => set("message", e.target.value)} />
-                  </Field>
-                  <button type="submit" disabled={submitting} className="thm-btn">
+                  <div className="rd-form-stack">
+                    <div className="rd-form-row">
+                      <div className="rd-form-field">
+                        <label htmlFor="c-name">Name *</label>
+                        <input id="c-name" required value={form.name} onChange={(e) => set("name", e.target.value)} />
+                      </div>
+                      <div className="rd-form-field">
+                        <label htmlFor="c-email">Email *</label>
+                        <input id="c-email" required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
+                      </div>
+                    </div>
+                    <div className="rd-form-row">
+                      <div className="rd-form-field">
+                        <label htmlFor="c-phone">Phone</label>
+                        <input id="c-phone" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
+                      </div>
+                      <div className="rd-form-field">
+                        <label htmlFor="c-subject">Subject</label>
+                        <input id="c-subject" value={form.subject} onChange={(e) => set("subject", e.target.value)} />
+                      </div>
+                    </div>
+                    <div className="rd-form-field">
+                      <label htmlFor="c-message">Message *</label>
+                      <textarea id="c-message" required style={{ minHeight: "140px" }} value={form.message} onChange={(e) => set("message", e.target.value)} />
+                    </div>
+                  </div>
+                  <button type="submit" disabled={submitting} className="rd-btn rd-btn--primary" style={{ marginTop: "22px" }}>
                     {submitting ? "Sending…" : "Send Message"}
                   </button>
                 </form>
               )}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </Layout>
-  );
-}
-
-const inputStyle = { width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "4px" };
-
-function Field({ label, children }) {
-  return (
-    <label style={{ display: "block", marginBottom: "16px" }}>
-      <span style={{ display: "block", marginBottom: "6px", fontWeight: 600 }}>{label}</span>
-      {children}
-    </label>
   );
 }

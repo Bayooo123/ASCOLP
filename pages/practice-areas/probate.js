@@ -1,15 +1,19 @@
-import InfoPage from "../../components/InfoPage";
+import PracticeAreaLayout from "../../components/PracticeAreaLayout";
 
 export default function Probate() {
   return (
-    <InfoPage
+    <PracticeAreaLayout
       title="Probate Services"
-      crumb="Probate Services"
+      kicker="Private Client"
+      headline="Probate & Estate Administration."
+      intro="As probate officer, ASCOLP handles the documentation and filing of the probate process for both testate and intestate clients, from the reading of the will through to final estate distribution."
       path="/practice-areas/probate"
-      tagline="Probate Services"
-      image="/assets/images/about/ascolop_about.png"
-      paragraphs={[
-        "As probate officer, ASCOLP handles documentation and filing of your probate process for both Testate and Intestate clients, including reading of the will, marking of the will, death certificate, relevant financial records, Court processes, asset identification, estate distribution, conflict resolution and estate management.",
+      whatWeDo={[
+        "Reading and marking of the will",
+        "Securing the death certificate and relevant financial records",
+        "Court processes and asset identification",
+        "Estate distribution and conflict resolution",
+        "Ongoing estate management",
       ]}
     />
   );

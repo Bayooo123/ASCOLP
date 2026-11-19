@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import PageHeader from "../components/PageHeader";
 import { db } from "../lib/db";
 
 // The Naijabase client has no OR-filter, so "match either column" is done as
@@ -45,69 +44,78 @@ export default function Search({ q, team, articles, alumni }) {
   return (
     <Layout>
       <Seo title={q ? `Search: ${q}` : "Search"} path="/search" />
-      <PageHeader title="Search" crumb="Search" />
 
-      <section className="team-page">
-        <div className="container">
-          <form action="/search" method="get" style={{ marginBottom: "40px", maxWidth: "500px" }}>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <input
-                type="text"
-                name="q"
-                defaultValue={q}
-                placeholder="Search team, articles, alumni…"
-                style={{ flex: 1, padding: "10px", border: "1px solid #ccc", borderRadius: "4px" }}
-              />
-              <button type="submit" className="thm-btn">
-                Search
-              </button>
-            </div>
-          </form>
+      <div className="rd">
+        <section className="rd-hero">
+          <div className="rd-container rd-hero__inner">
+            <p className="rd-kicker">Search</p>
+            <h1 style={{ fontSize: "clamp(34px, 4.4vw, 50px)" }}>Search ASCOLP.</h1>
+            <form action="/search" method="get" style={{ maxWidth: "480px", marginTop: "8px" }}>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <input
+                  type="text"
+                  name="q"
+                  defaultValue={q}
+                  placeholder="Search team, articles, alumni…"
+                  style={{ flex: 1, padding: "12px 14px", border: "1px solid var(--rd-border)", fontFamily: "inherit", fontSize: "15px", background: "#fff", color: "var(--rd-ink)" }}
+                />
+                <button type="submit" className="rd-btn rd-btn--primary">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
 
-          {q && !hasResults ? <p>No results for “{q}”.</p> : null}
+        <section className="rd-section">
+          <div className="rd-container" style={{ maxWidth: "720px" }}>
+            {q && !hasResults ? <p style={{ color: "var(--rd-secondary)" }}>No results for &ldquo;{q}&rdquo;.</p> : null}
 
-          {team.length ? (
-            <div style={{ marginBottom: "30px" }}>
-              <h3>Team</h3>
-              <ul>
-                {team.map((m) => (
-                  <li key={m.slug}>
-                    <a href={`/team/${m.slug}`}>
-                      {m.name} {m.title ? `— ${m.title}` : ""}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+            {team.length ? (
+              <div style={{ marginBottom: "36px" }}>
+                <p className="rd-kicker" style={{ marginBottom: "12px" }}>Team</p>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "10px" }}>
+                  {team.map((m) => (
+                    <li key={m.slug}>
+                      <a href={`/team/${m.slug}`} className="rd-link" style={{ fontSize: "16px" }}>
+                        {m.name} {m.title ? `— ${m.title}` : ""}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-          {articles.length ? (
-            <div style={{ marginBottom: "30px" }}>
-              <h3>Thought Leadership</h3>
-              <ul>
-                {articles.map((a) => (
-                  <li key={a.slug}>
-                    <a href={a.externalUrl || `/articles/${a.slug}`}>{a.title}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+            {articles.length ? (
+              <div style={{ marginBottom: "36px" }}>
+                <p className="rd-kicker" style={{ marginBottom: "12px" }}>Thought Leadership</p>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "10px" }}>
+                  {articles.map((a) => (
+                    <li key={a.slug}>
+                      <a href={a.externalUrl || `/articles/${a.slug}`} className="rd-link" style={{ fontSize: "16px" }}>
+                        {a.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-          {alumni.length ? (
-            <div>
-              <h3>Alumni</h3>
-              <ul>
-                {alumni.map((a) => (
-                  <li key={a.id}>
-                    {a.name} {a.currentOrganization ? `— ${a.currentOrganization}` : ""}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </section>
+            {alumni.length ? (
+              <div>
+                <p className="rd-kicker" style={{ marginBottom: "12px" }}>Alumni</p>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "10px" }}>
+                  {alumni.map((a) => (
+                    <li key={a.id} style={{ fontSize: "16px" }}>
+                      {a.name} {a.currentOrganization ? `— ${a.currentOrganization}` : ""}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      </div>
     </Layout>
   );
 }

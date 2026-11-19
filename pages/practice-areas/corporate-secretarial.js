@@ -1,16 +1,20 @@
-import InfoPage from "../../components/InfoPage";
+import PracticeAreaLayout from "../../components/PracticeAreaLayout";
 
 export default function CorporateSecretarial() {
   return (
-    <InfoPage
+    <PracticeAreaLayout
       title="Corporate Secretarial Services"
-      crumb="Corporate Secretarial Services"
+      kicker="Company Secretary"
+      headline="Certified company secretarial services."
+      intro="As certified company secretaries, ASCOLP ensures legal compliance across board governance, statutory filings, and corporate record-keeping — identifying, assessing and mitigating the legal and regulatory risk a company could face."
       path="/practice-areas/corporate-secretarial"
-      tagline="Corporate Secretarial Services"
-      image="/assets/images/about/ascolop_about.png"
-      paragraphs={[
-        "As certified company secretaries, ASCOLP conducts legal compliance, organization and preparation of materials for board meetings, ensuring prompt distribution of agendas, reports, and minutes. We maintain accurate and up-to-date company records, including shareholder registers, minutes of meetings, and legal documentation, and identify, assess and mitigate legal and regulatory risks that the company could face.",
-        "We also manage the filing of annual reports, financial statements, and other legal documents with relevant government agencies, and review and draft contracts and agreements, ensuring they align with legal requirements and the company's best interests.",
+      whatWeDo={[
+        "Legal compliance, organization, and preparation of materials for board meetings",
+        "Prompt distribution of agendas, reports, and minutes",
+        "Maintaining accurate shareholder registers, meeting minutes, and legal documentation",
+        "Identifying, assessing, and mitigating legal and regulatory risk",
+        "Filing annual reports, financial statements, and other documents with relevant government agencies",
+        "Reviewing and drafting contracts and agreements aligned with legal requirements and the company's best interests",
       ]}
     />
   );

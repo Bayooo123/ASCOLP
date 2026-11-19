@@ -228,7 +228,7 @@ export default function Home({ latestArticles = [] }) {
             </div>
             <div className="rd-btn-row">
               <Link href="/discuss-a-matter" className="rd-btn rd-btn--primary rd-btn--lg rd-btn--on-dark">
-                Describe your matter
+                Brief Us
               </Link>
               <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
                 +234 706 926 8744

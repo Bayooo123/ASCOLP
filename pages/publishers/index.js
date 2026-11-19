@@ -163,7 +163,7 @@ export default function PublishersPage() {
                 Inquire for Institutional Library
               </a>
               <Link href="/discuss-a-matter" className="rd-btn rd-btn--secondary rd-btn--lg rd-btn--on-dark">
-                Discuss a Legal Matter
+                Brief Us
               </Link>
             </div>
           </div>

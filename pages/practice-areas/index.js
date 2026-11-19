@@ -100,8 +100,8 @@ export default function PracticeAreasPage() {
               <p className="rd-serif">Not sure which team you need?</p>
               <p className="rd-body-sm">Tell us about the matter and we will route it to the right department within one working day.</p>
               <div className="rd-btn-row">
-                <a href="mailto:info@abiolasanniandco.com?subject=New%20matter%20enquiry" className="rd-btn rd-btn--primary">
-                  Describe your matter
+                <a href="/discuss-a-matter" className="rd-btn rd-btn--primary">
+                  Brief Us
                 </a>
                 <a href="tel:+2347069268744" className="rd-btn rd-btn--secondary">
                   Call +234 706 926 8744
